@@ -1,0 +1,21 @@
+@import url(login.css);
+
+.name-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.name-part{
+    margin-top: 10px;
+}
+
+.account-type{
+    display: flex;
+    margin-top: 15px;
+}
+
+#option-elev{
+    margin: 0;
+}
