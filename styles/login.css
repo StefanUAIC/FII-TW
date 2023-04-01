@@ -7,7 +7,8 @@
 }
 
 body{
-    background-image: linear-gradient(to right, red, blue);
+    background-image: linear-gradient(to right, #66FCF1, #45A29E);
+    background-image: linear-gradient(to left, #434343 0%, #0B0C10);
 }
 
 .main-container{
@@ -19,7 +20,8 @@ body{
 }
 
 .login-form{
-    background-color: rgba(194, 194, 194, 0.7);
+    background-image: linear-gradient(to right, #66FCF1, #45A29E);
+    background-color: #C5C6C7;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
@@ -69,7 +71,7 @@ input {
 }
 
 button{
-    background-color: red;
+    background-color: #1f2833d3;
     margin-top: 20px;
     margin-bottom: 10px;
     padding: 5px;
@@ -77,6 +79,7 @@ button{
     transition: opacity 0.4s;
     align-self: center;
     padding: 8px 16px 8px 16px;
+    color: #C5C6C7;
 }
 
 button:hover{
