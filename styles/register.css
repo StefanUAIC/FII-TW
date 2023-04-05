@@ -29,3 +29,10 @@
         }
     }    
 }
+
+@media only screen and (max-height: 450px){ /* in general pt landscape */
+    .login-form{
+        height: 100vh;
+        overflow: auto;
+    }
+}   
