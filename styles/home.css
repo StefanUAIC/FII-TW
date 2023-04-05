@@ -41,6 +41,7 @@ body{
     font-size: 20px;
     font-weight: bold;
     margin-top: auto;
+    font-size: small;
 }
 
 .top-container{
@@ -59,7 +60,7 @@ body{
     height: 400px ;
     width: 45%;
     text-align: center;
-    background-image: url('../assets/home/laptop.png');
+    background-image: url('../assets/laptop.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -99,16 +100,16 @@ body{
 }
 
 .logout-button{
-    width: 5%;
-    display: flex;
+    width: 48px;
+    height: 48px;
     justify-content: center;
     align-self:flex-start;
-    background-color: #66FCF1;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    background-image: url('../assets/logout-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     padding: 10px;
     margin: 10px;
-    text-decoration: none;
 }
 
 .cards-container{
