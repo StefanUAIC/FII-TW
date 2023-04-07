@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,19 +6,18 @@
 
 }
 
-body{
-    background-image: linear-gradient(to right, #66FCF1, #45A29E);
+body {
     background-image: linear-gradient(to left, #434343 0%, #0B0C10);
 }
 
-.main-container{
+.main-container {
     display: flex;
     justify-content: center;
     height: 100vh;
     align-items: center;
 }
 
-.login-form{
+.login-form {
     background-image: linear-gradient(to right, #66FCF1, #45A29E);
     background-color: #C5C6C7;
     border-radius: 30px;
@@ -30,14 +29,14 @@ body{
     box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
 }
 
-.separator{
+.separator {
     width: 100%;
-    background-color:black;
+    background-color: black;
     height: 2px;
     align-self: center;
 }
 
-.title{
+.title {
     text-align: center;
     margin: 10px;
     font-size: 1.5em;
@@ -51,10 +50,10 @@ button {
     outline: none;
     border-radius: 10px;
     font-size: 1.1em;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
-label{
+label {
     margin-top: 10px;
     font-weight: bold;
     margin-bottom: 3px;
@@ -69,11 +68,10 @@ input {
     padding: 16px 16px;
 }
 
-button{
+button {
     background-color: #1f2833d3;
     margin-top: 20px;
     margin-bottom: 10px;
-    padding: 5px;
     cursor: pointer;
     transition: opacity 0.4s;
     align-self: center;
@@ -81,15 +79,15 @@ button{
     color: #C5C6C7;
 }
 
-button:hover{
+button:hover {
     opacity: 0.8;
 }
 
-.to-register{
+.to-register {
     align-self: center;
 }
 
-.to-register p{
+.to-register p {
     margin-top: 10px;
     font-size: 1.1em;
 }
