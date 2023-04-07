@@ -68,6 +68,28 @@ body{
     justify-content: center;
 }
 
+.code-editor {
+    min-height: 500px;
+    background-color: #66FCF1;
+    padding: 10px;
+    overflow: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.code-buttons {
+    background-color: #45A29E;
+    padding: 10px;
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .comments-container {
     min-height: 200px;
     background-color: #45A29E;
@@ -91,4 +113,13 @@ body{
     font-weight: bold;
     margin-top: auto;
     font-size: small;
+}
+
+@media screen and (max-width: 600px) {
+    .description-container {
+        width: 100%;
+    }
+    .code-container {
+        width: 100%;
+    }
 }
