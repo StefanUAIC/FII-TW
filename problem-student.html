@@ -50,7 +50,16 @@
             <div class="star-rating"></div>
         </div>
         <div class="code-container">
-            <div class="code-editor"></div>
+            <div class="code-editor">
+                <div id="editor">#include &lt;iostream&gt;
+using namespace std;
+                    
+int main() {
+    cout << "Hello World!";
+    return 0;
+}
+                </div>
+            </div>
             <div class="code-buttons">
                 <button class="code-button">Trimite</button>
                 <select name="Alege Profesor" id="profesor">
@@ -64,5 +73,7 @@
     <section class="comments-container">Comments</section>
     <section class="footer">© 2023 InformatiX. All rights reserved.</section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
+    <script src="scripts/code_editor.js"></script>
 </body>
 </html>
