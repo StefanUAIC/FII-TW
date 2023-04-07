@@ -36,7 +36,6 @@ body{
 }
 
 .problem-container {
-    background-color: #5bc8c2;
     padding: 10px;
     overflow: auto;
     width: 100%;
@@ -48,18 +47,51 @@ body{
 
 .description-container {
     min-height: 600px;
-    background-color: #66FCF1;
+    background-color: var(--color-dark-gray);
+    color: var(--color-light-gray);
     padding: 10px;
     overflow: auto;
     width: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    border-radius: 10px;
+}
+
+.tags-container {
+    align-self: center;
+}
+
+.tags-container .problem-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--color-light-turq);
+    padding: 20px;
+}
+
+.tags-container table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.section {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.section h3 {
+    padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-dark-turq);
+}
+
+.section p {
 }
 
 .code-container {
     min-height: 600px;
-    background-color: #45A29E;
     padding: 10px;
     overflow: auto;
     width: 40%;
@@ -84,12 +116,12 @@ body{
     width: 100%;
     justify-content: center;
     border-radius: 4px;
-    border: 2px solid #66FCF1;
-    color: var(--color-light-gray)
+    color: var(--color-light-gray);
+    border: 3px solid var(--color-dark-gray);
+
 }
 
 .code-buttons {
-    background-color: #45A29E;
     padding: 10px;
     gap: 10px;
     width: 100%;
@@ -112,13 +144,13 @@ body{
     transition: opacity 0.4s;
 }
 
-.code-buttons button:hover{
-    opacity: 0.5;
+.code-buttons button:hover, .code-buttons select:hover {
+    opacity: 0.65;
 }
 
 .code-buttons select {
     color: var(--color-dark-gray);
-    background-color: var(--color-light-gray);
+    background-color: var(--color-dark-turq);
     border: none;
     border-radius: 4px;
     padding: 10px;
@@ -130,15 +162,35 @@ body{
 }
 
 .comments-container {
-    min-height: 200px;
-    background-color: #45A29E;
     padding: 10px;
     overflow: auto;
-    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
+}
+
+.comment-posting {
+    color: var(--color-dark-turq);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: var(--color-dark-gray);
+    align-items: center;
+}
+
+.comment-posting-body textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 4px;
+    border: 3px solid var(--color-dark-gray);
+    background-color: var(--color-light-gray);
+    color: var(--color-dark-gray);
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    font-size: small;
+    transition: opacity 0.4s;
 }
 
 .footer {
