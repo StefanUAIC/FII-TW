@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/problem.css">
+    <link rel="stylesheet" href="styles/problem_teacher.css">
     <title>InformatiX - Vizualizare problema</title>
 </head>
 <body>
@@ -92,7 +92,7 @@ int main() {
                 </div>
             </div>
             <div class="code-buttons">
-                <button class="code-button assign-homework">Corectează</button>
+                <button class="code-button" id="assign-homework">Corectează</button>
                 <select name="Alege Profesor" id="profesor">
                     <option value="profesor0">Selectează elev</option>
                     <option value="profesor1">Elev 1 - Clasa XII B</option>
@@ -147,6 +147,18 @@ int main() {
         </div>
     </div>
     <div class="footer">© 2023 InformatiX. All rights reserved.</div>
+
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>body</p>
+            </div>
+            
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
     <script src="scripts/problem.js"></script>
