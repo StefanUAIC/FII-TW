@@ -21,6 +21,7 @@ body{
     font-family: 'Montserrat', sans-serif;
     color: var(--color-dark-gray);
     background-color: var(--color-light-gray);
+    gap: 20px;
 }
 
 .navbar {
@@ -88,6 +89,7 @@ body{
 }
 
 .section p {
+    
 }
 
 .code-container {
@@ -163,6 +165,7 @@ body{
 
 .comments-container {
     padding: 10px;
+    gap: 25px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -170,27 +173,87 @@ body{
 }
 
 .comment-posting {
-    color: var(--color-dark-turq);
+    width: 650px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     background-color: var(--color-dark-gray);
-    align-items: center;
+    align-self: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
-.comment-posting-body textarea {
-    width: 100%;
-    height: 100px;
+.comment-posting .comment-user-name {
+    font-size: 16px;
+    font-weight: bolder;
+    color: #eee;
+    align-self: flex-start;
+    padding-left: 12px;
+}
+
+.comment-posting .comment-posting-button {
+    color: white;
+    background-color: var(--color-black);
+    border: 2px solid var(--color-light-turq);
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 20px;
+    font-weight: bold;
+    font-size: small;
+    cursor: pointer;
+    transition: color 0.4s;
+    align-self: center;
+}
+
+.comment-posting .comment-posting-button:hover {
+    color: var(--color-light-turq);
+}
+
+.comment-posting textarea {
+    width: --webkit-fill-available;
+    height: 150px;
     border-radius: 4px;
     border: 3px solid var(--color-dark-gray);
     background-color: var(--color-light-gray);
     color: var(--color-dark-gray);
     padding: 10px;
-    font-size: 20px;
+    margin: 10px;
     font-weight: bold;
-    font-size: small;
-    transition: opacity 0.4s;
+    font-size: large;
+    resize: none;
+    overflow: hidden;
+}
+
+.comment-box-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.comment-box{
+    width: 700px;
+    background-color: var(--color-dark-gray);
+    color:var(--color-light-gray);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.comment-data {
+    padding-bottom: 20px;
+}
+
+.comment-data .comment-user-name {
+    font-size: 16px;
+    font-weight: bolder;
+    color: var(--color-light-gray);
+}
+
+.comment-data .comment-date {
+    font-size: 12px;
+    color: var(--color-light-turq);
 }
 
 .footer {
