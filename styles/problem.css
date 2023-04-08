@@ -20,7 +20,7 @@ body{
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     color: var(--color-dark-gray);
-    background-color: var(--color-light-gray);
+    background-color: #464d65;
     gap: 20px;
 }
 
@@ -47,7 +47,7 @@ body{
 }
 
 .description-container {
-    min-height: 600px;
+    height: 600px;
     background-color: var(--color-dark-gray);
     color: var(--color-light-gray);
     padding: 10px;
@@ -56,23 +56,46 @@ body{
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
-.tags-container {
-    align-self: center;
-}
-
-.tags-container .problem-name {
+.problem-name {
     font-size: 30px;
     font-weight: bold;
     color: var(--color-light-turq);
     padding: 20px;
+    align-self: center;
 }
 
-.tags-container table {
+.tags-container {
     width: 100%;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
     border-collapse: collapse;
+    border-spacing: 0;
+}
 
+.tag {
+    display: flex;
+    padding: 2px;
+    font-weight: bold;
+    border-radius: 4px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.tag h3{
+    font-size: 14px;
+    margin-right: 5px;
+    padding: 0;
+    color: var(--color-light-turq);
+}
+
+.tag span {
+    padding: 0;
+    color: var(--color-light-gray);
 }
 
 .section {
@@ -89,8 +112,67 @@ body{
 }
 
 .section p {
-    
+    font-size: 16px;
+    color: var(--color-light-gray);
 }
+
+.tag-stars h3::before {
+    content: "★";
+    color: gold;
+    font-size: 16px;
+}
+
+.star-rating {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.radio-input {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .radio-label {
+    cursor: pointer;
+    font-size: 0;
+    color: rgba(0,0,0,0.7);
+    transition: color 0.1s ease-in-out;
+  }
+  
+  .radio-label:before {
+    content: "★";
+    display: inline-block;
+    font-size: 32px;
+  }
+
+  .radio-input:checked ~ .radio-label {
+    color: #ffc700;
+    color: gold;
+  }
+  
+  .radio-label:hover,
+  .radio-label:hover ~ .radio-label {
+    color: goldenrod;
+  }
+  
+  .radio-input:checked + .radio-label:hover,
+  .radio-input:checked + .radio-label:hover ~ .radio-label,
+  .radio-input:checked ~ .radio-label:hover,
+  .radio-input:checked ~ .radio-label:hover ~ .radio-label,
+  .radio-label:hover ~ .radio-input:checked ~ .radio-label {
+    color: darkgoldenrod;
+  }
 
 .code-container {
     min-height: 600px;
@@ -109,6 +191,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 #editor {
@@ -268,6 +351,20 @@ body{
     font-weight: bold;
     margin-top: auto;
     font-size: small;
+}
+
+@media only screen and (max-width: 550px) {
+    .tags-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    @media only screen and (max-width: 320px) {
+        .tags-container {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(6, 1fr);
+        }
+    }
 }
 
 @media only screen and (max-width: 700px) {

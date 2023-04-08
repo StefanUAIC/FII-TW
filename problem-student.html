@@ -12,38 +12,70 @@
     <section class="navbar">Navbar</section>
     <section class="problem-container">
         <div class="description-container">
+            <h2 class="problem-name">Nume problemă</h2>
             <div class="tags-container">
-                <h2 class="problem-name">Nume problemă</h2>
-                <table>
-                    <tr>
-                        <td><div class="tag tag-dificultate">Dificultate: dificil</div></td>
-                        <td><div class="tag tag-autor"></div>Autor: nume_autor</td>
-                    </tr>
-                    <tr>
-                        <td><div class="tag tag-capitol"></div>Capitol: programare dinamica</td>
-                        <td><div class="tag tag-clasa">Clasa: XII</div></td>
-                    </tr>
-                </table>
+                <div class="tag tag-author">
+                    <h3>Autor:</h3>
+                    <span class="author">nume autor</span>
+                </div>
+                <div class="tag tag-difficulty">
+                    <h3>Dificultate:</h3>
+                     <span class="difficulty">dificil</span>
+                </div>
+                <div class="tag tag-score">
+                    <h3>Punctajul meu:</h3> 
+                    <span class="score">9</span>/10
+                </div>
+                <div class="tag tag-chapter">
+                    <h3>Capitol:</h3>
+                    <span class="chapter">Programare Dinamica</span>
+                </div>
+                <div class="tag tag-grade">
+                    <h3>Clasa:</h3>
+                    <span class="grade">XII</span>
+                </div>
+                <div class="tag tag-stars">
+                    <h3></h3> 
+                    <span class="stars">3.8</span>/5
+                </div>
             </div>
             <div class="statement">
                 <div class="section">
-                    <h3>Cerinta</h3>
-                    <p>Enuntul problemei: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, labore.</p>
+                    <h3>Cerință</h3>
+                    <p>Se dă un vector cu n elemente care aparțin intervalului [1, p], iar modulul diferenței dintre oricare 2 valori consecutive este maxim k. Fane a șters câteva dintre numere, scriind in locul lor numărul 0. Aflați numărul de modalități de a completa numerele șterse de Fane, astfel încât vectorul să respecte cele 2 condiții.</p>
                 </div>
                 <div class="section">
                     <h3>Date de intrare</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, labore.</p>
+                    <p>Programul citește de la tastatură numerele n, p, k, iar apoi n numere naturale, separate prin spații.</p>
                 </div>
                 <div class="section">
-                    <h3>Date de iesire</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, labore.</p>
+                    <h3>Date de ieșire</h3>
+                    <p>Programul va afișa pe ecran numărul cerut modulo 1.000.000.007.</p>
                 </div>
                 <div class="section">
-                    <h3>Restrictii si precizari</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, labore.</p>
+                    <h3>Restricții și precizări</h3>
+                    <p>
+                        <li><code>1 ≤ n ≤ 1000</code></li>
+                        <li><code>1 ≤ p ≤ 100</code></li>
+                        <li><code>1 ≤ k ≤ 10</code></li>
+                    </p>
                 </div>
             </div>
-            <div class="star-rating"></div>
+            <div class="star-rating">
+                <h3>Notați problema</h3>
+                <div class="stars">
+                    <input type="radio" name="star" class ="radio-input" id="star1" value="1">
+                    <label for="star1" class="radio-label">1</label>
+                    <input type="radio" name="star" class ="radio-input" id="star2" value="2">
+                    <label for="star2" class="radio-label">2</label>
+                    <input type="radio" name="star" class ="radio-input" id="star3" value="3">
+                    <label for="star3" class="radio-label">3</label>
+                    <input type="radio" name="star" class ="radio-input" id="star4" value="4">
+                    <label for="star4" class="radio-label">4</label>
+                    <input type="radio" name="star" class ="radio-input" id="star5" value="5">
+                    <label for="star5" class="radio-label">5</label>
+                </div>
+            </div>
         </div>
         <div class="code-container">
             <div class="code-editor">
@@ -68,7 +100,7 @@ int main() {
     </section>
     <section class="comments-container">
         <div class="comment-posting">
-            <h3 class="comment-user-name">@Nume_utilizator</h3>
+            <h3 class="comment-user-name">@alex</h3>
             <textarea name="comment" id="comment" placeholder="Lasă un comentariu... Maxim 200 de caractere"></textarea>
             <button class="comment-posting-button">Posteaza</button> 
         </div>
