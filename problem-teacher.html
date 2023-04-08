@@ -22,9 +22,9 @@
                     <h3>Dificultate:</h3>
                      <span class="difficulty">dificil</span>
                 </div>
-                <div class="tag tag-score">
-                    <h3>Punctajul meu:</h3> 
-                    <span class="score">9</span>/10
+                <div class="tag tag-homeworks">
+                    <h3>Teme de corectat:</h3> 
+                    <span class="score">2</span>
                 </div>
                 <div class="tag tag-chapter">
                     <h3>Capitol:</h3>
@@ -79,7 +79,10 @@
         </div>
         <div class="code-container">
             <div class="code-editor">
-                <div id="editor"><pre><code>#include &lt;iostream&gt;
+                <div id="editor"><pre><code>//aici este solutia elevului care trebuie corectata
+//codul se va schimba in functie de elevul selectat
+
+#include &lt;iostream&gt;
 using namespace std;
                     
 int main() {
@@ -89,11 +92,11 @@ int main() {
                 </div>
             </div>
             <div class="code-buttons">
-                <button class="code-button">Trimite</button>
+                <button class="code-button assign-homework">Corectează</button>
                 <select name="Alege Profesor" id="profesor">
-                    <option value="profesor0">Selecteaza profesor</option>
-                    <option value="profesor1">Profesor 1</option>
-                    <option value="profesor2">Profesor 2</option>
+                    <option value="profesor0">Selectează elev</option>
+                    <option value="profesor1">Elev 1 - Clasa XII B</option>
+                    <option value="profesor2">Elev 2 - Clasa XII A</option>
                 </select>                
             </div>
         </div>
@@ -102,7 +105,7 @@ int main() {
         <div class="comment-posting">
             <div class="comment-header">
                 <img src="assets/profile_picture_placeholder.png" alt="pfp">
-                <h3 class="comment-user-name">@alex</h3>
+                <h3 class="comment-user-name">@Cosmin</h3>
             </div>
             <textarea name="comment" id="comment" placeholder="Lasă un comentariu... Maxim 200 de caractere"></textarea>
             <button class="comment-posting-button">Posteaza</button> 
