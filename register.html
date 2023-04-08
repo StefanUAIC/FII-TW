@@ -11,53 +11,49 @@
     <title>InformatiX - Register</title>
 </head>
 <body>
-    <div class="main-container">
+<div class="main-container">
 
-            <form action="index.html" method="" class="login-form">
-                <p class="title">InformatiX - Creare cont</p>
-                <div class="separator"></div>
+    <form action="index.html" method="post" class="login-form">
+        <p class="title">InformatiX - Creare cont</p>
+        <div class="separator"></div>
 
-                <div class="name-container">
-                    
-                    <div class="name-part">
-                        <label>Introdu Nume</label>
-                        <input type="text" placeholder="Nume">
-                    </div>
+        <div class="name-container">
+            <div class="name-part">
+                <label for="surname-input">Introdu Nume</label>
+                <input type="text" id="surname-input" placeholder="Nume">
+            </div>
+            <div class="name-part">
+                <label for="first-name-input">Introdu Prenume</label>
+                <input type="text" id="first-name-input" placeholder="Prenume">
+            </div>
+        </div>
 
-                    <div class="name-part">
-                        <label>Introdu Prenume</label>
-                        <input type="text" placeholder="Prenume">
-                    </div>
-                    
-                </div>
+        <label for="email-input">Introdu adresa de mail</label>
+        <input type="email" id="email-input" placeholder="E-mail">
 
-                <label>Introdu adresa de mail</label>
-                <input type="email" placeholder="E-mail">
-                
-                <label>Adaugă numele de utilizator</label>
-                <input type="text" placeholder="Username">
-                
+        <label for="username-input">Adaugă numele de utilizator</label>
+        <input type="text" id="username-input" placeholder="Username">
 
-                <label>Introdu Parola</label>
-                <input type="password" placeholder="Parola">
+        <label for="password-input">Introdu Parola</label>
+        <input type="password" id="password-input" placeholder="Parola">
 
-                <label>Confirmare Parolă</label>
-                <input type="password" placeholder="Parola">
-                
-                <label>Selecteaza tip cont</label>
-                <div class="type-wrapper">
-                    <label for="option-elev">Elev</label>
-                    <input type="radio" name="selector" id="option-elev">
+        <label for="confirm-password-input">Confirmare Parolă</label>
+        <input type="password" id="confirm-password-input" placeholder="Parola">
 
-                    <label for="option-prof">Profesor</label>
-                    <input type="radio" name="selector" id="option-prof">
-                </div>
-                
+        <label>Selecteaza tip cont</label>
+        <div class="type-wrapper">
+            <label for="option-elev">Elev</label>
+            <input type="radio" name="selector" id="option-elev">
 
-                <button>Înregistrează-te</button>
-            </form>
+            <label for="option-prof">Profesor</label>
+            <input type="radio" name="selector" id="option-prof">
+        </div>
 
-    </div>
+
+        <button>Înregistrează-te</button>
+    </form>
+
+</div>
 </body>
 </html>
 
