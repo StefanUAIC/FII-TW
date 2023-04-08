@@ -174,7 +174,8 @@ body{
 
 .comment-posting {
     width: 650px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -187,7 +188,7 @@ body{
 .comment-posting .comment-user-name {
     font-size: 16px;
     font-weight: bolder;
-    color: #eee;
+    color: var(--color-light-gray);
     align-self: flex-start;
     padding-left: 12px;
 }
@@ -251,7 +252,7 @@ body{
     color: var(--color-light-gray);
 }
 
-.comment-data .comment-date {
+.comment-data .comment-meta {
     font-size: 12px;
     color: var(--color-light-turq);
 }
@@ -269,7 +270,16 @@ body{
     font-size: small;
 }
 
-@media screen and (max-width: 800px) {
+@media only screen and (max-width: 700px) {
+    .comment-posting {
+        width: 100%;
+    }
+    .comment-box {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
     .description-container {
         width: 100%;
     }
