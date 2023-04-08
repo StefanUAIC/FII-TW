@@ -1,37 +1,38 @@
 @import url(login.css);
 
-.name-container{
+.name-container {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
 
-.name-part{
+.name-part {
     margin-top: 10px;
 }
 
-.type-wrapper{
+.type-wrapper {
     display: flex;
     margin-top: 15px;
 }
 
-@media only screen and (max-width: 500px){
-    .name-container{
+@media only screen and (max-width: 500px) {
+    .name-container {
         flex-direction: column;
-        gap: 0px;
+        gap: 0;
     }
 
-    @media only screen and (max-height: 750px){
-        .login-form{
+    @media only screen and (max-height: 750px) {
+        .login-form {
             height: 100vh;
             overflow: auto;
         }
-    }    
+    }
 }
 
-@media only screen and (max-height: 450px){ /* in general pt landscape */
-    .login-form{
+@media only screen and (max-height: 450px) {
+    /* in general pt landscape */
+    .login-form {
         height: 100vh;
         overflow: auto;
     }
