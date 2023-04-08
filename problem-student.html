@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +9,8 @@
 </head>
 <body>
     
-    <section class="navbar">Navbar</section>
-    <section class="problem-container">
+    <div class="navbar">Navbar</div>
+    <div class="problem-container">
         <div class="description-container">
             <h2 class="problem-name">Nume problemă</h2>
             <div class="tags-container">
@@ -35,7 +35,7 @@
                     <span class="grade">XII</span>
                 </div>
                 <div class="tag tag-stars">
-                    <h3></h3> 
+                    <h3>★</h3> 
                     <span class="stars">3.8</span>/5
                 </div>
             </div>
@@ -55,9 +55,9 @@
                 <div class="section">
                     <h3>Restricții și precizări</h3>
                     <p>
-                        <li><code>1 ≤ n ≤ 1000</code></li>
-                        <li><code>1 ≤ p ≤ 100</code></li>
-                        <li><code>1 ≤ k ≤ 10</code></li>
+                        <code>1 ≤ n ≤ 1000</code><br>
+                        <code>1 ≤ p ≤ 100</code><br>
+                        <code>1 ≤ k ≤ 10</code><br>
                     </p>
                 </div>
             </div>
@@ -79,13 +79,13 @@
         </div>
         <div class="code-container">
             <div class="code-editor">
-                <div id="editor">#include &lt;iostream&gt;
+                <div id="editor"><pre><code>#include &lt;iostream&gt;
 using namespace std;
                     
 int main() {
-    cout << "Hello World!";
+    cout &lt;&lt; "Hello World!";
     return 0;
-}
+}</code></pre> 
                 </div>
             </div>
             <div class="code-buttons">
@@ -97,11 +97,11 @@ int main() {
                 </select>                
             </div>
         </div>
-    </section>
-    <section class="comments-container">
+    </div>
+    <div class="comments-container">
         <div class="comment-posting">
             <div class="comment-header">
-                <img src="assets/profile picture placeholder.png" alt="pfp">
+                <img src="assets/profile_picture_placeholder.png" alt="pfp">
                 <h3 class="comment-user-name">@alex</h3>
             </div>
             <textarea name="comment" id="comment" placeholder="Lasă un comentariu... Maxim 200 de caractere"></textarea>
@@ -111,7 +111,7 @@ int main() {
         <div class="comment-box-container">
             <div class="comment-box">
                 <div class="comment-header">
-                    <img src="assets/profile picture placeholder.png" alt="pfp">
+                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
                     <div class="comment-data">
                         <h3 class="comment-user-name">@Cosmin</h3>
                         <div class="comment-meta">Astăzi | Profesor</div>
@@ -122,7 +122,7 @@ int main() {
 
             <div class="comment-box">
                 <div class="comment-header">
-                    <img src="assets/profile picture placeholder.png" alt="pfp">
+                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
                     <div class="comment-data">
                         <h3 class="comment-user-name">@alex</h3>
                         <div class="comment-meta">Acum 5 zile | Elev</div>
@@ -133,7 +133,7 @@ int main() {
     
             <div class="comment-box">
                 <div class="comment-header">
-                    <img src="assets/profile picture placeholder.png" alt="pfp">
+                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
                     <div class="comment-data">
                         <h3 class="comment-user-name">@Stefan</h3>
                         <div class="comment-meta">Acum 7 zile | Elev</div>
@@ -142,8 +142,8 @@ int main() {
                 <p class="comment-body">Un comentariu mai chill. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, esse enim? Excepturi, vel. Excepturi consequuntur esse repellendus distinctio sit quas numquam at? Quasi iste quas illo possimus quisquam enim velit. Inventore soluta necessitatibus vero ex animi debitis, nulla vitae! Reprehenderit beatae et, nostrum dolores vero quisquam a distinctio omnis fugiat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
             </div>
         </div>
-    </section>
-    <section class="footer">© 2023 InformatiX. All rights reserved.</section>
+    </div>
+    <div class="footer">© 2023 InformatiX. All rights reserved.</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
     <script src="scripts/problem.js"></script>

@@ -116,8 +116,7 @@ body{
     color: var(--color-light-gray);
 }
 
-.tag-stars h3::before {
-    content: "★";
+.tag-stars h3 {
     color: gold;
     font-size: 16px;
 }
