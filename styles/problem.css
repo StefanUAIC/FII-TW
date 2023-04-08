@@ -257,8 +257,7 @@ body{
 
 .comment-posting {
     width: 650px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -273,7 +272,6 @@ body{
     font-weight: bolder;
     color: var(--color-light-gray);
     align-self: flex-start;
-    padding-left: 12px;
 }
 
 .comment-posting .comment-posting-button {
@@ -307,6 +305,18 @@ body{
     font-size: large;
     resize: none;
     overflow: hidden;
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.comment-header img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .comment-box-container {
