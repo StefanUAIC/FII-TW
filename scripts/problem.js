@@ -29,3 +29,12 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+//pentru slider-ul cu nota
+var value = document.querySelector("#grade-value")
+var input = document.querySelector("#grade-range")
+
+value.textContent = input.value;
+input.addEventListener("input", (event) => {
+  value.textContent = event.target.value;
+})
