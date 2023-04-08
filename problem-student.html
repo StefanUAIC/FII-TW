@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/problem.css">
+    <title>InformatiX - Vizualizare problema</title>
+</head>
+<body>
+    
+    <section class="navbar">Navbar</section>
+    <section class="problem-container">
+        <div class="description-container">
+            <div class="tags-container">
+                <h2 class="problem-name">Nume problema</h2>
+                <table>
+                    <tr>
+                        <td><div class="tag tag-dificultate">Dificultate: dificil</div></td>
+                        <td><div class="tag tag-autor"></div>Autor: nume_autor</td>
+                    </tr>
+                    <tr>
+                        <td><div class="tag tag-capitol"></div>Capitol: programare dinamica</td>
+                        <td><div class="tag tag-clasa">Clasa: XII</div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="statement">
+                <div class="section">
+                    <h3>Cerinta</h3>
+                    <p>Enuntul problemei: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, labore.</p>
+                </div>
+                <div class="section">
+                    <h3>Date de intrare</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, labore.</p>
+                </div>
+                <div class="section">
+                    <h3>Date de iesire</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, labore.</p>
+                </div>
+                <div class="section">
+                    <h3>Restrictii si precizari</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, labore.</p>
+                </div>
+            </div>
+            <div class="star-rating"></div>
+        </div>
+        <div class="code-container">
+            <div class="code-editor">
+                <div id="editor">#include &lt;iostream&gt;
+using namespace std;
+                    
+int main() {
+    cout << "Hello World!";
+    return 0;
+}
+                </div>
+            </div>
+            <div class="code-buttons">
+                <button class="code-button">Trimite</button>
+                <select name="Alege Profesor" id="profesor">
+                    <option value="profesor0">Selecteaza profesor</option>
+                    <option value="profesor1">Profesor 1</option>
+                    <option value="profesor2">Profesor 2</option>
+                </select>                
+            </div>
+        </div>
+    </section>
+    <section class="comments-container">
+        <div class="comment-posting">
+            <h3 class="comment-user-name">Nume utilizator</h3>
+            <div class="comment-posting-body">
+                <textarea name="comment" id="comment" cols="60" rows="10" placeholder="Lasa un comentariu"></textarea>
+                <button class="comment-posting-button">Posteaza</button> 
+            </div>
+        </div>
+
+        <div class="comment-box">
+            <h3 class="comment-user-name">Nume utilizator</h3>
+            <p class="comment-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+        </div>
+
+        <div class="comment-box">
+            <h3 class="comment-user-name">Nume utilizator</h3>
+            <p class="comment-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+        </div>
+    </section>
+    <section class="footer">© 2023 InformatiX. All rights reserved.</section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
+    <script src="scripts/code_editor.js"></script>
+</body>
+</html>
