@@ -122,6 +122,7 @@ body {
     }
     .user-container {
         width: 100%;
+        align-self: center;
     }
     .left-side-container {
         width: 100%;
