@@ -48,19 +48,19 @@ body {
 }
 
 .card {
+    height: auto;
     width: 300px;
-    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: auto;
     margin: 10px;
     background-color: var(--color-dark-gray);
     border: 1px solid #bacdd8;
     padding: 8px;
     border-radius: 12px;
 }
-
 
 .tag {
     padding: 4px 8px;
