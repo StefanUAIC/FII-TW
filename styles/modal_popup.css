@@ -1,0 +1,58 @@
+.modal-container {
+    display: none; 
+    position: fixed; 
+    z-index: 4;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    display: flex;
+    color: #fff;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    flex-direction: column;
+
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: var(--color-black);
+    color: white;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.modal-header .close {
+    cursor: pointer;
+    font-size: 30px;
+    align-self: flex-end;
+}
+
+.modal-body {
+    padding: 20px;
+    background-color: var(--color-dark-gray);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+.modal-header .close:hover, .modal-header .close:focus {
+    color: red;
+}

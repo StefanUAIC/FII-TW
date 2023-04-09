@@ -91,10 +91,11 @@ int main() {
             <div class="code-buttons">
                 <button class="code-button" id="send-homework">Trimite</button>
                 <select name="Alege Profesor" id="profesor">
-                    <option value="profesor0">Selecteaza profesor</option>
-                    <option value="profesor1">Profesor 1</option>
-                    <option value="profesor2">Profesor 2</option>
-                </select>                
+                    <option value="profesor0">Selecteaza tema</option>
+                    <option value="profesor1">Tema 1</option>
+                    <option value="profesor2">Tema 2</option>
+                </select>
+                <button class="code-button" id="grade-details">Detalii punctaj</button>                
             </div>
         </div>
     </div>
@@ -144,6 +145,27 @@ int main() {
         </div>
     </div>
     <div class="footer">© 2023 InformatiX. All rights reserved.</div>
+
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-grade">Nota finală</h3>
+                <div class="modal-evaluation-container">
+                    <input type="range" name="grade" id="grade-range" min="1" max="10" step="1">
+                    <p id="grade-value">10</p>
+                </div>
+                <div class="modal-add-description">
+                    <h3>Descriere</h3>
+                    <textarea name="description" id="description" placeholder="Justifică nota pusă dacă e nevoie..."></textarea>
+                </div>
+                <button class="send-grade-button">Trimite</button>
+            </div>
+            
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
     <script src="scripts/problem.js"></script>
