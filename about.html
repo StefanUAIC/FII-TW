@@ -3,12 +3,35 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="styles/navbar.css">
     <title>ReDat Scholarly HTML Report</title>
 
     <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
     <script src="https://w3c.github.io/scholarly-html/js/scholarly.min.js"></script>
 </head>
 <body>
+<div class="nav" style="height: auto; left: 0; position: absolute;">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+        <div class="nav-title">
+            <a href="home.html" target="_blank">InformatiX</a>
+        </div>
+    </div>
+    <div class="nav-btn">
+        <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+
+    <div class="nav-links">
+        <a href="problems.html" target="_self">Probleme</a>
+        <a href="classes-student.html" target="_self">Clasele mele</a>
+        <a class="right-links" href="index.html" target="_self">Deconectare</a>
+        <a class="right-links" href="myAccount.html" target="_self">Contul meu</a>
+    </div>
+</div>
 <header>
     <h1>In&lt;Form&gt;atiX - Scholarly HTML</h1>
 </header>
