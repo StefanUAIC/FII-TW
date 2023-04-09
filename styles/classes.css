@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-black: #0B0C10;
+    --color-dark-gray: #1F2833;
+    --color-light-gray: #C5C6C7;
+    --color-light-turq: #66FCF1;
+    --color-dark-turq: #45A29E;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    color: #dadbdd;
+    background-color: var(--color-light-gray);
+}
+
+.main-container {
+    padding: 30px;
+    overflow: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer {
+    width: 100%;
+    height: auto;
+    background-color: var(--color-dark-gray);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: auto;
+    font-size: small;
+}
+
+.top-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: 500px;
+    display: flex;
+    background-color: var(--color-dark-gray);
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.description .title {
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 10px;
+}
+
+.title .your-classes {
+    color: #66FCF1;
+}
+
+.logout-button {
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-self: flex-start;
+    background-image: url('../assets/logout-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: blue;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background-color: var(--color-dark-gray);
+}
+
+.card-image {
+    border-radius: 10px 10px 0 0;
+    background-color: var(--color-dark-turq);
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card-image h2 {
+    color: var(--color-dark-turq);
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    padding-top: 30px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.card p {
+    overflow: auto;
+    height: 120px;
+    padding: 10px;
+    margin: 10px 10px 20px;
+}
+
+.card a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px;
+    background-color: var(--color-light-turq);
+    border-radius: 10px;
+    align-self: center;
+}
+
+.card:hover {
+    background-color: rgb(27, 27, 27, 0.5);
+    color: #fff;
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
+.card .my-classes {
+    background-image: url('../assets/my-classes.jpg');
+}
+
+@media screen and (max-width: 880px) {
+    .top-container {
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .logo {
+        width: 100%;
+        height: 300px;
+    }
+}
