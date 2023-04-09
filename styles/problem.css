@@ -360,6 +360,12 @@ body {
     font-size: small;
 }
 
+.modal-body h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-light-gray);
+}
+
 @media only screen and (max-width: 550px) {
     .tags-container {
         grid-template-columns: repeat(2, 1fr);

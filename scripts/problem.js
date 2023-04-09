@@ -11,17 +11,26 @@ ace.edit(editor, {
 });
 
 
-//pop-up pentru profesorul corector din pagina de probleme
+//pop-up pentru profesorul corector/elev in pagina de probleme
 var modal = document.getElementsByClassName("modal-container")[0];
-var assignBtn = document.getElementById("assign-homework");
+var assignBtn = document.getElementById("assign-homework"); //pentru profesor
+var viewGradeBtn = document.getElementById("grade-details"); //pentru elev
 var closeBtn = document.getElementsByClassName("close")[0];
 
-assignBtn.onclick = function() {
-  modal.style.display = "block";
+if (assignBtn != null){
+  assignBtn.onclick = function() {
+    modal.style.display = "block";
+  }
 }
 
 closeBtn.onclick = function() {
   modal.style.display = "none";
+}
+
+if (viewGradeBtn != null){
+  viewGradeBtn.onclick = function() {
+    modal.style.display = "block";
+  }
 }
 
 window.onclick = function(event) {
