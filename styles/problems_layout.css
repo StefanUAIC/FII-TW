@@ -1,0 +1,72 @@
+@import url(navbar.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    color: #dadbdd;
+    background-color: var(--color-light-gray);
+}
+
+.main-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;    
+}
+
+.tag-selector-container {
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--color-light-turq);
+}
+
+.cards-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: var(--color-dark-gray);
+}
+
+.card {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--color-light-gray);
+}
+
+.footer {
+    width: 100%;
+    height: auto;
+    background-color: var(--color-dark-gray);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: auto;
+    font-size: small;
+}
