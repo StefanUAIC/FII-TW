@@ -12,7 +12,7 @@
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
             <div class="nav-title">
-                <a href="home.html" target="_blank">InformatiX</a>
+                <a href="home.html" target="_self">InformatiX</a>
             </div>
         </div>
         <div class="nav-btn">
@@ -35,27 +35,55 @@
         <div class="tag-selector-container">
             <div class="card">
 
-                <form>
+                <form action="problem-selector-teacher.html" method="">
                     <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Denumirea problemei</label>
-                        <input type="text" id="input-username"
-                                           class="form-control form-control-alternative">
+                        <input type="text" class="form-control form-control-alternative">
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" for="input-email">Tip probleme</label>
-                        <input type="email" id="input-email"
-                               class="form-control form-control-alternative">
+                        <label class="form-control-label" for="input-categorie">Categorie</label>
+                        <br>
+                        <select name="Alege Categorie" id="categorie">
+                            <option value="categorie0">Selecteaza categorie</option>
+                            <option value="categorie1">Tot</option>
+                            <option value="categorie2">Programare dinamica</option>
+                            <option value="categorie3">Algoritmi elementari</option>
+                            <option value="categorie4">Tablouri unidimensionale</option>
+                            <option value="categorie5">Probleme diverse</option>
+                        </select>
                     </div>
                     <div class="form-group focused">
-                        <label class="form-control-label" for="input-first-name">Dificultate</label>
-                        <input type="text" id="input-first-name"
-                                           class="form-control form-control-alternative">
+                        <label class="form-control-label" for="input-dificultate">Dificultate</label>
+                        <br>
+                        <select name="Alege Dificultate" id="dificultate">
+                            <option value="dificultate0">Selecteaza dificultate</option>
+                            <option value="dificultate1">Tot</option>
+                            <option value="dificultate2">Usor</option>
+                            <option value="dificultate3">Mediu</option>
+                            <option value="dificultate4">Dificil</option>
+                        </select>
+                    </div>
+                    <div class="form-group focused">
+                        <label class="form-control-label" for="input-clasa">Clasa</label>
+                        <br>
+                        <select name="Alege Clasa" id="clasa">
+                            <option value="clasa0">Selecteaza clasa</option>
+                            <option value="clasa1">Tot</option>
+                            <option value="clasa2">IX</option>
+                            <option value="clasa3">X</option>
+                            <option value="clasa4">XI</option>
+                            <option value="clasa5">XII</option>
+                        </select>
                     </div>
                     <hr>
+                    <br>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Cauta</button>
                     </div>
                 </form>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Adaugare problema</button>
             </div>
         </div>
         <div class="cards-container">
