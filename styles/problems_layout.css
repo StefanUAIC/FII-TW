@@ -26,12 +26,11 @@ body {
 }
 
 .tag-selector-container {
-    width: 40%;
+    width: auto;
     height: auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-self: flex-start;
     padding: 10px;
 }
 
@@ -168,6 +167,7 @@ textarea.form-control {
 
 .tag-selector-container > .card {
     height: 40%;
+    width: 100%;
 }
 
 .btn {
