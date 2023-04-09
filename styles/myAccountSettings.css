@@ -321,8 +321,8 @@ textarea.form-control {
 }
 
 .bg-secondary {
-    background-color:var(--color-light-gray); !important;
-    border-color: var(--color-dark-gray); !important;
+    background-color:var(--color-light-gray) !important;
+    border-color: var(--color-dark-gray) !important;
 }
 
 .border-0 {
