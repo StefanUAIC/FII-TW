@@ -159,8 +159,8 @@ body {
         height: 300px;
     }
 }
-.join-class-button {
-    padding: 10px;
+.create-class-button {
+    padding: 30px;
     gap: 10px;
     width: 100%;
     display: flex;
@@ -169,23 +169,23 @@ body {
     justify-content: center;
 }
 
-.join-class-button button {
+.create-class-button button {
     background-color: var(--color-light-turq);
     color: var(--color-dark-gray);
     border: none;
-    border-radius: 4px;
-    padding: 10px;
+    border-radius: 15px;
+    padding: 20px;
     font-weight: bold;
     font-size: small;
     cursor: pointer;
     transition: opacity 0.4s;
 }
 
-.join-class-button button:hover, .join-class-button select:hover {
+.create-class-button button:hover, .create-class-button select:hover {
     opacity: 0.65;
 }
 
-.join-class-button select {
+.create-class-button select {
     color: var(--color-dark-gray);
     background-color: var(--color-dark-turq);
     border: none;
