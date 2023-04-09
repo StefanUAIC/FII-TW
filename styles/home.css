@@ -136,18 +136,23 @@ body {
     border-radius: 10px 10px 0 0;
     background-color: var(--color-dark-turq);
     height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .card-image h2 {
+    color: var(--color-dark-turq);
+    font-weight: bold;
+    font-size: 1.5em;
     text-align: center;
     padding-top: 30px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .card p {
     overflow: auto;
     height: 120px;
     padding: 10px;
-    text-align: justify;
     margin: 10px 10px 20px;
 }
 
@@ -167,6 +172,28 @@ body {
     color: #fff;
     transform: scale(1.05);
     transition: 0.5s;
+}
+
+.card .my-classes {
+    background-image: url('../assets/my-classes.jpg');
+}
+
+.card .about {
+    background-image: url('../assets/about-us.jpg');
+    background-position:center;
+}
+
+.card .problem-select {
+    background-image: url('../assets/problem-list.png');
+}
+
+.card .my-account {
+    background-image: url('../assets/my-account.png');
+}
+
+.card .logout {
+    background-image: url('../assets/logout-image2.png');
+    background-position: contain;
 }
 
 @media screen and (max-width: 880px) {
