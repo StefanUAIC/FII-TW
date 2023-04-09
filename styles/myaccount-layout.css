@@ -32,7 +32,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: antiquewhite;
     align-items: center;
 }
 
@@ -55,6 +54,7 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 15px;
+    align-self: flex-end;
 }
 
 .user-profile {
