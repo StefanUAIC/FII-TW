@@ -193,7 +193,6 @@ body {
 
 .card .logout {
     background-image: url('../assets/logout-image2.png');
-    background-position: contain;
 }
 
 @media screen and (max-width: 880px) {
