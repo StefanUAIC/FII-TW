@@ -159,7 +159,7 @@ body {
         height: 300px;
     }
 }
-.join-class-button {
+.create-class-button {
     padding: 30px;
     gap: 10px;
     width: 100%;
@@ -169,7 +169,7 @@ body {
     justify-content: center;
 }
 
-.join-class-button button {
+.create-class-button button {
     background-color: var(--color-light-turq);
     color: var(--color-dark-gray);
     border: none;
@@ -181,11 +181,11 @@ body {
     transition: opacity 0.4s;
 }
 
-.join-class-button button:hover, .join-class-button select:hover {
+.create-class-button button:hover, .create-class-button select:hover {
     opacity: 0.65;
 }
 
-.join-class-button select {
+.create-class-button select {
     color: var(--color-dark-gray);
     background-color: var(--color-dark-turq);
     border: none;
