@@ -273,8 +273,9 @@
             Pentru fiecare clasa se va afisa si un buton de a intra in clasa.
         </p>
         <p>
-            Aceasta pagina are o putin interfata diferita daca esti profesor sau elev.
+            Aceasta pagina are o interfata diferita daca esti profesor sau elev, intrucat un profesor poate crea clase, iar un elev poate intra intr-o clasa.
         </p>
+        <p> De asemenea, se considera ca o clasa are exact un profesor, iar (momentan) un elev este atribuit unei singure clase (sau niciuneia).</p>
     </section>
     <section id="Contul-meu">
         <h3>Contul meu</h3>
@@ -284,7 +285,7 @@
             De asemenea, pe aceasta pagina se afla si butonul de setari cont.
         </p>
         <p>
-            Aceasta pagina are o putin interfata diferita daca esti profesor sau elev.
+            Aceasta pagina are o interfata diferita daca esti profesor sau elev.
         </p>
     </section>
     <section id="Setari">
@@ -299,9 +300,10 @@
         <p>
             Aceasta pagina contine o lista cu problemele disponibile. Pentru fiecare problema se va afisa numele
             problemei, o scurta descriere a acesteia, tag-urile acesteia, iar apasand pe titlul acesteia, o accesezi.
+            De asemenea, problemele afisate pot fi filtrate dupa nume si/sau tag-uri precum clasa, capitol, dificultate.
         </p>
         <p>
-            Aceasta pagina are o putin interfata diferita daca esti profesor sau elev.
+            Aceasta pagina are o interfata diferita daca esti profesor sau elev, intrucat profesorul poate de asemenea sa propuna o problema din acest meniu.
         </p>
     </section>
     <section id="Rezolvare-Problema">
@@ -311,12 +313,19 @@
             clasa, descrierea, tag-urile, input-ul, output-ul, restrictiile etc.
         </p>
         <p>
-            De asemenea, pe aceasta pagina se afla un editor de cod cu butoanele de a trimite rezolvarea catre profesor,
-            selecteaza tema, si detalii despre punctajul obtinut.
+            De asemenea, pe aceasta pagina se afla un editor de cod cu butoanele de trimitere a rezolvarii catre profesor,
+            selectarea temei, si detalii despre punctajul obtinut. Odata apasate, aceste butoane vor deschide un popup corespunzator 
+            actiunii selectate.
         </p>
+        <p>Editorul este implementat cu ajutorul bibliotecii "Ace" din Javascript..</p>
+        <p><span style="color: red;">Warning: </span>posibil sa existe probleme cu vizualizarea editorului de cod din browser-ul Mozilla Firefox</p>
         <p>
-            Aceasta pagina are o putin interfata diferita daca esti profesor sau elev.
+            Aceasta pagina are o interfata diferita daca esti profesor sau elev, deoarece profesorul nu poate trimite
+            rezolvarea problemei. Acesta in schimb poate vedea rezolvarea elevului si ii poate da un punctaj + un feedback 
+            (selectand un elev si apasand butonul "Corecteaza").
         </p>
+        <p>Cum am gandit designul initial pentru aceasta pagina: </p>
+        <img src="assets/prototip-problem.jpg" style="width: 500px;" alt="poza">
     </section>
     <section id="Logare">
         <h3>Logare</h3>
@@ -344,6 +353,7 @@
     <ul>
         <li>https://www.creative-tim.com/bits/bootstrap/my-account-card-argon-dashboard - dashboard example</li>
         <li>https://www.w3schools.com/ - w3schools</li>
+        <li>https://ace.c9.io/</li>
     </ul>
 </section>
 </body>
