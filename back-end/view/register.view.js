@@ -2,7 +2,7 @@ const getFileContent = require("../util/getFileContent.util");
 
 const REGISTER_VIEW_PATH = "./view/html/register.html";
 
-const handleLoginView = (req, res) => {
+const handleRegisterView = (req, res) => {
     getFileContent(REGISTER_VIEW_PATH)
         .then((data) => {
             res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -14,4 +14,4 @@ const handleLoginView = (req, res) => {
         });
 };
 
-module.exports = handleLoginView;
+module.exports = handleRegisterView;
