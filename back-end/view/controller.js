@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const mimeLookup = {
+const mimeMap = {
     '.js': 'application/javascript',
     '.html': 'text/html',
     '.css': 'text/css',
@@ -13,33 +13,32 @@ const mimeLookup = {
 };
 
 const handleLoginView = require("./login.view");
+const handleRegisterView = require("./register.view");
+
+const routeMap = {
+    '/login': handleLoginView,
+    '/register': handleRegisterView,
+}
 
 const handleViewRequest = (req, res) => {
-    if(req.url === "/login"){
-        handleLoginView(req, res);
-    } else{
+    const viewHandler = routeMap[req.url];
+    if (viewHandler){
+        viewHandler(req, res);
+    } 
+    else {
         const fileUrl = '/public' + req.url;
-        const filepath = path.resolve('.' + fileUrl);
-        const fileExt = path.extname(filepath);
-        // check if the file exists
-        fs.access(filepath, fs.constants.F_OK, (err) => {
-            if(err) {
-                res.statusCode = 404;
+        const filePath = path.resolve('.' + fileUrl);
+        const fileExt = path.extname(filePath);
+        
+        fs.readFile(filePath, (err, data) => {
+            if (err) {
+                res.writeHead(404, { 'Content-Type': 'text/plain' });
                 res.end('Not Found');
             } else {
-                // read the file content
-                fs.readFile(filepath, (err, data) => {
-                    if(err) {
-                        res.statusCode = 500;
-                        res.end('Internal Server Error');
-                    } else {
-                        res.statusCode = 200;
-                        res.setHeader('Content-Type', mimeLookup[fileExt]);
-                        res.end(data);
-                    }
-                });
+                res.writeHead(200, { 'Content-Type': mimeMap[fileExt] });
+                res.end(data);
             }
-        });
+        });  
     }
 };
 

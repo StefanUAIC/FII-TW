@@ -1,9 +1,9 @@
 const getFileContent = require("../util/getFileContent.util");
 
-const LOGIN_VIEW_PATH = "./view/html/index.html";
+const REGISTER_VIEW_PATH = "./view/html/register.html";
 
 const handleLoginView = (req, res) => {
-    getFileContent(LOGIN_VIEW_PATH)
+    getFileContent(REGISTER_VIEW_PATH)
         .then((data) => {
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.end(data);
