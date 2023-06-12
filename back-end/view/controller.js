@@ -13,9 +13,11 @@ const mimeMap = {
 };
 
 const handleLoginView = require("./login.view");
+const handleRegisterView = require("./register.view");
 
 const routeMap = {
     '/login': handleLoginView,
+    '/register': handleRegisterView,
 }
 
 const handleViewRequest = (req, res) => {

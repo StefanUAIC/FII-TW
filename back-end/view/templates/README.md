@@ -1,0 +1,1 @@
+Aici o sa fie fisierele de template care vor fi formatate cu un template engine (EJS) ca sa fac server side rendering la pagini.
