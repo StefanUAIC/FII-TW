@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <title>In&lt;Form&gt;atiX Scholarly HTML Report</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <script src="https://w3c.github.io/scholarly-html/js/scholarly.min.js"></script>
+</head>
+<body>
+<div class="nav" style="height: auto; left: 0; position: absolute;">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+        <div class="nav-title">
+            <a href="home-student.html" target="_self">InformatiX</a>
+        </div>
+    </div>
+    <div class="nav-btn">
+        <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+
+    <div class="nav-links">
+        <a href="problem-selector-student.html" target="_self">Probleme</a>
+        <a href="classes-student.html" target="_self">Clasele mele</a>
+        <a class="right-links" href="index.html" target="_self">Deconectare</a>
+        <a class="right-links" href="myAccount-student.html" target="_self">Contul meu</a>
+    </div>
+</div>
+<header>
+    <h1>In&lt;Form&gt;atiX - Scholarly HTML</h1>
+</header>
+
+<div role="contentinfo">
+    <h3>Authors</h3>
+    <a href="https://github.com/AlexandruGabriel02" target="_blank">Aliciuc Alexandru-Gabriel</a><br>
+    <a href="https://github.com/StefanUAIC" target="_blank">Catîru Stefan</a><br>
+    <a href="https://github.com/gabilaza" target="_blank">Laza Gabriel</a>
+</div>
+<section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+    <h2>Abstract</h2>
+    <p>
+        Acest document cuprinde aspectele tehnice si interactiunea cu utilizatorul, ale proiectului In&lt;Form&gt;atiX
+        pentru
+        Tehnologii Web, realizat in coloborare de catre Aliciuc Alexandru-Gabriel, Catîru Stefan si Laza Gabriel.
+    </p>
+</section>
+<!--1.Introduction-->
+<section id="introduction" role="doc-introduction">
+    <h2>Introducere</h2>
+    <section id="purpose">
+        <!-- review? -->
+        <h3>Scop</h3>
+        <p>
+            Aplicatia Web In&lt;Form&gt;atiX, detaliata in acest document, este destinata elevilor de liceu ce are ca
+            scop invatarea programarii prin intermediul de probleme.
+        </p>
+    </section>
+
+    <section id="intended-audience">
+        <h3>Public ținta</h3>
+        <p>
+            Aplicatia este destinata elevilor de liceu, in special celor care doresc sa invete programarea, precum si
+            profesorilor acestora.
+        </p>
+    </section>
+    <section id="scope">
+        <h3>Viziune</h3>
+        <p>
+            Aplicatia va oferi utilizatorilor o experienta placuta, prin intermediul unui design modern si a unor
+            functionalitati utile.
+        </p>
+    </section>
+</section>
+
+<!-- 2. Description -->
+<section id="description" role="doc-introduction">
+    <h2>Descriere</h2>
+    <section id="perspective">
+        <h3>Perspectiva</h3>
+        <p>
+            Aplicatia Web In&lt;Form&gt;atiX este o aplicatie web ce are ca scop invatarea programarii prin
+            intermediul de probleme.
+        </p>
+    </section>
+
+    <section id="functions">
+        <h3>Functiile Produsului</h3>
+        <p>
+            Mai jos sunt functionalitatile pe care aplicatia In&lt;Form&gt;atiX le ofera.
+        <ul>
+            <li>Crearea unui cont si inregistrarea unui utilizator</li>
+            <li>Modificarea datelor asociate utilizatorului</li>
+            <li>Alegerea problemelor de rezolvat</li>
+            <li>Managerierea unei clase de liceu de catre un profesor</li>
+            <li>Evaluarea problemelor rezolvate de elevi de catre profesor</li>
+        </ul>
+    </section>
+    <section id="operating-environment">
+        <h3>Mediul de operare</h3>
+        <p>
+            Fiind o aplicatie web, ea va rula pe orice browser modern. Astfel aplcatia va putea rula
+            pe toate sistemele de operare ce suporta un browser cum ar fi: Android, IOS, Windows, Linux, etc.
+        </p>
+    </section>
+    <section id="constraints">
+        <h3>Constrangeri</h3>
+        <p>
+            Elevul se poate inscrie intr-o singura clasa, astfel el va fi nevoit sa aibe mai multe conturi daca vrea sa
+            se inscrie in clase diferite.
+        </p>
+        <p>
+            Aplicatia fiind una web necesita conexiune la internet, ceea ce inseamna ca orice elev ce nu are acces la
+            internet nu va putea folosi aplicatia.
+        </p>
+    </section>
+</section>
+
+<!--3.External Interface Requirements-->
+<section id="interfaces">
+    <h2>Interfete externe</h2>
+    <section id="user-interfaces">
+        <h3>Interfata pentru utlizator</h3>
+        <p>
+            Aplicatia ofera o interfata moderna, placuta din punct de vedere vizual pentru a imbunatati
+            experienta utilizatorului. In&lt;Form&gt;atiX poate fi folosita atat pe ecrane mari cat si pe browserul
+            telefonului al carui ecran este de dimensiuni mai reduse, oferind in continuare o experienta
+            placuta utilizatorului datorita design-ului responsive.
+        </p>
+        <p>
+            In cadrul aplicatiei, utilizatorul poate avea doua tipuri de cont, unul de elev si unul de profesor,
+            astfel pentru anumite pagini exista o interfata diferita in functie de tipul de cont.
+        </p>
+    </section>
+
+    <section id="software-interfaces">
+        <h3>Interfete software</h3>
+        <p>
+            Frontend-ul este scris in HTML5, CSS3 si Javascript fara a folosi alte librarii.
+        </p>
+    </section>
+
+
+    <section id="source-code">
+        <h2>Gestionarea Codului</h2>
+        <p>
+            Pentru genstionarea codului sursa a proiectului s-a folosit <a href="https://github.com" target="_blank">GitHub</a>.
+            Commiturile sunt realizate de toti membrii ai echipei. Este folositor pentru a putea vedea commiturile
+            facute de fiecare membru
+        </p>
+        <p>
+            Codul sursa al proiectului va fi disponibil <a href="https://github.com/gabilaza/FII-TW" target="_blank">aici</a>
+            atunci cand va fi facut public.
+        </p>
+    </section>
+
+    <!--4.System Features-->
+    <section id="system-features">
+        <!-- review? -->
+        <h2>Functionalitati</h2>
+        <section id="login">
+            <h3>Autentificarea</h3>
+            <p>
+                Autentificarea utilizatorului se realizeaza in pagina dedicata acestei operatii si presupune
+                completarea campurilor necesare (nume de utilizator sau email, parola) urmand ca apoi utilizatorul
+                sa apese pe butonul "logheaza-te" si, in cazul in care datele sunt corecte, acesta sa fie redirectionat
+                pe pagina principala (Home). Desigur, autentificarea necesita exista unui cont de utilizator.
+            </p>
+        </section>
+        <section id="register">
+            <h3>Inregistrarea</h3>
+            <p>
+                Aceasta operatie presupune creare unui nou cont de utlizator. Utilizatorul completeaza
+                campurile necesare (nume, prenume, nume de utlizator, email, parola, confirmare parola, tip cont), apasa
+                pe butonul
+                "register" si, in cazul in care informatiile sunt valide ( nume de utlizator este nou,
+                email respecta formatul standard, parola corespunde), un nou cont de utilizator va fi creat.
+            </p>
+        </section>
+
+        <section id="user-settings">
+            <h3>Setarile Utilizatorului</h3>
+            <p>
+                Utilizatorul va putea accesa setari asociate contului sau. Astfel el va putea schimba parola, modifica
+                mailul si alte informatii referitoare la contul personal.
+            </p>
+        </section>
+    </section>
+</section>
+<!-- 5. UI/UX -->
+<section id="user-interface" role="doc-introduction">
+    <h2>Interfata si Motivatie</h2>
+    <p>
+        Interfata aplicatitei este simpla si in acelasi timp moderna deoarece contine concepte curente cum ar fi:
+        colturi rotunjite, elemente menite sa atraga utilizatorul.
+    </p>
+    <p>
+        Pentru create layout-ului fiecare pagina s-a structurat folosind grid si flex deoarece se poate construi
+        foarte usor interfete dar si alinierea elementelor interne.
+    </p>
+    <p>
+        Foile de stil css au fost modularizate pentru scalabilitate, fiecare fisier css reprezinta o singura pagina, iar
+        in cazul navbar-ului, acesta are propriul css.
+        De asemenea, pentru a avea un singur loc in care sunt puse culori au fost create variabile css.
+    </p>
+    <p>
+        Aplicatia este responsive astfel ea poate fi disponibila si pe telefoanele mobile. Pentru a face acest
+        lucru, atunci cand layout-ul ajunge la o latime minima, el se restructureaza pastrand astfel latimea paginii cu
+        cea a
+        ecranului.
+    </p>
+    <p>
+        Paginile disponibile in cadrul aplicatiei sunt: Pagina de about (Documentatia, pagina actuala), pagina de home,
+        logare, inregistrare, contul meu
+        setari cont, pagina de rezolvare a problemei de catre elev, de verificare a problemei de catre profesor, de
+        selectare a problemelor, de vizualizare
+        a tuturor claselor, de vizualizare a propriei clase.
+    </p>
+</section>
+<section id="application-structure">
+    <h2>Structura aplicatiei</h2>
+    <p>
+        Aplicatia este structurata pe baza unui layout principal, care contine navbar-ul si footer-ul, iar in interiorul
+        acestuia se afla continutul paginii curente.
+    </p>
+    <section id="navbar">
+        <h3>Navbar</h3>
+        <p>
+            Navbar-ul este un element care se afla in partea de sus a paginii si contine elemente ce permit navigarea
+            prin aplicatie.
+        </p>
+        <p>
+            Navbar-ul contine urmatoarele elemente:
+        </p>
+        <ul>
+            <li>Logo-ul aplicatiei</li>
+            <li>Butonul de probleme</li>
+            <li>Butonul de Clasele mele</li>
+            <li>Butonul de Contul meu</li>
+            <li>Butonul de Deconectare</li>
+        </ul>
+    </section>
+    <section id="Home">
+        <h3>Acasă</h3>
+        <p>
+            Pagina de acasa contine o scurta descriere a aplicatiei web, logo-ul aplicatiei si un meniu de navigare prin
+            aplicatie.
+        </p>
+        <p>
+            Meniul de navigare contine urmatoarele elemente: Selectare probleme, clasele mele, contul meu, delogare si
+            despre noi.
+        </p>
+    </section>
+    <section id="About">
+        <h3>Despre noi</h3>
+        <p>
+            Aceasta pagina reprezinta documentatia care contine informatii despre aplicatie, cum ar fi: ce este
+            aplicatia, ce face, ce probleme
+            rezolva, ce avantaje are, ce resurse foloseste, cum a fost construita, etc.
+        </p>
+    </section>
+    <section id="Clasele-mele">
+        <h3>Clasele mele</h3>
+        <p>
+            Aceasta pagina contine o lista cu clasele la care este inscris utilizatorul. Pentru fiecare clasa se va
+            afisa numele clasei si o scurta descriere a acesteia.
+            Pentru fiecare clasa se va afisa si un buton de a intra in clasa.
+        </p>
+        <p>
+            Aceasta pagina are o interfata diferita daca esti profesor sau elev, intrucat un profesor poate crea clase, iar un elev poate intra intr-o clasa.
+        </p>
+        <p> De asemenea, se considera ca o clasa are exact un profesor, iar (momentan) un elev este atribuit unei singure clase (sau niciuneia).</p>
+    </section>
+    <section id="Contul-meu">
+        <h3>Contul meu</h3>
+        <p>
+            Aceasta pagina contine informatii despre utilizatorul curent, cum ar fi: nume, prenume, nume de utilizator,
+            email, tipul de cont, etc.
+            De asemenea, pe aceasta pagina se afla si butonul de setari cont.
+        </p>
+        <p>
+            Aceasta pagina are o interfata diferita daca esti profesor sau elev.
+        </p>
+    </section>
+    <section id="Setari">
+        <h3>Setari</h3>
+        <p>
+            Aceasta pagina contine un formular care permite utilizatorului sa isi schimbe parola, emailul sau alte
+            informatii asociate contului.
+        </p>
+    </section>
+    <section id="Selectare-Probleme">
+        <h3>Selectare Probleme</h3>
+        <p>
+            Aceasta pagina contine o lista cu problemele disponibile. Pentru fiecare problema se va afisa numele
+            problemei, o scurta descriere a acesteia, tag-urile acesteia, iar apasand pe titlul acesteia, o accesezi.
+            De asemenea, problemele afisate pot fi filtrate dupa nume si/sau tag-uri precum clasa, capitol, dificultate.
+        </p>
+        <p>
+            Aceasta pagina are o interfata diferita daca esti profesor sau elev, intrucat profesorul poate de asemenea sa propuna o problema din acest meniu.
+        </p>
+    </section>
+    <section id="Rezolvare-Problema">
+        <h3>Rezolvare problema</h3>
+        <p>
+            Aceasta pagina contine datele problemei, cum ar fi: titlul, autor, capitol, dificultate, rating, capitol,
+            clasa, descrierea, tag-urile, input-ul, output-ul, restrictiile etc.
+        </p>
+        <p>
+            De asemenea, pe aceasta pagina se afla un editor de cod cu butoanele de trimitere a rezolvarii catre profesor,
+            selectarea temei, si detalii despre punctajul obtinut. Odata apasate, aceste butoane vor deschide un popup corespunzator 
+            actiunii selectate.
+        </p>
+        <p>Editorul este implementat cu ajutorul bibliotecii "Ace" din Javascript..</p>
+        <p><span style="color: red;">Warning: </span>posibil sa existe probleme cu vizualizarea editorului de cod din browser-ul Mozilla Firefox</p>
+        <p>
+            Aceasta pagina are o interfata diferita daca esti profesor sau elev, deoarece profesorul nu poate trimite
+            rezolvarea problemei. Acesta in schimb poate vedea rezolvarea elevului si ii poate da un punctaj + un feedback 
+            (selectand un elev si apasand butonul "Corecteaza").
+        </p>
+        <p>Cum am gandit designul initial pentru aceasta pagina: </p>
+        <img src="assets/prototip-problem.jpg" style="width: 500px;" alt="poza">
+    </section>
+    <section id="Logare">
+        <h3>Logare</h3>
+        <p>
+            Aceasta pagina contine un formular care permite utilizatorului sa se logheze in aplicatie, folosind e-mailul
+            sau numele de utilizator si parola.
+        </p>
+        <p>
+            In cazul in care nu ai cont, exista un buton pentru a te inregistra.
+        </p>
+    </section>
+    <section id="Inregistrare">
+        <h3>Inregistrare</h3>
+        <p>
+            Aceasta pagina contine un formular care permite utilizatorului sa se inregistreze in aplicatie, introducand
+            numele, prenumele, e-mailul, numele de utilizator, parola si tipul de cont.
+        </p>
+        <p>
+            In cazul in care ai deja cont, exista un buton pentru a te loga.
+        </p>
+    </section>
+</section>
+<section id="other-resources">
+    <h2>Resurse Principale</h2>
+    <ul>
+        <li>https://www.creative-tim.com/bits/bootstrap/my-account-card-argon-dashboard - dashboard example</li>
+        <li>https://www.w3schools.com/ - w3schools</li>
+        <li>https://ace.c9.io/</li>
+    </ul>
+</section>
+</body>
+</html>

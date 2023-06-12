@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+body{
+    background-image: linear-gradient(to left, #434343 0%, #0B0C10);
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.login-form {
+    background-image: linear-gradient(to right, #66FCF1, #45A29E);
+    background-color: #C5C6C7;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    width: 500px;
+    margin: 20px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.separator {
+    width: 100%;
+    background-color: black;
+    height: 2px;
+    align-self: center;
+}
+
+.title {
+    text-align: center;
+    margin: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+input {
+
+    font-style: italic;
+    width: 100%;
+    background: #e6e6e6;
+    color: #333;
+    padding: 16px 16px;
+}
+
+button {
+    background-color: #1f2833d3;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: opacity 0.4s;
+    align-self: center;
+    padding: 8px 16px 8px 16px;
+    color: #C5C6C7;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.to-register {
+    align-self: center;
+}
+
+.to-register p {
+    margin-top: 10px;
+    font-size: 1.1em;
+}

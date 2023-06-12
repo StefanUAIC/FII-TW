@@ -1,0 +1,17 @@
+/*
+    Color scheme:
+
+    #0B0C10 - negru ish
+    #1F2833 - gri inchis
+    #C5C6C7 - gri deschis
+    #66FCF1 - turcoaz deschis
+    #45A29E - turcoaz inchis
+*/
+
+:root{
+    --color-black: #0B0C10;
+    --color-dark-gray: #1F2833;
+    --color-light-gray: #C5C6C7;
+    --color-light-turq: #66FCF1;
+    --color-dark-turq: #45A29E;
+}
