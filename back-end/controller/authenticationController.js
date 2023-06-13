@@ -14,7 +14,7 @@ const authenticationController = (req, res) => {
 
     const endpoint = splitUrl[2];
 
-    if (method === 'post' && endpoint === 'login') {
+    if (method === 'post') {
         const decoder = new StringDecoder('utf-8');
         let buffer = '';
 
@@ -25,22 +25,41 @@ const authenticationController = (req, res) => {
         req.on('end', () => {
             buffer += decoder.end();
             const parsedData = JSON.parse(buffer);
+            if (endpoint === 'login') {
+                if (parsedData.username === hardcodedUser.username && parsedData.password === hardcodedUser.password) {
+                    let token = jwt.sign({username: parsedData.username, role: hardcodedUser.role}, secretKey);
+                    res.setHeader('Set-Cookie', `token=${token}; Path=/; HttpOnly;`);
+                    res.setHeader('Set-Cookie', `role=${hardcodedUser.role}; Path=/`);
+                    res.setHeader('Set-Cookie', 'mancare_preferata=papanasi; Path=/');
+                    res.writeHead(200, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({message: 'Logged in successfully'}));
+                } else {
+                    res.writeHead(401, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({message: 'Incorrect username or password'}));
+                }
+            } else if (endpoint === 'register') {
+                const {name, firstName, email, username, password, accountType} = parsedData;
 
-            if (parsedData.username === hardcodedUser.username && parsedData.password === hardcodedUser.password) {
-                let token = jwt.sign({username: parsedData.username, role: hardcodedUser.role}, secretKey);
-                res.setHeader('Set-Cookie', `token=${token}; Path=/; HttpOnly;`);
-                res.setHeader('Set-Cookie', `role=${hardcodedUser.role}; Path=/`);
-                res.setHeader('Set-Cookie', 'mancare_preferata=papanasi; Path=/');
+                if (!name || !firstName || !email || !username || !password || !accountType) {
+                    res.writeHead(400, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({message: 'Please fill all fields'}));
+                    return;
+                }
+
+                const emailRegEx = /\S+@\S+\.\S+/;
+                if (!emailRegEx.test(email)) {
+                    res.writeHead(400, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({message: 'Please provide a valid email'}));
+                    return;
+                }
+
                 res.writeHead(200, {'Content-Type': 'application/json'});
-                res.end(JSON.stringify({message: 'Logged in successfully'}));
+                res.end(JSON.stringify({message: 'Registration successful', data: parsedData}));
             } else {
-                res.writeHead(401, {'Content-Type': 'application/json'});
-                res.end(JSON.stringify({message: 'Incorrect username or password'}));
+                res.writeHead(404);
+                res.end('Not found');
             }
         });
-    } else {
-        res.writeHead(404);
-        res.end('Not found');
     }
 }
 
