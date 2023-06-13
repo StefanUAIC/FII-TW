@@ -1,17 +1,12 @@
-const getFileContent = require("../util/getFileContent.util");
+const viewProcessor = require("../util/viewRequest.util");
 
-const VIEW_PATH = "./view/html/about-student.html";
+const ABOUT_VIEW_PATH = "./view/html/about-student.html";
 
 const handleScholarlyView = (req, res) => {
-    getFileContent(VIEW_PATH)
-        .then((data) => {
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.end(data);
-        })
-        .catch((err) => {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end(err.message);
-        });
+    viewProcessor(req, res, ABOUT_VIEW_PATH, (htmlTemplate) => {
+        let modifiedTemplate = htmlTemplate;
+        return modifiedTemplate;
+    });
 };
 
 module.exports = handleScholarlyView;
