@@ -1,0 +1,49 @@
+const {StringDecoder} = require('string_decoder');
+const jwt = require('jsonwebtoken');
+
+const hardcodedUser = {
+    username: 'test@yahoo.com', password: 'password', role: 'student'
+};
+
+const secretKey = 'ciorbaRadauteana';
+const authenticationController = (req, res) => {
+    const url = req.url;
+    const method = req.method.toLowerCase();
+
+    const splitUrl = url.split('/').filter(Boolean);
+
+    const endpoint = splitUrl[2];
+
+    if (method === 'post' && endpoint === 'login') {
+        const decoder = new StringDecoder('utf-8');
+        let buffer = '';
+
+        req.on('data', (data) => {
+            buffer += decoder.write(data);
+        });
+
+        req.on('end', () => {
+            buffer += decoder.end();
+            const parsedData = JSON.parse(buffer);
+
+            if (parsedData.username === hardcodedUser.username && parsedData.password === hardcodedUser.password) {
+                let token = jwt.sign({username: parsedData.username, role: hardcodedUser.role}, secretKey);
+                res.setHeader('Set-Cookie', `token=${token}; Path=/; HttpOnly;`);
+                res.setHeader('Set-Cookie', `role=${hardcodedUser.role}; Path=/`);
+                res.setHeader('Set-Cookie', 'mancare_preferata=papanasi; Path=/');
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end(JSON.stringify({message: 'Logged in successfully'}));
+            } else {
+                res.writeHead(401, {'Content-Type': 'application/json'});
+                res.end(JSON.stringify({message: 'Incorrect username or password'}));
+            }
+        });
+    } else {
+        res.writeHead(404);
+        res.end('Not found');
+    }
+}
+
+module.exports = {
+    authenticationController
+}
