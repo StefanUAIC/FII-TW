@@ -16,7 +16,7 @@ loginForm.addEventListener('submit', function (e) {
             return response.json();
         })
         .then(data => {
-            if (data.message === 'Logged in successfully') {
+            if (data.status === 200) {
                 console.log(data);
                 // window.location.href = '/home';
             } else {
