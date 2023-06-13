@@ -14,10 +14,24 @@ const mimeMap = {
 
 const handleLoginView = require("./login.view");
 const handleRegisterView = require("./register.view");
+const handleHomeView = require("./home.view");
+const handleScholarlyView = require("./scholarly.view");
+const handleProblemlistView = require("./problemlist.view");
+const handleClasslistView = require("./classlist.view");
+const handleAccountView = require("./account.view");
+const handleAccountEditView = require("./account-settings.view");
 
 const routeMap = {
-    '/login': handleLoginView,
+    '/': handleLoginView,
     '/register': handleRegisterView,
+    '/home': handleHomeView,
+    '/problemlist': handleProblemlistView,
+  //  '/problem': handleProblemView, // /problem/{id}
+    '/classlist': handleClasslistView,
+  //  '/class': handleClassView, // /class/{id}
+    '/account': handleAccountView,
+    '/account/edit': handleAccountEditView,
+    '/scholarly': handleScholarlyView,
 }
 
 const handleViewRequest = (req, res) => {
