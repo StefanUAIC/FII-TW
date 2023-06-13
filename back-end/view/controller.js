@@ -20,15 +20,17 @@ const handleProblemlistView = require("./problemlist.view");
 const handleClasslistView = require("./classlist.view");
 const handleAccountView = require("./account.view");
 const handleAccountEditView = require("./account-settings.view");
+const handleProblemView = require("./problem.view");
+const handleClassView = require("./class.view");
 
 const routeMap = {
     '/': handleLoginView,
     '/register': handleRegisterView,
     '/home': handleHomeView,
     '/problemlist': handleProblemlistView,
-  //  '/problem': handleProblemView, // /problem/{id}
+   // '/problem/:id': handleProblemView,
     '/classlist': handleClasslistView,
-  //  '/class': handleClassView, // /class/{id}
+  //  '/class/:id': handleClassView,
     '/account': handleAccountView,
     '/account/edit': handleAccountEditView,
     '/scholarly': handleScholarlyView,
@@ -38,7 +40,13 @@ const handleViewRequest = (req, res) => {
     const viewHandler = routeMap[req.url];
     if (viewHandler){
         viewHandler(req, res);
-    } 
+    }
+    else if (req.url.startsWith('/problem/')) {
+        handleProblemView(req, res);
+    }
+    else if (req.url.startsWith('/class/')) {
+        handleClassView(req, res);
+    }
     else {
         const fileUrl = '/public' + req.url;
         const filePath = path.resolve('.' + fileUrl);
