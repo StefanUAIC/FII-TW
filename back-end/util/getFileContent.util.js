@@ -13,4 +13,17 @@ const getFileContent = async (filePath) => {
     }); 
 }
 
-module.exports = getFileContent;
+const processViewRequest = (req, res, templatePath, callback) => {
+    getFileContent(templatePath)
+        .then((data) => {
+            let html = callback(data);
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(html);
+        })
+        .catch((err) => {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end(err.message);
+        });
+}
+
+module.exports = processViewRequest;

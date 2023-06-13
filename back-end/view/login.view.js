@@ -1,4 +1,4 @@
-const getFileContent = require("../util/getFileContent.util");
+const getFileContent = require("../util/getFileContent.util").getFileContent;
 
 const LOGIN_VIEW_PATH = "./view/html/index.html";
 
