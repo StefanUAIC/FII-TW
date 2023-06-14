@@ -13,11 +13,11 @@
 </head>
 <body>
     <section class="top-container">
-        <a class="logout-button" href="index.html"></a>
+        <a class="logout-button logout-button-js" href="index.html"></a>
         <div class="description">
             <p class="title">Bun venit pe <span class="informatix">InformatiX</span>, <span class="user"><%= user.name %></span></p>
             <div class="underline"></div>
-            <p class="content">Indiferent de nivelul tău de cunoștințe, acest website este proiectat pentru a te ajuta să înveți și să te dezvolți în mod continuu. Ai acces la resurse educaționale de calitate și poți colabora cu alți elevi și profesori pentru a găsi soluții la problemele dificile.</p> 
+            <p class="content">Indiferent de nivelul tău de cunoștințe, acest website este proiectat pentru a te ajuta să înveți și să te dezvolți în mod continuu. Ai acces la resurse educaționale de calitate și poți colabora cu alți elevi și profesori pentru a găsi soluții la problemele dificile.</p>
          </div>
         <div class="logo">
         </div>
@@ -54,9 +54,9 @@
                 <h2>Delogare</h2>
             </div>
             <p> Deconectează-te de pe platformă.</p>
-            <a href="/">Apasă pentru delogare</a>
+            <a class="logout-button-js" href="/">Apasă pentru delogare</a>
         </div>
-        
+
         <div class="card">
             <div class="card-image about">
                 <h2>Despre noi</h2>
@@ -64,9 +64,10 @@
             <p>Informații generale despre platformă și echipă (documentație în format Scholarly HTML)</p>
             <a href="/scholarly">Vezi mai multe</a>
         </div>
-    
+
     </section>
 
     <section class="footer">© 2023 InformatiX. All rights reserved.</section>
+    <script src="scripts/logout.js"></script>
 </body>
 </html>
