@@ -5,7 +5,7 @@ loginForm.addEventListener('submit', function (e) {
     const email = document.querySelector('#email-input').value;
     const password = document.querySelector('#password-input').value;
 
-    const data = {username: email, password: password};
+    const data = {email: email, password: password};
 
     fetch('http://localhost:8081/api/auth/login', {
         method: 'POST', headers: {
@@ -16,7 +16,12 @@ loginForm.addEventListener('submit', function (e) {
             if (response.ok) {
                 window.location.href = '/home';
             } else {
-                alert('Invalid credentials');
+                return response.json();
+            }
+        })
+        .then(data => {
+            if (data) {
+                alert(data.message);
             }
         })
         .catch((error) => {

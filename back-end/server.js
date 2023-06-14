@@ -6,7 +6,7 @@ const config = require("./config/config").config;
 const handleViewRequest = require("./view/controller");
 const handleApiRequest = require("./controller/controller");
 
-mongoose.connect(`mongodb://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_DATABASE}`);
+mongoose.connect(`mongodb+srv://user:${config.DB_PASSWORD}@cluster0.9tx4vgi.mongodb.net/?retryWrites=true&w=majority`);
 
 const server = http.createServer((req, res) => {
     const url = req.url;
