@@ -9,7 +9,7 @@ function logoutUser(e) {
         .then(response => {
             if (response.ok) {
                 console.log('Logout successful')
-                // window.location.href = "/";
+                window.location.href = "/";
             } else {
                 console.error('Logout failed');
             }
