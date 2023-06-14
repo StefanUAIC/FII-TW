@@ -1,0 +1,41 @@
+version: "1.0"
+services:
+  db:
+    image: mongo
+    restart: always
+    container_name: db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+      MONGO_INITDB_DATABASE: testdb
+      MONGO_INITDB_USERNAME: user
+      MONGO_INITDB_PASSWORD: user
+    volumes:
+      - "./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js"
+    networks:
+      - db_conn
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh --quiet
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  app:
+    container_name: app
+    build:
+      context: ./back-end
+      dockerfile: ./Dockerfile
+    environment:
+      DB_HOST: db
+      DB_PORT: 27017
+      DB_DATABASE: testdb
+    ports:
+      - "8081:8081"
+    networks:
+      - db_conn
+    depends_on:
+      db:
+        condition: service_healthy
+    tty: true
+networks:
+  db_conn:
+    driver: bridge
