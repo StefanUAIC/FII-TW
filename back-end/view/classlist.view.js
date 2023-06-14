@@ -1,3 +1,4 @@
+const { validateJwt } = require("../util/auth.util");
 const viewProcessor = require("../util/viewRequest.util");
 let ejs = require('ejs');
 
@@ -10,6 +11,7 @@ function getViewPath() {
 const handleClasslistView = (req, res) => {
     viewProcessor(req, res, getViewPath(), (htmlTemplate) => {
         //TODO get data from the database
+        validateJwt(req);
         let modifiedTemplate = htmlTemplate;
         return modifiedTemplate;
     });

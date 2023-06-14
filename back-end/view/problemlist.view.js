@@ -1,3 +1,4 @@
+const { validateJwt } = require("../util/auth.util");
 const viewProcessor = require("../util/viewRequest.util");
 let ejs = require('ejs');
 
@@ -10,6 +11,7 @@ function getViewByRole() {
 const handleProblemlistView = (req, res) => {
     //TODO get the problem list data from the database
     viewProcessor(req, res, getViewByRole(), (htmlTemplate) => {
+        validateJwt(req);
         let modifiedTemplate = htmlTemplate;
         return modifiedTemplate;
     });
