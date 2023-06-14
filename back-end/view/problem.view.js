@@ -9,12 +9,11 @@ function getViewPath() {
 
 const handleProblemView = (req, res) => {
     const problemId = extractId(req.url);
-    // viewProcessor(req, res, getViewPath(), (htmlTemplate) => {
-    //     let modifiedTemplate = htmlTemplate;
-    //     return modifiedTemplate;
-    // });
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.end("Problem with id: " + problemId + " is being viewed.");
+    console.log("Problem id: " + problemId);
+    viewProcessor(req, res, getViewPath(), (htmlTemplate) => {
+        let modifiedTemplate = htmlTemplate;
+        return modifiedTemplate;
+    });
 }
 
 module.exports = handleProblemView;

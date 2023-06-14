@@ -9,12 +9,11 @@ function getViewPath() {
 
 const handleClassView = (req, res) => {
     const classId = extractId(req.url);
-    // viewProcessor(req, res, getViewPath(), (htmlTemplate) => {
-    //     let modifiedTemplate = htmlTemplate;
-    //     return modifiedTemplate;
-    // });
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.end("Class with id: " + classId + " is being viewed.");
+    console.log("Class id: " + classId);
+    viewProcessor(req, res, getViewPath(), (htmlTemplate) => {
+        let modifiedTemplate = htmlTemplate;
+        return modifiedTemplate;
+    });
 }
 
 module.exports = handleClassView;
