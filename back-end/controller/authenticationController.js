@@ -53,6 +53,20 @@ const authenticationController = (req, res) => {
                     return;
                 }
 
+                const passwordRegEx = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,30}$/;
+                if (!passwordRegEx.test(password)) {
+                    res.writeHead(400, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({message: 'Password must have at least one special character, one digit, one uppercase letter, and be between 3 to 30 characters long'}));
+                    return;
+                }
+
+                const usernameRegEx = /^[a-zA-Z0-9]{3,20}$/;
+                if (!usernameRegEx.test(username)) {
+                    res.writeHead(400, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({message: 'Username must be between 3 to 20 characters long and can only contain letters and digits'}));
+                    return;
+                }
+
                 res.writeHead(200, {'Content-Type': 'application/json'});
                 res.end(JSON.stringify({message: 'Registration successful', data: parsedData}));
             } else {

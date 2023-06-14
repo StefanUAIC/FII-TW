@@ -20,6 +20,18 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
         return;
     }
 
+    const passwordRegEx = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,30}$/;
+    if (!passwordRegEx.test(password)) {
+        alert('Password must have at least one special character, one digit, one uppercase letter, and be between 3 to 30 characters long');
+        return;
+    }
+
+    const usernameRegEx = /^[a-zA-Z0-9]{3,20}$/;
+    if (!usernameRegEx.test(username)) {
+        alert('Username must be between 3 to 20 characters long and can only contain letters and digits');
+        return;
+    }
+
     if (password !== confirmPassword) {
         alert('Passwords do not match');
         return;
