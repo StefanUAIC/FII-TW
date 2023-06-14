@@ -8,4 +8,6 @@ module.exports.config = {
     DB_PORT: process.env.DB_PORT || 27017,
     DB_DATABASE: process.env.DB_DATABASE || "testdb",
     SECRET_KEY: process.env.SECRET_KEY || "ciorbaRadauteana",
+    STUDENT_ROLE: "Elev",
+    TEACHER_ROLE: "Profesor",
 };
