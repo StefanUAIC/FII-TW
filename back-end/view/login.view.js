@@ -1,17 +1,12 @@
-const getFileContent = require("../util/getFileContent.util");
+const viewProcessor = require("../util/viewRequest.util");
 
 const LOGIN_VIEW_PATH = "./view/html/index.html";
 
 const handleLoginView = (req, res) => {
-    getFileContent(LOGIN_VIEW_PATH)
-        .then((data) => {
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.end(data);
-        })
-        .catch((err) => {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end(err.message);
-        });
+    viewProcessor(req, res, LOGIN_VIEW_PATH, (htmlTemplate) => {
+        let modifiedTemplate = htmlTemplate;
+        return modifiedTemplate;
+    });
 };
 
 module.exports = handleLoginView;

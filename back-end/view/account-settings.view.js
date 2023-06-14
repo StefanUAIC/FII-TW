@@ -1,0 +1,14 @@
+const viewProcessor = require("../util/viewRequest.util");
+let ejs = require('ejs');
+
+const handleAccountEditView = (req, res) => {
+    //TODO get data from the database
+    const VIEW_PATH = "./view/templates/account-settings.ejs";
+    
+    viewProcessor(req, res, VIEW_PATH, (htmlTemplate) => {
+        //TODO get data from the database
+        return htmlTemplate;
+    });
+}
+
+module.exports = handleAccountEditView;

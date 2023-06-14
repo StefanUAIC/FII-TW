@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/problem_teacher.css">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>InformatiX - Vizualizare problema</title>
+</head>
+<body>
+    <div class="nav" style="height: auto;">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                <a href="/home" target="_self">InformatiX</a>
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+    
+        <div class="nav-links">
+            <a href="/problemlist" target="_self">Probleme</a>
+            <a href="/classlist" target="_self">Clasele mele</a>
+            <a class="right-links" href="/" target="_self">Deconectare</a>
+            <a class="right-links" href="/account" target="_self">Contul meu</a>
+        </div>
+    </div>
+    <div class="problem-container">
+        <div class="description-container">
+            <h2 class="problem-name">Nume problemă</h2>
+            <div class="tags-container">
+                <div class="tag tag-author">
+                    <h3>Autor:</h3>
+                    <span class="author">nume autor</span>
+                </div>
+                <div class="tag tag-difficulty">
+                    <h3>Dificultate:</h3>
+                     <span class="difficulty">dificil</span>
+                </div>
+                <div class="tag tag-homeworks">
+                    <h3>Teme de corectat:</h3> 
+                    <span class="score">2</span>
+                </div>
+                <div class="tag tag-chapter">
+                    <h3>Capitol:</h3>
+                    <span class="chapter">Programare Dinamica</span>
+                </div>
+                <div class="tag tag-grade">
+                    <h3>Clasa:</h3>
+                    <span class="grade">XII</span>
+                </div>
+                <div class="tag tag-stars">
+                    <h3>★</h3> 
+                    <span class="stars">3.8</span>/5
+                </div>
+            </div>
+            <div class="statement">
+                <div class="section">
+                    <h3>Cerință</h3>
+                    <p>Se dă un vector cu n elemente care aparțin intervalului [1, p], iar modulul diferenței dintre oricare 2 valori consecutive este maxim k. Fane a șters câteva dintre numere, scriind in locul lor numărul 0. Aflați numărul de modalități de a completa numerele șterse de Fane, astfel încât vectorul să respecte cele 2 condiții.</p>
+                </div>
+                <div class="section">
+                    <h3>Date de intrare</h3>
+                    <p>Programul citește de la tastatură numerele n, p, k, iar apoi n numere naturale, separate prin spații.</p>
+                </div>
+                <div class="section">
+                    <h3>Date de ieșire</h3>
+                    <p>Programul va afișa pe ecran numărul cerut modulo 1.000.000.007.</p>
+                </div>
+                <div class="section">
+                    <h3>Restricții și precizări</h3>
+                    <p>
+                        <code>1 ≤ n ≤ 1000</code><br>
+                        <code>1 ≤ p ≤ 100</code><br>
+                        <code>1 ≤ k ≤ 10</code><br>
+                    </p>
+                </div>
+            </div>
+            <div class="star-rating">
+                <h3>Notați problema</h3>
+                <div class="stars">
+                    <input type="radio" name="star" class ="radio-input" id="star1" value="1">
+                    <label for="star1" class="radio-label">1</label>
+                    <input type="radio" name="star" class ="radio-input" id="star2" value="2">
+                    <label for="star2" class="radio-label">2</label>
+                    <input type="radio" name="star" class ="radio-input" id="star3" value="3">
+                    <label for="star3" class="radio-label">3</label>
+                    <input type="radio" name="star" class ="radio-input" id="star4" value="4">
+                    <label for="star4" class="radio-label">4</label>
+                    <input type="radio" name="star" class ="radio-input" id="star5" value="5">
+                    <label for="star5" class="radio-label">5</label>
+                </div>
+            </div>
+        </div>
+        <div class="code-container">
+            <div class="code-editor">
+                <div id="editor"><pre><code>//aici este solutia elevului care trebuie corectata
+//codul se va schimba in functie de elevul selectat
+//apasand pe corecteaza, suntem redirectionati catre meniul de corectare
+
+#include &lt;iostream&gt;
+using namespace std;
+                    
+int main() {
+    cout &lt;&lt; "Hello World!";
+    return 0;
+}</code></pre> 
+                </div>
+            </div>
+            <div class="code-buttons">
+                <button class="code-button" id="assign-homework">Corectează</button>
+                <select name="Alege Profesor" id="profesor">
+                    <option value="profesor0">Selectează elev</option>
+                    <option value="profesor1">Elev 1 - Clasa XII B</option>
+                    <option value="profesor2">Elev 2 - Clasa XII A</option>
+                </select>                
+            </div>
+        </div>
+    </div>
+    <div class="comments-container">
+        <div class="comment-posting">
+            <div class="comment-header">
+                <img src="assets/profile_picture_placeholder.png" alt="pfp">
+                <h3 class="comment-user-name">@Cosmin</h3>
+            </div>
+            <textarea name="comment" id="comment" placeholder="Lasă un comentariu... Maxim 200 de caractere"></textarea>
+            <button class="comment-posting-button">Posteaza</button> 
+        </div>
+        
+        <div class="comment-box-container">
+            <div class="comment-box">
+                <div class="comment-header">
+                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
+                    <div class="comment-data">
+                        <h3 class="comment-user-name">@Cosmin</h3>
+                        <div class="comment-meta">Astăzi | Profesor</div>
+                    </div>
+                </div>
+                <p class="comment-body">Tare, iti dau nota buna.</p>
+            </div>
+
+            <div class="comment-box">
+                <div class="comment-header">
+                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
+                    <div class="comment-data">
+                        <h3 class="comment-user-name">@alex</h3>
+                        <div class="comment-meta">Acum 5 zile | Elev</div>
+                    </div>
+                </div>
+                <p class="comment-body">Eu am facut pagina asta.</p>
+            </div>
+    
+            <div class="comment-box">
+                <div class="comment-header">
+                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
+                    <div class="comment-data">
+                        <h3 class="comment-user-name">@Stefan</h3>
+                        <div class="comment-meta">Acum 7 zile | Elev</div>
+                    </div>
+                </div>
+                <p class="comment-body">Un comentariu mai chill. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, esse enim? Excepturi, vel. Excepturi consequuntur esse repellendus distinctio sit quas numquam at? Quasi iste quas illo possimus quisquam enim velit. Inventore soluta necessitatibus vero ex animi debitis, nulla vitae! Reprehenderit beatae et, nostrum dolores vero quisquam a distinctio omnis fugiat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">© 2023 InformatiX. All rights reserved.</div>
+
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-grade">Nota finală</h3>
+                <div class="modal-evaluation-container">
+                    <input type="range" name="grade" id="grade-range" min="1" max="10" step="1">
+                    <p id="grade-value">10</p>
+                </div>
+                <div class="modal-add-description">
+                    <h3>Descriere</h3>
+                    <textarea name="description" id="description" placeholder="Justifică nota pusă dacă e nevoie..."></textarea>
+                </div>
+                <button class="send-grade-button">Trimite</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
+    <script src="../scripts/problem.js"></script>
+</body>
+</html>

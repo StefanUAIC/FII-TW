@@ -6,5 +6,6 @@ module.exports.config = {
     DB_PASSWORD: process.env.DB_PASSWORD || "user",
     DB_HOST: process.env.DB_HOST || "localhost",
     DB_PORT: process.env.DB_PORT || 27017,
-    DB_DATABASE: process.env.DB_DATABASE || "testdb"
+    DB_DATABASE: process.env.DB_DATABASE || "testdb",
+    SECRET_KEY: process.env.SECRET_KEY || "ciorbaRadauteana",
 };
