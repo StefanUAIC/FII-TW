@@ -27,7 +27,10 @@ const authenticationController = (req, res) => {
             const parsedData = JSON.parse(buffer);
             if (endpoint === 'login') {
                 if (parsedData.username === hardcodedUser.username && parsedData.password === hardcodedUser.password) {
-                    let token = jwt.sign({username: parsedData.username, role: hardcodedUser.role}, secretKey);
+                    let token = jwt.sign({
+                        username: parsedData.username,
+                        role: hardcodedUser.role
+                    }, secretKey, {expiresIn: '1h'});
                     res.setHeader('Set-Cookie', [
                         `token=${token}; Path=/; HttpOnly`,
                         `role=${hardcodedUser.role}; Path=/`,
