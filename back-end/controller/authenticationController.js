@@ -28,9 +28,11 @@ const authenticationController = (req, res) => {
             if (endpoint === 'login') {
                 if (parsedData.username === hardcodedUser.username && parsedData.password === hardcodedUser.password) {
                     let token = jwt.sign({username: parsedData.username, role: hardcodedUser.role}, secretKey);
-                    res.setHeader('Set-Cookie', `token=${token}; Path=/; HttpOnly;`);
-                    res.setHeader('Set-Cookie', `role=${hardcodedUser.role}; Path=/`);
-                    res.setHeader('Set-Cookie', 'mancare_preferata=papanasi; Path=/');
+                    res.setHeader('Set-Cookie', [
+                        `token=${token}; Path=/; HttpOnly`,
+                        `role=${hardcodedUser.role}; Path=/`,
+                        'mancare_preferata=papanasi; Path=/'
+                    ]);
                     res.writeHead(200, {'Content-Type': 'application/json'});
                     res.end(JSON.stringify({message: 'Logged in successfully'}));
                 } else {

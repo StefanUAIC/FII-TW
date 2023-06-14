@@ -13,17 +13,14 @@ loginForm.addEventListener('submit', function (e) {
         }, body: JSON.stringify(data),
     })
         .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            if (data.status === 200) {
-                console.log(data);
-                // window.location.href = '/home';
+            if (response.ok) {
+                window.location.href = '/home';
             } else {
-                alert(data.message);
+                alert('Invalid credentials');
             }
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert(error.message);
         });
 });
