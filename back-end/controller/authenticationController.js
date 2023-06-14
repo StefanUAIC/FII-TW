@@ -1,11 +1,13 @@
 const {StringDecoder} = require('string_decoder');
 const jwt = require('jsonwebtoken');
+const config = require("../config/config").config;
+
 
 const hardcodedUser = {
     username: 'test@yahoo.com', password: 'password', role: 'student'
 };
 
-const secretKey = 'ciorbaRadauteana';
+const secretKey = config.SECRET_KEY;
 const authenticationController = (req, res) => {
     const url = req.url;
     const method = req.method.toLowerCase();
