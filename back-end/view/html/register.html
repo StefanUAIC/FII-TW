@@ -13,7 +13,7 @@
 <body>
 <div class="main-container">
 
-    <form action="/login" class="login-form">
+    <form method="POST" class="login-form">
         <p class="title">InformatiX - Creare cont</p>
         <div class="separator"></div>
 
@@ -43,17 +43,19 @@
         <label>Selecteaza tip cont</label>
         <div class="type-wrapper">
             <label for="option-elev">Elev</label>
-            <input type="radio" name="selector" id="option-elev">
+            <input type="radio" name="selector" id="option-elev" checked>
 
             <label for="option-prof">Profesor</label>
             <input type="radio" name="selector" id="option-prof">
         </div>
 
 
+
         <button>Înregistrează-te</button>
     </form>
 
 </div>
+<script src="scripts/register.js"></script>
 </body>
 </html>
 
