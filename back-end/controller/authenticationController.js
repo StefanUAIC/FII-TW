@@ -4,8 +4,8 @@ const config = require("../config/config").config;
 
 
 const hardcodedUser = {
-    username: 'test@yahoo.com', password: 'password', role: 'Elev'
-    //username: 'test2@yahoo.com', password: 'password', role: 'Profesor'
+   // username: 'test@yahoo.com', password: 'password', role: 'Elev'
+    username: 'test2@yahoo.com', password: 'password', role: 'Profesor'
 };
 
 const secretKey = config.SECRET_KEY;

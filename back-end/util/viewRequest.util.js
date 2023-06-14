@@ -6,9 +6,9 @@ const processViewRequest = (req, res, templatePath, callback) => {
       res.end("Access denied.");
     }
     getFileContent(templatePath)
-      .then((data) => {
+      .then(async (data) => {
         try {
-          const modifiedTemplate = callback(data); // Process the HTML template
+          const modifiedTemplate = await callback(data); // Process the HTML template
           res.writeHead(200, { 'Content-Type': 'text/html' });
           res.end(modifiedTemplate);
         } 
