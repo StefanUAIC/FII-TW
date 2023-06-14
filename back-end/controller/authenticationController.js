@@ -4,8 +4,8 @@ const config = require("../config/config").config;
 
 
 const hardcodedUser = {
-   // username: 'test@yahoo.com', password: 'password', role: 'Elev'
-   username: 'test2@yahoo.com', password: 'password', role: 'Profesor'
+    username: 'test@yahoo.com', password: 'password', role: 'Elev'
+    //username: 'test2@yahoo.com', password: 'password', role: 'Profesor'
 };
 
 const secretKey = config.SECRET_KEY;
@@ -18,6 +18,17 @@ const authenticationController = (req, res) => {
     const endpoint = splitUrl[2];
 
     if (method === 'post') {
+        if (endpoint === 'logout') {
+            res.setHeader('Set-Cookie', [
+                `token=; Max-Age=0; Path=/; HttpOnly;`,
+                `role=; Max-Age=0; Path=/;`,
+            ]);
+            console.log('Logged out successfully');
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({message: 'Logged out successfully'}));
+            return;
+        }
+
         const decoder = new StringDecoder('utf-8');
         let buffer = '';
 

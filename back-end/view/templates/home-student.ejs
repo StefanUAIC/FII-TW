@@ -13,7 +13,7 @@
 </head>
 <body>
     <section class="top-container">
-        <a class="logout-button" href="/"></a>
+        <a class="logout-button logout-button-js" href="/"></a>
         <div class="description">
             <p class="title">Bun venit pe <span class="informatix">InformatiX</span>, <span class="user"><%= user.name %></span></p>
             <div class="underline"></div>
@@ -54,7 +54,7 @@
                 <h2>Delogare</h2>
             </div>
             <p> Deconectează-te de pe platformă.</p>
-            <a href="/">Apasă pentru delogare</a>
+            <a class="logout-button-js" href="/">Apasă pentru delogare</a>
         </div>
         
         <div class="card">
@@ -68,5 +68,6 @@
     </section>
 
     <section class="footer">© 2023 InformatiX. All rights reserved.</section>
+<script src="scripts/logout.js"></script>
 </body>
 </html>
