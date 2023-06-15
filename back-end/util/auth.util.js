@@ -17,7 +17,7 @@ const validateJwt = (req) => {
     }
 }
 
-const extractUserEmailFromJwt = (req) => {
+const extractFromJwt = (req, field) => {
     const token = extractCookie(req, "token");
 
     if (!token) {
@@ -27,11 +27,31 @@ const extractUserEmailFromJwt = (req) => {
 
     try {
         const decoded = jwt.verify(token, config.SECRET_KEY);
-        return decoded.email;
+        return decoded[field];
     } catch (err) {
-        err = {status: 400, message: "Invalid Token"};
+        err = {status: 400, message: "Invalid Token. Please login again"};
         throw err;
     }
 }
 
-module.exports = { validateJwt, extractUserEmailFromJwt };
+const extractEmailFromJwt = (req) => {
+    try {
+        return extractFromJwt(req, "email");
+    }
+    catch (err) {
+        throw err;
+    }
+    return undefined;
+}
+
+const extractRoleFromJwt = (req) => {
+    try{
+        return extractFromJwt(req, "role");        
+    }
+    catch (err) {
+        console.log(err);
+    }
+    return undefined;
+}
+
+module.exports = { validateJwt, extractEmailFromJwt, extractRoleFromJwt };

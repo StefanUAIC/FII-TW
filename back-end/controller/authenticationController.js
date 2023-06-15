@@ -62,7 +62,6 @@ const authenticationController = (req, res) => {
 
                 res.setHeader('Set-Cookie', [
                     `token=${token}; Path=/; HttpOnly`,
-                    `role=${user.role}; Path=/`,
                     'mancare_preferata=papanasi; Path=/'
                 ]);
 
@@ -114,12 +113,12 @@ const authenticationController = (req, res) => {
                 }
 
                 const user = {
-                    name,
-                    firstName,
-                    email,
-                    username,
-                    password,
-                    role
+                    lastName: name,
+                    firstName: firstName,
+                    email: email,
+                    username: username,
+                    password: password,
+                    role: role
                 };
 
                 const createdUser = await UserRepository.createUser(user);

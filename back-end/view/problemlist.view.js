@@ -2,10 +2,10 @@ const { validateJwt } = require("../util/auth.util");
 const viewProcessor = require("../util/viewRequest.util");
 let ejs = require('ejs');
 const config = require("../config/config").config;
-const { extractCookie } = require("../util/cookieParser.util");
+const { extractRoleFromJwt } = require("../util/auth.util");
 
 function getViewPath(req) {
-    let role = extractCookie(req, "role");
+    let role = extractRoleFromJwt(req);
     if (role === config.STUDENT_ROLE) {
         return "./view/templates/problem-selector-student.ejs";
     }

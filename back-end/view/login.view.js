@@ -1,5 +1,5 @@
-const { validateJwt } = require("../util/auth.util");
 const viewProcessor = require("../util/viewRequest.util");
+const { validateJwt } = require("../util/auth.util");
 
 const LOGIN_VIEW_PATH = "./view/html/index.html";
 
