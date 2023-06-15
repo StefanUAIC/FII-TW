@@ -3,10 +3,10 @@ const viewProcessor = require("../util/viewRequest.util");
 const ejs = require('ejs');
 const extractId = require("../util/urlParser.util").extractIdFromUrl;
 const config = require("../config/config").config;
-const { extractCookie } = require("../util/cookieParser.util");
+const { extractRoleFromJwt } = require("../util/auth.util");
 
 function getViewPath(req) {
-    let role = extractCookie(req, "role");
+    let role = extractRoleFromJwt(req);
     if (role === config.STUDENT_ROLE) {
         return "./view/templates/problem-student.ejs";
     }
@@ -21,7 +21,8 @@ const handleProblemView = (req, res) => {
     console.log("Problem id: " + problemId);
     viewProcessor(req, res, getViewPath(req), (htmlTemplate) => {
         validateJwt(req);
-        let modifiedTemplate = htmlTemplate;
+
+        let modifiedTemplate = ejs.render(htmlTemplate, {code: {source: 'cout << "hello world"; '}});
         return modifiedTemplate;
     });
 }
