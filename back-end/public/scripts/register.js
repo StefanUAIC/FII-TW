@@ -7,7 +7,7 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
     const username = document.getElementById('username-input').value;
     const password = document.getElementById('password-input').value;
     const confirmPassword = document.getElementById('confirm-password-input').value;
-    const accountType = document.getElementById('option-elev').checked ? 'Elev' : 'Profesor';
+    const role = document.getElementById('option-elev').checked ? 'Elev' : 'Profesor';
 
     if (!name || !firstName || !email || !username || !password || !confirmPassword) {
         alert('Please fill all fields');
@@ -48,12 +48,24 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
             email,
             username,
             password,
-            accountType
+            role
         }),
     })
-        .then(response => response.json())
-        .then(data => console.log(data))
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    throw new Error(data.message || 'Unknown error occurred');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            window.location.href = '/';
+        })
         .catch((error) => {
+            alert(error.message);
             console.error('Error:', error);
         });
 });
+

@@ -2,13 +2,12 @@ const {StringDecoder} = require('string_decoder');
 const jwt = require('jsonwebtoken');
 const config = require("../config/config").config;
 
-
-const hardcodedUser = {
-   // username: 'test@yahoo.com', password: 'password', role: 'Elev'
-    username: 'test2@yahoo.com', password: 'password', role: 'Profesor'
-};
+const UserRepository = require('../repository/user.repository');
+const {NotFoundException} = require("../exception/database.exception");
+const {comparePasswords} = require("../util/hashpassword.util");
 
 const secretKey = config.SECRET_KEY;
+
 const authenticationController = (req, res) => {
     const url = req.url;
     const method = req.method.toLowerCase();
@@ -23,7 +22,6 @@ const authenticationController = (req, res) => {
                 `token=; Max-Age=0; Path=/; HttpOnly;`,
                 `role=; Max-Age=0; Path=/;`,
             ]);
-            console.log('Logged out successfully');
             res.writeHead(200, {'Content-Type': 'application/json'});
             res.end(JSON.stringify({message: 'Logged out successfully'}));
             return;
@@ -36,30 +34,43 @@ const authenticationController = (req, res) => {
             buffer += decoder.write(data);
         });
 
-        req.on('end', () => {
+        req.on('end', async () => {
             buffer += decoder.end();
             const parsedData = JSON.parse(buffer);
             if (endpoint === 'login') {
-                if (parsedData.username === hardcodedUser.username && parsedData.password === hardcodedUser.password) {
-                    let token = jwt.sign({
-                        username: parsedData.username,
-                        role: hardcodedUser.role
-                    }, secretKey, {expiresIn: '1h'});
-                    res.setHeader('Set-Cookie', [
-                        `token=${token}; Path=/; HttpOnly`,
-                        `role=${hardcodedUser.role}; Path=/`,
-                        'mancare_preferata=papanasi; Path=/'
-                    ]);
-                    res.writeHead(200, {'Content-Type': 'application/json'});
-                    res.end(JSON.stringify({message: 'Logged in successfully'}));
-                } else {
+                let user = false;
+                try {
+                    user = await UserRepository.getUser({email: parsedData.email});
+                } catch (error) {
+                    if (!(error instanceof NotFoundException)) {
+                        console.error(error);
+                        res.writeHead(500, {'Content-Type': 'application/json'});
+                        res.end(JSON.stringify({message: 'Server error'}));
+                        return;
+                    }
+                }
+                if (!user || await comparePasswords(parsedData.password, user.password) === false) {
                     res.writeHead(401, {'Content-Type': 'application/json'});
                     res.end(JSON.stringify({message: 'Incorrect username or password'}));
+                    return;
                 }
-            } else if (endpoint === 'register') {
-                const {name, firstName, email, username, password, accountType} = parsedData;
 
-                if (!name || !firstName || !email || !username || !password || !accountType) {
+                let token = jwt.sign({
+                    username: parsedData.username,
+                    role: user.role
+                }, secretKey, {expiresIn: '1h'});
+
+                res.setHeader('Set-Cookie', [
+                    `token=${token}; Path=/; HttpOnly`,
+                    `role=${user.role}; Path=/`,
+                    'mancare_preferata=papanasi; Path=/'
+                ]);
+
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end(JSON.stringify({message: 'Logged in successfully'}));
+            } else if (endpoint === 'register') {
+                const {name, firstName, email, username, password, role} = parsedData;
+                if (!name || !firstName || !email || !username || !password || !role) {
                     res.writeHead(400, {'Content-Type': 'application/json'});
                     res.end(JSON.stringify({message: 'Please fill all fields'}));
                     return;
@@ -85,9 +96,36 @@ const authenticationController = (req, res) => {
                     res.end(JSON.stringify({message: 'Username must be between 3 to 20 characters long and can only contain letters and digits'}));
                     return;
                 }
+                let existingUser = false;
+                try {
+                    existingUser = await UserRepository.getUser({$or: [{username}, {email}]});
+                } catch (e) {
+                    if (!(e instanceof NotFoundException)) {
+                        console.error(e);
+                        res.writeHead(500, {'Content-Type': 'application/json'});
+                        res.end(JSON.stringify({message: 'Something went wrong'}));
+                        return;
+                    }
+                }
+                if (existingUser) {
+                    res.writeHead(400, {'Content-Type': 'application/json'});
+                    res.end(JSON.stringify({message: 'User with this username or email already exists'}));
+                    return;
+                }
+
+                const user = {
+                    name,
+                    firstName,
+                    email,
+                    username,
+                    password,
+                    role
+                };
+
+                const createdUser = await UserRepository.createUser(user);
 
                 res.writeHead(200, {'Content-Type': 'application/json'});
-                res.end(JSON.stringify({message: 'Registration successful', data: parsedData}));
+                res.end(JSON.stringify({message: 'Registration successful', data: createdUser}));
             } else {
                 res.writeHead(404);
                 res.end('Not found');

@@ -25,8 +25,6 @@ class UserRepository {
             throw new NotFoundException("User not found");
         }
 
-        user.password = undefined;
-
         return user;
     };
 

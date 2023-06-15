@@ -3,19 +3,19 @@ const mongoose = require("mongoose");
 const addressSchema = new mongoose.Schema({
     street: {
         type: String,
-        default: "-"
+        default: '-'
     },
     country: {
         type: String,
-        default: "-"
+        default: '-'
     },
     state: {
         type: String,
-        default: "-"
+        default: '-'
     },
     city: {
         type: String,
-        default: "-"
+        default: '-'
     }
 });
 
@@ -26,14 +26,8 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     role: String,
-    description: {
-        type: String,
-        default: "Fara descriere"
-    },
-    address: {
-        type: addressSchema,
-        default: {}
-    }
+    description: { type: String, default: 'Fără descriere' },
+    address: { type: addressSchema, default: {} }
 });
 
 module.exports = mongoose.model("User", userSchema);
