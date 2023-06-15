@@ -1,7 +1,8 @@
 const viewProcessor = require("../util/viewRequest.util");
 const config = require("../config/config").config;
-const { validateJwt, extractRoleFromJwt } = require("../util/auth.util");
+const { validateJwt, extractRoleFromJwt, extractEmailFromJwt } = require("../util/auth.util");
 let ejs = require('ejs');
+const userModel = require("../model/user.model");
 
 function getViewPath(req) {
     let role = extractRoleFromJwt(req);
@@ -15,12 +16,12 @@ function getViewPath(req) {
 }
 
 const handleHomeView = (req, res) => {
-    viewProcessor(req, res, getViewPath(req), (htmlTemplate) => {
+    viewProcessor(req, res, getViewPath(req), async (htmlTemplate) => {
         validateJwt(req);
-        const userData = {
-            name: "Dummy_user"
-        }
-        let modifiedTemplate = ejs.render(htmlTemplate, {user: userData});
+        let email = extractEmailFromJwt(req);
+        let user = await userModel.findOne({email: email});
+
+        let modifiedTemplate = ejs.render(htmlTemplate, {user: user});
         return modifiedTemplate;
     });
 }

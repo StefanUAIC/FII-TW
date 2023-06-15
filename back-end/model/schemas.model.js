@@ -92,6 +92,7 @@ const ratingSchema = new mongoose.Schema({
 });
 
 const problemSchema = new mongoose.Schema({
+    id: String,
     title: String,
 
     description: String,
@@ -104,14 +105,14 @@ const problemSchema = new mongoose.Schema({
     author: String,
     grade: String, //clasa
 
+    tags: [String],
     rating: [ratingSchema],
     comments: [commentSchema]
 });
 
-let userModel = mongoose.model("User", userSchema);
 let classModel = mongoose.model("Class", classSchema);
 let homeworkModel = mongoose.model("Homework", homeworkSchema);
 let homeworkSolutionModel = mongoose.model("HomeworkSolution", homeworkSolutionSchema);
 let problemModel = mongoose.model("Problem", problemSchema);
 
-module.exports = { userModel, classModel, homeworkModel, homeworkSolutionModel, problemModel };
+module.exports = { classModel, homeworkModel, homeworkSolutionModel, problemModel };

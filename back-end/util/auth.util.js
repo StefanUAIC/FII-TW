@@ -12,7 +12,7 @@ const validateJwt = (req) => {
     try {
         const verified = jwt.verify(token, config.SECRET_KEY);
     } catch (err) {
-        err = {status: 400, message: "Invalid Token"};
+        err = {status: 400, message: "Invalid Token. Please login again"};
         throw err;
     }
 }

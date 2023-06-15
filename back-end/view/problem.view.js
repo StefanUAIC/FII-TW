@@ -4,6 +4,7 @@ const ejs = require('ejs');
 const extractId = require("../util/urlParser.util").extractIdFromUrl;
 const config = require("../config/config").config;
 const { extractRoleFromJwt } = require("../util/auth.util");
+const problemModel = require("../model/schemas.model").problemModel;
 
 function getViewPath(req) {
     let role = extractRoleFromJwt(req);
@@ -18,11 +19,19 @@ function getViewPath(req) {
 
 const handleProblemView = (req, res) => {
     const problemId = extractId(req.url);
-    console.log("Problem id: " + problemId);
-    viewProcessor(req, res, getViewPath(req), (htmlTemplate) => {
+    viewProcessor(req, res, getViewPath(req), async (htmlTemplate) => {
         validateJwt(req);
+        
+        let problem = await problemModel.findOne({id: problemId});
+        if (!problem) {
+            err = {
+                status: 404,
+                message: "Problem not found"
+            };
+            throw err;
+        }
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {code: {source: 'cout << "hello world"; '}});
+        let modifiedTemplate = ejs.render(htmlTemplate, {code: {source: 'cout << "hello world"; '}, problem: problem});
         return modifiedTemplate;
     });
 }

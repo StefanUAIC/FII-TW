@@ -2,7 +2,8 @@ const { validateJwt } = require("../util/auth.util");
 const viewProcessor = require("../util/viewRequest.util");
 let ejs = require('ejs');
 const config = require("../config/config").config;
-const { extractRoleFromJwt } = require("../util/auth.util");
+const { extractRoleFromJwt, extractEmailFromJwt } = require("../util/auth.util");
+const userModel = require("../model/user.model");
 
 function getViewPath(req) {
     let role = extractRoleFromJwt(req);
@@ -16,10 +17,13 @@ function getViewPath(req) {
 }
 
 const handleClasslistView = (req, res) => {
-    viewProcessor(req, res, getViewPath(req), (htmlTemplate) => {
-        //TODO get data from the database
+    viewProcessor(req, res, getViewPath(req), async (htmlTemplate) => {
         validateJwt(req);
-        let modifiedTemplate = htmlTemplate;
+
+        let email = extractEmailFromJwt(req);
+        let user = await userModel.findOne({email: email});
+
+        let modifiedTemplate = ejs.render(htmlTemplate, {user: user});
         return modifiedTemplate;
     });
 }

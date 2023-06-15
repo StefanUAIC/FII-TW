@@ -86,80 +86,21 @@
             </div>
         </div>
         <div class="cards-container">
-            <div class="card">
-
-              <div class="card_details">
-
-                <span class="tag">nume tag</span>
-
-
-                <div class="name"><a href="/problem/12345">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
-                  pharetra
-                  vitae ipsum odio.</p>
-              </div>
-            </div>
-            <div class="card">
-
-              <div class="card_details">
-
-                <span class="tag">nume tag</span>
-
-                <span class="tag">nume tag</span>
-                <span class="tag">nume tag</span>
-
-                <div class="name"><a href="problem-student.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
-                    pharetra
-                    vitae ipsum odio.</p>
-              </div>
-            </div>
+            <% for(let problem of problems) { %>
             <div class="card">
 
               <div class="card_details">
                 
-                <div class="card-tags-container">
-                    <span class="tag">nume tag</span>
-    
-                    <span class="tag">nume tag</span>
-                    <span class="tag">nume tag</span>
-                </div>
+                <% for(let tag of problem.tags) { %>
+                <span class="tag"><%= tag %></span>
+                <% } %>
 
-                <div class="name"><a href="problem-student.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
-                    pharetra
-                    vitae ipsum odio.</p>
+                <div class="name"><a href="<%= problem.url %>"><%= problem.title %></a></div>
+                <p><%= problem.summary %></p>
               </div>
             </div>
-            <div class="card">
-
-              <div class="card_details">
-
-                <span class="tag">nume tag</span>
-
-                <span class="tag">nume tag</span>
-
-                <div class="name"><a href="problem-student.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
-                  pharetra
-                  vitae ipsum odio.</p>
-              </div>
-            </div>
-            <div class="card">
-
-              <div class="card_details">
-
-                <span class="tag">nume tag</span>
-
-                <span class="tag">nume tag</span>
-
-                <div class="name"><a href="problem-student.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
-                  pharetra
-                  vitae ipsum odio.</p>
-              </div>
-            </div>
-        </div>
+            <% } %>
+        </div> 
     </div>
 
     <section class="footer">© 2023 InformatiX. All rights reserved.</section>
