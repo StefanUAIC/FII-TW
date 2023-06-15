@@ -55,7 +55,7 @@ const authenticationController = (req, res) => {
                 }
 
                 let token = jwt.sign({
-                    username: parsedData.username,
+                    email: parsedData.email,
                     role: user.role
                 }, secretKey, {expiresIn: '1h'});
 
