@@ -1,6 +1,7 @@
 const {StringDecoder} = require('string_decoder');
 const jwt = require('jsonwebtoken');
 const config = require("../config/config").config;
+
 const UserRepository = require('../repository/user.repository');
 const {NotFoundException} = require("../exception/database.exception");
 const {comparePasswords} = require("../util/hashpassword.util");

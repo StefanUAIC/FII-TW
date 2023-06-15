@@ -17,4 +17,21 @@ const validateJwt = (req) => {
     }
 }
 
-module.exports = { validateJwt };
+const extractUserEmailFromJwt = (req) => {
+    const token = extractCookie(req, "token");
+
+    if (!token) {
+        err = {status: 500, message: "No authorization token found"};
+        throw err;
+    }
+
+    try {
+        const decoded = jwt.verify(token, config.SECRET_KEY);
+        return decoded.email;
+    } catch (err) {
+        err = {status: 400, message: "Invalid Token"};
+        throw err;
+    }
+}
+
+module.exports = { validateJwt, extractUserEmailFromJwt };

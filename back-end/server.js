@@ -2,7 +2,6 @@ const http = require("http");
 const mongoose = require("mongoose");
 
 const config = require("./config/config").config;
-// const handleApiRequest = require("./controller/controller");
 const handleViewRequest = require("./view/controller");
 const handleApiRequest = require("./controller/controller");
 
@@ -16,6 +15,10 @@ const server = http.createServer((req, res) => {
         handleViewRequest(req, res);
     }
 });
+
+let user = require("./model/user.model");
+user.create({firstName: "Dummy", lastName: "User", email: "test@yahoo.com", username: "informxuser",
+         password: "password", role: "Profesor"});
 
 server.listen(config.PORT, config.HOST, () => {
     console.log(`Server is running on http://${config.HOST}:${config.PORT}`);

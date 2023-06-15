@@ -37,48 +37,48 @@
         <div class="user-container">
             <div class="user-profile">
                 <img src="assets/profile_picture_placeholder.png" alt="pfp">
-                <p class="username">stefan.catiru</p>
+                <p class="username"> <%= user.username %> </p>
             </div>
             <div class="information-panel">
                 <div class="user-information">
                     <p>Email:</p>
-                    <p>example@example.com</p>
+                    <p><%= user.email %></p>
                 </div>
                 <div class="separator"></div>
                 <div class="user-information">
                     <p>Nume:</p>
-                    <p>Catiru</p>
+                    <p><%= user.lastName %></p>
                 </div>
                 <div class="separator"></div>
                 <div class="user-information">
                     <p>Prenume</p>
-                    <p>Stefan</p>
+                    <p><%= user.firstName %></p>
                 </div>
                 <div class="separator"></div>
                 <div class="user-information">
                     <p>Judet</p>
-                    <p>Iasi</p>
+                    <p><%= user.address.state %></p>
                 </div>
                 <div class="separator"></div>
                 <div class="user-information">
                     <p>Localitate: </p>
-                    <p>Pascani</p>
+                    <p><%= user.address.city %></p>
                 </div>
                 <div class="separator"></div>
                 <div class="user-information">
                     <p>Tara:</p>
-                    <p>Romania</p>
+                    <p><%= user.address.country %></p>
                 </div>
                 <div class="separator"></div>
                 <div class="user-information">
                     <p>Descriere:</p>
-                    <p>descriere</p>
+                    <p><%= user.description %></p>
                 </div>
             </div>
             <div class="settings-button">
-                <form action="myAccountSettings-student.html" method="GET">
+                <a href="/account/edit">
                     <button class="code-button" id="settings">Setari</button>
-                </form>
+                </a>
             </div>
         </div>
     </div>

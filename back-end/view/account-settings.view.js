@@ -1,14 +1,20 @@
-const { validateJwt } = require("../util/auth.util");
+const { validateJwt, extractUserEmailFromJwt } = require("../util/auth.util");
 const viewProcessor = require("../util/viewRequest.util");
+const userModel = require("../model/user.model");
 let ejs = require('ejs');
 
 const handleAccountEditView = (req, res) => {
     const VIEW_PATH = "./view/templates/account-settings.ejs";
     
-    viewProcessor(req, res, VIEW_PATH, (htmlTemplate) => {
-        //TODO get data from the database
+    viewProcessor(req, res, VIEW_PATH, async (htmlTemplate) => {
         validateJwt(req);
-        return htmlTemplate;
+        let email = extractUserEmailFromJwt(req);
+        let modifiedTemplate = htmlTemplate;
+        let user = await userModel.findOne({email: email});
+
+        modifiedTemplate = ejs.render(htmlTemplate, {user: user});
+
+        return modifiedTemplate;
     });
 }
 
