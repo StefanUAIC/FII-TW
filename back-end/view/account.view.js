@@ -22,7 +22,6 @@ const handleAccountView = (req, res) => {
         let email = extractUserEmailFromJwt(req);
         let modifiedTemplate = htmlTemplate;
         let user = await userModel.findOne({email: email});
-
         modifiedTemplate = ejs.render(htmlTemplate, {user: user});
 
         return modifiedTemplate;

@@ -27,7 +27,7 @@ const extractUserEmailFromJwt = (req) => {
 
     try {
         const decoded = jwt.verify(token, config.SECRET_KEY);
-        return decoded.username;
+        return decoded.email;
     } catch (err) {
         err = {status: 400, message: "Invalid Token"};
         throw err;
