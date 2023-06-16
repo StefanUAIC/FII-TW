@@ -7,8 +7,7 @@ const classSchema = new mongoose.Schema({
     code: String,
     homework: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Homework',
-        default: 0
+        ref: 'Homework'
     },
     teacher: userSchema,
     students: [userSchema]
