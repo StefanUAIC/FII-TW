@@ -39,16 +39,18 @@ const extractEmailFromJwt = (req) => {
     try {
         return extractFromJwt(req, "email");
     } catch (err) {
-        throw err;
+        console.log(err);
     }
+    return undefined;
 }
 
 const extractRoleFromJwt = (req) => {
     try {
         return extractFromJwt(req, "role");
     } catch (err) {
-        throw err;
+        console.log(err);
     }
+    return undefined;
 }
 
 module.exports = {validateJwt, extractEmailFromJwt, extractRoleFromJwt};
