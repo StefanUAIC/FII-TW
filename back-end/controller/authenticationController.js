@@ -85,7 +85,7 @@ const authenticationController = (req, res) => {
                 const passwordRegEx = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$&*])(?=.*[0-9]).{8,30}$/;
                 if (!passwordRegEx.test(password)) {
                     res.writeHead(400, {'Content-Type': 'application/json'});
-                    res.end(JSON.stringify({message: 'Password must have at least one special character, one digit, one uppercase letter, one lowercase letter, and be between 3 to 30 characters long'}));
+                    res.end(JSON.stringify({message: 'Password must have at least one special character, one digit, one uppercase letter, one lowercase letter, and be between 8 to 30 characters long'}));
                     return;
                 }
 
