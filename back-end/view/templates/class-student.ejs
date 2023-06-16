@@ -38,15 +38,15 @@
             <div class="tags-container">
                 <div class="tag tag-author">
                     <h3>Profesor:</h3>
-                    <span class="author">nume prof</span>
+                    <span class="author"><%= classInfo.teacher %></span>
                 </div>
                 <div class="tag tag-students">
                     <h3>Numarul de studenti:</h3> 
-                    30
+                    <%= classInfo.studentCount %>
                 </div>
                 <div class="tag tag-grade">
                     <h3>Temă:</h3>
-                    <span class="grade">Da/Nu</span>
+                    <span class="grade"><%= classInfo.hasHomework %></span>
                 </div>
             </div>
             <div class="buttons">
@@ -65,185 +65,31 @@
 
                 <tbody>
                     <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
+                        <tr class="student">
+                            <% for(let student of studentList) { %>
+                            <td class="student-name-student" data-title="Nume Student">
+                                <%= student.name %>
+                            </td>
+    
+                            <td class="student-homework-status" data-title="Status tema">
+                                <%= student.status %>
+                            </td>
+    
+                            <td class="student-delivery-date" data-title="Data predare">
+                                <%= student.sendDate %>
+                            </td>
+    
+                            <td class="student-deadline" data-title="Termen limita">
+                                <%= student.deadline %>
+                            </td>
+                            <td class="student-actions" data-title="Vizualizare tema">
+                                <a href="<%= student.problemUrl %>">View</a>
+                            </td>
+                            <% } %>
+                        </tr>
                         
                     </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                       
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                       
-                    </tr>
+                   
                 </tbody>
             </table>
         </div>
