@@ -10,163 +10,253 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="nav" style="height: auto;">
-        <input type="checkbox" id="nav-check">
-        <div class="nav-header">
-            <div class="nav-title">
-                <a href="/home" target="_self">InformatiX</a>
-            </div>
-        </div>
-        <div class="nav-btn">
-            <label for="nav-check">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-        </div>
-    
-        <div class="nav-links">
-            <a href="/problemlist" target="_self">Probleme</a>
-            <a href="/classlist" target="_self">Clasele mele</a>
-            <a class="right-links logout-button-js" href="/" target="_self">Deconectare</a>
-            <a class="right-links" href="/account" target="_self">Contul meu</a>
+<div class="nav" style="height: auto;">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+        <div class="nav-title">
+            <a href="/home" target="_self">InformatiX</a>
         </div>
     </div>
+    <div class="nav-btn">
+        <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
 
-    <div class="main-container">
-        <div class="tag-selector-container">
-            <div class="card">
+    <div class="nav-links">
+        <a href="/problemlist" target="_self">Probleme</a>
+        <a href="/classlist" target="_self">Clasele mele</a>
+        <a class="right-links logout-button-js" href="/" target="_self">Deconectare</a>
+        <a class="right-links" href="/account" target="_self">Contul meu</a>
+    </div>
+</div>
 
-                <form action="problem-selector-teacher.html">
-                    <div class="form-group focused">
-                        <label class="form-control-label">Denumirea problemei</label>
-                        <input type="text" class="form-control form-control-alternative">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-control-label">Categorie</label>
-                        <br>
-                        <select name="Alege Categorie" id="categorie">
-                            <option value="categorie0">Selecteaza categorie</option>
-                            <option value="categorie1">Tot</option>
-                            <option value="categorie2">Programare dinamica</option>
-                            <option value="categorie3">Algoritmi elementari</option>
-                            <option value="categorie4">Tablouri unidimensionale</option>
-                            <option value="categorie5">Probleme diverse</option>
-                        </select>
-                    </div>
-                    <div class="form-group focused">
-                        <label class="form-control-label">Dificultate</label>
-                        <br>
-                        <select name="Alege Dificultate" id="dificultate">
-                            <option value="dificultate0">Selecteaza dificultate</option>
-                            <option value="dificultate1">Tot</option>
-                            <option value="dificultate2">Usor</option>
-                            <option value="dificultate3">Mediu</option>
-                            <option value="dificultate4">Dificil</option>
-                        </select>
-                    </div>
-                    <div class="form-group focused">
-                        <label class="form-control-label">Clasa</label>
-                        <br>
-                        <select name="Alege Clasa" id="clasa">
-                            <option value="clasa0">Selecteaza clasa</option>
-                            <option value="clasa1">Tot</option>
-                            <option value="clasa2">IX</option>
-                            <option value="clasa3">X</option>
-                            <option value="clasa4">XI</option>
-                            <option value="clasa5">XII</option>
-                        </select>
-                    </div>
-                    <hr>
+<div class="main-container">
+    <div class="tag-selector-container">
+        <div class="card">
+
+            <form action="problem-selector-teacher.html">
+                <div class="form-group focused">
+                    <label class="form-control-label">Denumirea problemei</label>
+                    <input type="text" class="form-control form-control-alternative">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">Categorie</label>
                     <br>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Cauta</button>
-                    </div>
-                </form>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Adaugare problema</button>
-            </div>
+                    <select name="Alege Categorie" id="categorie">
+                        <option value="categorie0">Selecteaza categorie</option>
+                        <option value="categorie1">Tot</option>
+                        <option value="categorie2">Programare dinamica</option>
+                        <option value="categorie3">Algoritmi elementari</option>
+                        <option value="categorie4">Tablouri unidimensionale</option>
+                        <option value="categorie5">Probleme diverse</option>
+                    </select>
+                </div>
+                <div class="form-group focused">
+                    <label class="form-control-label">Dificultate</label>
+                    <br>
+                    <select name="Alege Dificultate" id="dificultate">
+                        <option value="dificultate0">Selecteaza dificultate</option>
+                        <option value="dificultate1">Tot</option>
+                        <option value="dificultate2">Usor</option>
+                        <option value="dificultate3">Mediu</option>
+                        <option value="dificultate4">Dificil</option>
+                    </select>
+                </div>
+                <div class="form-group focused">
+                    <label class="form-control-label">Clasa</label>
+                    <br>
+                    <select name="Alege Clasa" id="clasa">
+                        <option value="clasa0">Selecteaza clasa</option>
+                        <option value="clasa1">Tot</option>
+                        <option value="clasa2">IX</option>
+                        <option value="clasa3">X</option>
+                        <option value="clasa4">XI</option>
+                        <option value="clasa5">XII</option>
+                    </select>
+                </div>
+                <hr>
+                <br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Cauta</button>
+                </div>
+            </form>
         </div>
-        <div class="cards-container">
-            <div class="card">
+        <div class="text-center">
+            <button id="addProblemButton" type="submit" class="btn btn-primary">Adaugare problema</button>
+        </div>
+    </div>
+    <div class="cards-container">
+        <div class="card">
 
-              <div class="card_details">
+            <div class="card_details">
 
                 <span class="tag">nume tag</span>
 
 
                 <div class="name"><a href="problem-teacher.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
-                  pharetra
-                  vitae ipsum odio.</p>
-              </div>
-            </div>
-            <div class="card">
-
-              <div class="card_details">
-
-                <span class="tag">nume tag</span>
-
-                <span class="tag">nume tag</span>
-                <span class="tag">nume tag</span>
-
-                <div class="name"><a href="problem-teacher.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
+                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim
+                    sed diam
                     pharetra
                     vitae ipsum odio.</p>
-              </div>
             </div>
-            <div class="card">
+        </div>
+        <div class="card">
 
-              <div class="card_details">
-                
+            <div class="card_details">
+
+                <span class="tag">nume tag</span>
+
+                <span class="tag">nume tag</span>
+                <span class="tag">nume tag</span>
+
+                <div class="name"><a href="problem-teacher.html">Nume problema</a></div>
+                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim
+                    sed diam
+                    pharetra
+                    vitae ipsum odio.</p>
+            </div>
+        </div>
+        <div class="card">
+
+            <div class="card_details">
+
                 <div class="card-tags-container">
                     <span class="tag">nume tag</span>
-    
+
                     <span class="tag">nume tag</span>
                     <span class="tag">nume tag</span>
                 </div>
 
                 <div class="name"><a href="problem-teacher.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
+                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim
+                    sed diam
                     pharetra
                     vitae ipsum odio.</p>
-              </div>
             </div>
-            <div class="card">
+        </div>
+        <div class="card">
 
-              <div class="card_details">
+            <div class="card_details">
 
                 <span class="tag">nume tag</span>
 
                 <span class="tag">nume tag</span>
 
                 <div class="name"><a href="problem-teacher.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
-                  pharetra
-                  vitae ipsum odio.</p>
-              </div>
+                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim
+                    sed diam
+                    pharetra
+                    vitae ipsum odio.</p>
             </div>
-            <div class="card">
+        </div>
+        <div class="card">
 
-              <div class="card_details">
+            <div class="card_details">
 
                 <span class="tag">nume tag</span>
 
                 <span class="tag">nume tag</span>
 
                 <div class="name"><a href="problem-teacher.html">Nume problema</a></div>
-                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim sed diam
-                  pharetra
-                  vitae ipsum odio.</p>
-              </div>
+                <p>Summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur sodales morbi dignissim
+                    sed diam
+                    pharetra
+                    vitae ipsum odio.</p>
             </div>
         </div>
     </div>
+</div>
+<div class="modal-container">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="problemForm">
+                <div class="form-row">
+                    <div class="form-group-modal">
+                        <label for="title">Titlu</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
 
-    <section class="footer">© 2023 InformatiX. All rights reserved.</section>
-    <script src="scripts/logout.js"></script>
+                    <div class="form-group-modal">
+                        <label for="author">Autor</label>
+                        <input type="text" id="author" name="author" required>
+                    </div>
 
+                    <div class="form-group-modal">
+                        <label for="tags">Etichete</label>
+                        <input type="text" id="tags" name="tags" required>
+                    </div>
+                </div>
+
+
+                <div class="form-group-modal">
+                    <label for="description">Descriere</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="input">Date de intrare</label>
+                    <textarea id="input" name="input" required></textarea>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="output">Date de ieșire</label>
+                    <textarea id="output" name="output" required></textarea>
+                </div>
+
+                <div class="form-group-modal">
+                    <label for="restrictions">Restricții și precizări</label>
+                    <textarea id="restrictions" name="restrictions" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group-modal">
+                        <label for="difficulty">Dificultate</label>
+                        <select id="difficulty" name="difficulty" required>
+                            <option value="">Selectează dificultate</option>
+                            <option value="Usor">Ușor</option>
+                            <option value="Mediu">Mediu</option>
+                            <option value="Dificil">Dificil</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-modal">
+                        <label for="chapter">Capitol</label>
+                        <select id="chapter" name="chapter" required>
+                            <option value="">Selectează capitol</option>
+                            <option value="Programare dinamica">Programare dinamică</option>
+                            <option value="Algoritmi elementari">Algoritmi elementari</option>
+                            <option value="Tablouri unidimensionale">Tablouri unidimensionale</option>
+                            <option value="Probleme diverse">Probleme diverse</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-modal">
+                        <label for="grade">Clasa</label>
+                        <select id="grade" name="grade" required>
+                            <option value="">Selectează clasa</option>
+                            <option value="IX">IX</option>
+                            <option value="X">X</option>
+                            <option value="XI">XI</option>
+                            <option value="XII">XII</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="send-grade-button">Trimite</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<section class="footer">© 2023 InformatiX. All rights reserved.</section>
+<script src="scripts/logout.js"></script>
+<script src="scripts/problemSelector.js"></script>
 </body>
 </html>

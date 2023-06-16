@@ -1,19 +1,29 @@
 const mongoose = require("mongoose");
 
 const homeworkSolutionSchema = new mongoose.Schema({
-    homework: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Homework'
-    },
+    id: Number,
+    homework: Number, //the homework custom id
     student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    sourceCode: String,
-    description: String,
-    grade: Number,
+    sourceCode: {
+        type: String,
+        default: ''
+    },
+    description: {
+        type: String,
+        default: 'Această temă nu a fost corectată incă.'
+    },
+    grade: {
+        type: Number,
+        default: 0
+    },
 
-    status: String // "in lucru", "trimis", "corectat"
+    status: {
+        type: String,
+        default: 'Nealocat'
+    } // "nealocat", "in lucru", "trimis", "corectat"
 });
 
 module.exports = mongoose.model("HomeworkSolution", homeworkSolutionSchema);

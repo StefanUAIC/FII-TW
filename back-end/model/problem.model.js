@@ -3,6 +3,7 @@ const ratingSchema = require("./rating.model").schema;
 const commentSchema = require("./comment.model").schema;
 
 const problemSchema = new mongoose.Schema({
+    id: Number,
     title: String,
 
     description: String,
@@ -15,9 +16,9 @@ const problemSchema = new mongoose.Schema({
     author: String,
     grade: String, //clasa
 
+    tags: [String],
     rating: [ratingSchema],
-    comments: [commentSchema],
-    tags: [String]
+    comments: [commentSchema]
 });
 
 

@@ -2,15 +2,22 @@ const mongoose = require("mongoose");
 const userSchema = require("./user.model").schema;
 
 const classSchema = new mongoose.Schema({
-    id: String,
+    id: Number,
     name: String,
     code: String,
+    description: String,
     homework: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Homework'
+        type: Number, //the homework custom id
+        default: 0
     },
-    teacher: userSchema,
-    students: [userSchema]
+    teacher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    students: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 module.exports = mongoose.model("Class", classSchema);
