@@ -2,7 +2,8 @@ const {validateJwt} = require("../util/auth.util");
 const viewProcessor = require("../util/viewRequest.util");
 let ejs = require('ejs');
 const config = require("../config/config").config;
-const {extractRoleFromJwt} = require("../util/auth.util");
+const { extractRoleFromJwt, extractEmailFromJwt } = require("../util/auth.util");
+const userModel = require("../model/user.model");
 
 function getViewPath(req) {
     let role = extractRoleFromJwt(req);
@@ -14,11 +15,32 @@ function getViewPath(req) {
     return undefined;
 }
 
+async function getClassesByUser(user) {
+    const classModel = require("../model/class.model");
+    if (user.role === config.STUDENT_ROLE) {
+        const classes = await classModel.find({students: {$in: [user._id]}});
+        return classes;
+    }
+    else if (user.role === config.TEACHER_ROLE) {
+        const classes = await classModel.find({teacher: user._id});
+        return classes;
+    }
+    return undefined;
+}
+
 const handleClasslistView = (req, res) => {
-    viewProcessor(req, res, getViewPath(req), (htmlTemplate) => {
-        //TODO get data from the database
+    viewProcessor(req, res, getViewPath(req), async (htmlTemplate) => {
         validateJwt(req);
-        return htmlTemplate;
+
+        let email = extractEmailFromJwt(req);
+        let user = await userModel.findOne({email: email});
+        let classes = await getClassesByUser(user);
+        for (let i = 0; i < classes.length; i++) {
+            classes[i].url = "/class/" + classes[i].id;
+        }
+
+        let modifiedTemplate = ejs.render(htmlTemplate, {user: user, classes: classes});
+        return modifiedTemplate;
     });
 }
 

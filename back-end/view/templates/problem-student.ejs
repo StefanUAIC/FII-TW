@@ -34,27 +34,27 @@
     </div>
     <div class="problem-container">
         <div class="description-container">
-            <h2 class="problem-name">Nume problemă</h2>
+            <h2 class="problem-name"> <%= problem.title %> </h2>
             <div class="tags-container">
                 <div class="tag tag-author">
                     <h3>Autor:</h3>
-                    <span class="author">nume autor</span>
+                    <span class="author"><%= problem.author %></span>
                 </div>
                 <div class="tag tag-difficulty">
                     <h3>Dificultate:</h3>
-                     <span class="difficulty">dificil</span>
+                     <span class="difficulty"><%= problem.difficulty %></span>
                 </div>
                 <div class="tag tag-score">
                     <h3>Punctajul meu:</h3> 
-                    <span class="score">9</span>/10
+                    <span class="score">9</span>/10 
                 </div>
                 <div class="tag tag-chapter">
                     <h3>Capitol:</h3>
-                    <span class="chapter">Programare Dinamica</span>
+                    <span class="chapter"><%= problem.chapter %></span>
                 </div>
                 <div class="tag tag-grade">
                     <h3>Clasa:</h3>
-                    <span class="grade">XII</span>
+                    <span class="grade"><%= problem.grade %></span>
                 </div>
                 <div class="tag tag-stars">
                     <h3>★</h3> 
@@ -64,22 +64,22 @@
             <div class="statement">
                 <div class="section">
                     <h3>Cerință</h3>
-                    <p>Se dă un vector cu n elemente care aparțin intervalului [1, p], iar modulul diferenței dintre oricare 2 valori consecutive este maxim k. Fane a șters câteva dintre numere, scriind in locul lor numărul 0. Aflați numărul de modalități de a completa numerele șterse de Fane, astfel încât vectorul să respecte cele 2 condiții.</p>
+                    <p><%= problem.description %></p>
                 </div>
                 <div class="section">
                     <h3>Date de intrare</h3>
-                    <p>Programul citește de la tastatură numerele n, p, k, iar apoi n numere naturale, separate prin spații.</p>
+                    <p><%= problem.input %></p>
                 </div>
                 <div class="section">
                     <h3>Date de ieșire</h3>
-                    <p>Programul va afișa pe ecran numărul cerut modulo 1.000.000.007.</p>
+                    <p><%= problem.output %></p>
                 </div>
                 <div class="section">
                     <h3>Restricții și precizări</h3>
                     <p>
-                        <code>1 ≤ n ≤ 1000</code><br>
-                        <code>1 ≤ p ≤ 100</code><br>
-                        <code>1 ≤ k ≤ 10</code><br>
+                        <code>
+                            <%= problem.restrictions %>
+                        </code>
                     </p>
                 </div>
             </div>
@@ -168,6 +168,7 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
+                <h3>Status tema: corectată</h3>
                 <h3 class="modal-grade">Punctajul tău: <span class="student-grade">9</span>/10</h3>
                 <h3>Profesor corector: <span class="teacher-name">Cosmin Vârlan</span></h3>
                 <h3>Descriere</h3>

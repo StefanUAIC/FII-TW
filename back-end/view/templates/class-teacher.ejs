@@ -34,25 +34,27 @@
     </div>
     <div class="class-container">
         <div class="description-container">
-            <h2 class="class-name">Nume clasa</h2>
+            <h2 class="class-name"><%= classInfo.name %></h2>
             <div class="tags-container">
                 <div class="tag tag-author">
-                    <h3>Autor:</h3>
-                    <span class="author">nume autor</span>
+                    <h3>Profesor:</h3>
+                    <span class="author"><%= classInfo.teacher %></span>
                 </div>
                 <div class="tag tag-students">
                     <h3>Numarul de studenti:</h3> 
-                    30
+                    <%= classInfo.studentCount %>
                 </div>
                 <div class="tag tag-grade">
-                    <h3>Clasa:</h3>
-                    <span class="grade">X</span>
+                    <h3>Temă:</h3>
+                    <span class="grade"><%= classInfo.hasHomework %></span>
                 </div>
+                <p id="class-code" hidden> <%= classInfo.code %> </p>
+                <p id="class-id" hidden> <%= classInfo.id %> </p>
             </div>
             <div class="buttons">
-                <button class="button">Adaugare elev</button> 
-                <button class="button">Stergere elev</button> 
-                <button class="button">Adaugare tema</button> 
+                <button class="button" id="copy-code-btn">Copiaza cod clasa</button> 
+                <button class="button" id="add-homework-btn">Adaugare tema</button> 
+                <button class="button" id="see-homework-btn">Vezi tema</button> 
             </div>
             <table class="students_table">
 
@@ -67,212 +69,35 @@
                 </thead>
 
                 <tbody>
+                    <% for(let student of studentList) { %>
                     <tr class="student">
                         <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
+                            <%= student.name %>
                         </td>
 
                         <td class="student-homework-status" data-title="Status tema">
-                            Terminata
+                            <%= student.status %>
                         </td>
 
                         <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
+                            <%= student.sendDate %>
                         </td>
 
                         <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
+                            <%= student.deadline %>
                         </td>
                         <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
+                            <a href="<%= student.problemUrl %>">View</a>
                         </td>
                     </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Liviu Sion
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
-                    <tr class="student">
-                        <td class="student-name-student" data-title="Nume Student">
-                            Tudor Ioan
-                        </td>
-
-                        <td class="student-homework-status" data-title="Status tema">
-                            Terminata
-                        </td>
-
-                        <td class="student-delivery-date" data-title="Data predare">
-                            <time datetime="2014-06-12" title="1402562157">June 11, 2014</time>
-                        </td>
-
-                        <td class="student-deadline" data-title="Termen limita">
-                            <time datetime="2014-06-12" title="1402562157">June 12, 2014</time>
-                        </td>
-                        <td class="student-actions" data-title="Vizualizare tema">
-                            <a href="problem-teacher.html">View</a>
-                        </td>
-                    </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
     </div>
     <div class="footer">© 2023 InformatiX. All rights reserved.</div>
-    <script src="scripts/logout.js"></script>
+    <script src="/scripts/logout.js"></script>
+    <script src="/scripts/class.js"></script>
 
 </body>
 </html>

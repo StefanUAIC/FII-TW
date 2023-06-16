@@ -1,22 +1,32 @@
 const {authenticationController} = require('./authenticationController');
-const {handleSettingsSave} = require('../api/featureHandlers');
-const {handleAddProblem} = require('../api/featureHandlers');
+const {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem} = require('../api/featureHandlers');
+
 const handleApiRequest = (req, res) => {
     if (req.url.startsWith("/api/auth")) {
         authenticationController(req, res);
-    } else if (req.url.startsWith("/api/settings") && req.method === "POST") {
-        handleSettingsSave(req, res).catch(() => {
-            console.log("handleSettingsSave error")
-        });
-    } else if (req.url.startsWith("/api/problems") && req.method === "POST") {
+    } 
+    else if (req.url.startsWith("/api/settings") && req.method === "POST") {
+        handleSettingsSave(req, res);
+    }
+    else if (req.url.startsWith("/api/classes/create") && req.method === "POST") {
+        handleClassCreation(req, res);
+    }
+    else if (req.url.startsWith("/api/classes/join") && req.method === "POST") {
+        handleClassJoin(req, res);
+    }
+    else if (req.url.startsWith("/api/homeworks/create") && req.method === "POST") {
+        handleHomeworkCreation(req, res);
+    }
+    else if (req.url.startsWith("/api/problems") && req.method === "POST") {
         console.log(req.url)
         if (req.url === "/api/problems/add") {
             console.log("add")
-            handleAddProblem(req, res).catch(() => {
-                console.log("handleAddProblem error")
+            handleAddProblem(req, res).catch((err) => {
+                console.log("handleAddProblem error. " + err);
             });
         }
-    } else {
+    }
+    else {
         res.writeHead(404);
         res.end('Not found');
     }

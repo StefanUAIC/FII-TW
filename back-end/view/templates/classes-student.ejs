@@ -37,7 +37,7 @@
 
 <section class="top-container">
   <div class="description">
-    <p class="title">Acestea sunt <span class="your-classes">clasele tale</span>, <span class="user">&lt;username&gt;</span>
+    <p class="title">Acestea sunt <span class="your-classes">clasele tale</span>, <span class="user"><%= user.username %></span>
     </p>
   </div>
 </section>
@@ -46,15 +46,17 @@
 </div>
 <section class="main-container">
 
+  <% for(let currClass of classes) { %>
   <div class="card">
     <div class="card-image my-classes">
-      <h2>Clasa 1</h2>
+      <h2><%= currClass.name %></h2>
     </div>
-    <p>Descriere clasa 1</p>
-    <a href="class-student.html">Intra in clasa</a>
+    <p><%= currClass.description %></p>
+    <a href="<%= currClass.url %>">Intră in clasa</a>
   </div>
+  <% } %>
 
-  <div class="card">
+  <!-- <div class="card">
     <div class="card-image my-classes">
       <h2>Clasa 2</h2>
     </div>
@@ -84,7 +86,7 @@
     </div>
     <p>Descriere clasa 5</p>
     <a href="class-student.html">Intra in clasa</a>
-  </div>
+  </div> -->
 
 </section>
 <section class="footer">© 2023 InformatiX. All rights reserved.</section>
@@ -99,10 +101,10 @@
       <div class="modal-add-description">
         <h3>Scrie codul clasei:</h3>
         <br>
-        <textarea name="create-class-textarea" id="create-class-textarea"
+        <textarea name="create-class-textarea" id="join-class-textarea"
                   placeholder="Insereaza codul primit de la profesor pentru a putea intra in clasa"></textarea>
       </div>
-      <button class="send-grade-button">Trimite</button>
+      <button id="join-class-button">Trimite</button>
     </div>
   </div>
 </div>

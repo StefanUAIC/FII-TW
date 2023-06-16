@@ -1,9 +1,9 @@
 const getFileContent = require("./getFileContent.util");
 
 const processViewRequest = (req, res, templatePath, callback) => {
-    if (!templatePath) {
-        res.writeHead(403, {'Content-Type': 'text/plain'});
-        res.end("Access denied.");
+    if (!templatePath){
+      res.writeHead(403, { 'Content-Type': 'text/plain' });
+      res.end("Access denied. Please login again");
     }
     getFileContent(templatePath)
         .then(async (data) => {
