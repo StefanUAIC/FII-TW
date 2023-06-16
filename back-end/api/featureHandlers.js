@@ -15,10 +15,10 @@ const parseRequestBody = (req) => {
 
 const handleSettingsSave = async (req, res) => {
     let body = await parseRequestBody(req);
-    const user = require("../model/user.model"); 
+    const UserRepository = require("../repository/user.repository"); 
 
     try {
-        await user.updateOne({email: body.email}, body);
+        await UserRepository.updateOne({email: body.email}, body);
     }
     catch (err) {
         console.log(err);

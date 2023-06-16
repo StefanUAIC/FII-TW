@@ -4,7 +4,7 @@ let ejs = require('ejs');
 const config = require("../config/config").config;
 const { extractRoleFromJwt } = require("../util/auth.util");
 
-const userModel = require("../model/user.model");
+const UserRepository = require("../repository/user.repository");
 
 function getViewByRole(req) {
     let role = extractRoleFromJwt(req);
@@ -22,7 +22,7 @@ const handleAccountView = (req, res) => {
         validateJwt(req);
         let email = extractEmailFromJwt(req);
         let modifiedTemplate = htmlTemplate;
-        let user = await userModel.findOne({email: email});
+        let user = await UserRepository.getUser({email: email});
         modifiedTemplate = ejs.render(htmlTemplate, {user: user});
 
         return modifiedTemplate;
