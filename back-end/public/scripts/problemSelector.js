@@ -25,7 +25,7 @@ document.getElementById("problemForm").addEventListener("submit", function (even
     console.log(formData)
     const objectToSend = {};
     formData.forEach(function (value, key) {
-        objectToSend[key] = key === 'tags' ? value.split(',') : value;
+        objectToSend[key] = key === 'tags' ? value.split(',').map(tag => tag.trim()) : value;
     });
     console.log(objectToSend)
     fetch('http://localhost:8081/api/problems/add', {
