@@ -1,35 +1,5 @@
 const mongoose = require("mongoose");
 
-const addressSchema = new mongoose.Schema({
-    street: {
-        type: String,
-        default: '-'
-    },
-    country: {
-        type: String,
-        default: '-'
-    },
-    state: {
-        type: String,
-        default: '-'
-    },
-    city: {
-        type: String,
-        default: '-'
-    }
-});
-
-const userSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    username: String,
-    password: String,
-    role: String,
-    description: { type: String, default: 'Fără descriere' },
-    address: { type: addressSchema, default: {} }
-});
-
 const classSchema = new mongoose.Schema({
     id: Number,
     name: String,
@@ -37,7 +7,6 @@ const classSchema = new mongoose.Schema({
     description: String,
     homework: {
         type: Number, //the homework custom id
-        ref: 'Homework',
         default: 0
     },
     teacher: {
@@ -52,10 +21,7 @@ const classSchema = new mongoose.Schema({
 
 const homeworkSolutionSchema = new mongoose.Schema({
     id: Number,
-    homework: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Homework'
-    },
+    homework: Number, //the homework custom id
     student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -73,18 +39,18 @@ const homeworkSolutionSchema = new mongoose.Schema({
         default: 0
     },
 
-    status: String // "in lucru", "trimis", "corectat"
+    status: {
+        type: String,
+        default: 'Nealocat'
+    } // "nealocat", "in lucru", "trimis", "corectat"
 });
 
 const homeworkSchema = new mongoose.Schema({
-    problem: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Problem'
-    },
-    class: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Class'
-    },
+    id: Number,
+    title: String,
+
+    problem: Number, //the problem custom id
+    class: Number, //the class custom id
 });
 
 const commentSchema = new mongoose.Schema({
