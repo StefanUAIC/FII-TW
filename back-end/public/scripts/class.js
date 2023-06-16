@@ -3,6 +3,7 @@ const classCodeBtn = document.getElementById("copy-code-btn");
 classCodeBtn.addEventListener("click", () => {
     const classCode = document.getElementById("class-code").innerText;
     navigator.clipboard.writeText(classCode);
+    alert("Codul clasei a fost copiat in clipboard");
 });
 
 const addHomeworkBtn = document.getElementById("add-homework-btn");
