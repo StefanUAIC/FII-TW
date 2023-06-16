@@ -26,7 +26,6 @@ async function buildStudentList(currClass) {
     for (let i = 0; i < currClass.students.length; i++) {
         let studentId = currClass.students[i];
         let student = await userModel.findOne({_id: studentId});
-        console.log(student);
 
         if (currClass.homework === 0) { //nu are tema
             studentList.push({
@@ -71,6 +70,12 @@ async function buildClassInfo(currClass) {
         classInfo.hasHomework = "Da";
     }
 
+    let homework = await homeworkModel.findOne({id: currClass.homework});
+    classInfo.problemId = 0;
+    if (homework) {
+        classInfo.problemId = homework.problem;
+    }
+
     return classInfo;
 }
 
@@ -83,8 +88,6 @@ const handleClassView = (req, res) => {
 
         let studentList = await buildStudentList(currClass);
         let classInfo = await buildClassInfo(currClass);
-        console.log(classInfo); 
-        console.log(studentList);
 
         let modifiedTemplate = ejs.render(htmlTemplate, {studentList: studentList, classInfo: classInfo});
         return modifiedTemplate;

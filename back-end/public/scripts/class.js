@@ -39,3 +39,15 @@ if (addHomeworkBtn) {
 });
 
 }
+
+const seeHomeworkBtn = document.getElementById("see-homework-btn");
+seeHomeworkBtn.addEventListener("click", () => {
+    const problemId = seeHomeworkBtn.dataset.problemId;
+    if (problemId == 0) {
+        alert("Nu există temă pentru această clasă");
+        return;
+    }
+
+    
+    window.location.href = `/problem/${problemId}`;
+});
