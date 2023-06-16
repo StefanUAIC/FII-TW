@@ -18,13 +18,13 @@ window.onclick = function (event) {
     }
 }
 
-document.getElementById("problemForm").addEventListener("submit", function(event) {
+document.getElementById("problemForm").addEventListener("submit", function (event) {
     event.preventDefault();
     console.log("submit");
     const formData = new FormData(this);
     console.log(formData)
     const objectToSend = {};
-    formData.forEach(function(value, key){
+    formData.forEach(function (value, key) {
         objectToSend[key] = value;
     });
     console.log(objectToSend)
@@ -37,7 +37,9 @@ document.getElementById("problemForm").addEventListener("submit", function(event
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log('Success:', data);
+            alert(data.message);
+            modal.style.display = "none";
+            this.reset();
         })
         .catch((error) => {
             console.error('Error:', error);
