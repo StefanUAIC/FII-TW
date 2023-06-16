@@ -41,7 +41,7 @@ if (classCreateBtn != null) {
         const name = document.getElementById("create-class-textarea").value;
         const description = document.getElementById("description-textarea").value;
     
-        fetch ("/api/classes/creations", {
+        fetch ("/api/classes/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -111,4 +111,45 @@ const handleClassJoin = async (req, res) => {
     res.end("OK");
 }
 
-module.exports = {handleSettingsSave, handleClassCreation, handleClassJoin};
+const handleHomeworkCreation = async (req, res) => {
+    let body = await parseRequestBody(req); //{title, deadline, problem, class}
+
+    try {
+        const role = extractRoleFromJwt(req);
+        if (role !== config.TEACHER_ROLE) {
+            res.writeHead(403, {"Content-Type": "text/plain"});
+            res.end("Forbidden");
+            return;
+        }
+
+        //creez tema
+        const homeworkModel = require("../model/schemas.model").homeworkModel;
+        const getNextId = require("../util/schemas.util").getNextId;
+        body.id = await getNextId(homeworkModel);
+        await homeworkModel.create(body);
+
+        const classModel = require("../model/schemas.model").classModel;
+        const currClass = await classModel.findOne({id: body.class});
+
+        //updatez id-ul temei din clasa respectiva
+        await classModel.updateOne({id: body.class}, {$set: {homework: body.id}});
+
+        //asignez tema fiecarui student din acea clasa
+        const homeworkSolutionModel = require("../model/schemas.model").homeworkSolutionModel;     
+        for (let i = 0; i < currClass.students.length; i++) {
+            const studentId = currClass.students[i];
+            homeworkSolutionModel.create({student: studentId, homework: body.id});
+        }
+    }
+    catch(err) {
+        console.log(err);
+        res.writeHead(500, {"Content-Type": "text/plain"});
+        res.end("Cannot create homework");
+        return;
+    }
+    
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.end("OK");
+}
+
+module.exports = {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation};

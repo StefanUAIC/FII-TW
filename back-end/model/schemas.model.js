@@ -20,7 +20,7 @@ const classSchema = new mongoose.Schema({
 });
 
 const homeworkSolutionSchema = new mongoose.Schema({
-    id: Number,
+   // id: Number,
     homework: Number, //the homework custom id
     student: {
         type: mongoose.Schema.Types.ObjectId,

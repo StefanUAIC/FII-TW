@@ -22,6 +22,8 @@ function getViewPath(req) {
 
 async function buildStudentList(currClass) {
     let studentList = [];
+    let homework = await homeworkModel.findOne({id: currClass.homework});
+
     for (let i = 0; i < currClass.students.length; i++) {
         let studentId = currClass.students[i];
         let student = await userModel.findOne({_id: studentId});
@@ -39,10 +41,9 @@ async function buildStudentList(currClass) {
         }
 
         let homeworkSolution = await homeworkSolutionModel.findOne({student: studentId, homework: currClass.homework});
-        let homework = await homeworkModel.findOne({id: currClass.homework});
 
         studentList.push({
-            name: student.name,
+            name: student.firstName + " " + student.lastName,
             status: homeworkSolution.status,
             sendDate: homeworkSolution.sendDate,
             deadline: homework.deadline,
