@@ -128,7 +128,7 @@ const processIncomingData = (req) => {
     });
 }
 
-const handleRequestEnd = (req, res, endpoint) => {
+const processRequestEndpoint = (req, res, endpoint) => {
     processIncomingData(req).then(parsedData => {
         switch (endpoint) {
             case 'login':
@@ -172,7 +172,7 @@ const authenticationController = (req, res) => {
         if (endpoint === 'logout') {
             handleLogout(req, res);
         } else {
-            handleRequestEnd(req, res, endpoint);
+            processRequestEndpoint(req, res, endpoint);
         }
     }
 }
