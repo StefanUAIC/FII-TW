@@ -18,6 +18,29 @@ window.onclick = function (event) {
     }
 }
 
-document.getElementById("problemForm").onsubmit = function (event) {
+document.getElementById("problemForm").addEventListener("submit", function(event) {
     event.preventDefault();
-};
+    console.log("submit");
+    const formData = new FormData(this);
+    console.log(formData)
+    const objectToSend = {};
+    formData.forEach(function(value, key){
+        objectToSend[key] = value;
+    });
+    console.log(objectToSend)
+    fetch('http://localhost:8081/api/problems/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(objectToSend)
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+});
+

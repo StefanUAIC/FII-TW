@@ -15,12 +15,11 @@ const parseRequestBody = (req) => {
 
 const handleSettingsSave = async (req, res) => {
     let body = await parseRequestBody(req);
-    const UserRepository = require("../repository/user.repository"); 
+    const UserRepository = require("../repository/user.repository");
 
     try {
         await UserRepository.updateOne({email: body.email}, body);
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
         res.writeHead(500);
         res.end("Internal server error");
@@ -31,4 +30,19 @@ const handleSettingsSave = async (req, res) => {
     res.end("OK");
 }
 
-module.exports = {handleSettingsSave};
+const handleAddProblem = async (req, res) => {
+    let body = await parseRequestBody(req);
+    const {createProblem} = require("../repository/problem.repository");
+    console.log(body)
+    try {
+        await createProblem(body);
+
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({message: 'Problema adăugată cu succes'}));
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500);
+        res.end(JSON.stringify({message: 'Nu s-a reușit adăugarea problemei'}));
+    }
+}
+module.exports = {handleSettingsSave, handleAddProblem};
