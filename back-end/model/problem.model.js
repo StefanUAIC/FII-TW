@@ -16,7 +16,8 @@ const problemSchema = new mongoose.Schema({
     grade: String, //clasa
 
     rating: [ratingSchema],
-    comments: [commentSchema]
+    comments: [commentSchema],
+    tags: [String]
 });
 
 
