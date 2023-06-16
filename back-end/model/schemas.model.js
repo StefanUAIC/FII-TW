@@ -26,6 +26,10 @@ const homeworkSolutionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    sendDate: {
+        type: String,
+        default: '-'
+    },
     sourceCode: {
         type: String,
         default: ''
@@ -41,13 +45,14 @@ const homeworkSolutionSchema = new mongoose.Schema({
 
     status: {
         type: String,
-        default: 'Nealocat'
-    } // "nealocat", "in lucru", "trimis", "corectat"
+        default: 'In lucru'
+    } // "in lucru", "trimis", "corectat"
 });
 
 const homeworkSchema = new mongoose.Schema({
     id: Number,
     title: String,
+    deadline: Date,
 
     problem: Number, //the problem custom id
     class: Number, //the class custom id
