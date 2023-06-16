@@ -31,7 +31,7 @@ const handleProblemView = (req, res) => {
             throw err;
         }
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {code: {source: 'cout << "hello world"; '}, problem: problem});
+        let modifiedTemplate = ejs.render(htmlTemplate, {code: {source: 'cout << "hello world"; \n cout << "ok"; '}, problem: problem});
         return modifiedTemplate;
     });
 }
