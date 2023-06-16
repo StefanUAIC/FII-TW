@@ -1,9 +1,12 @@
 const classCodeBtn = document.getElementById("copy-code-btn");
 
-classCodeBtn.addEventListener("click", () => {
-    const classCode = document.getElementById("class-code").innerText;
-    navigator.clipboard.writeText(classCode);
-});
+if (classCodeBtn) {
+    classCodeBtn.addEventListener("click", () => {
+        const classCode = document.getElementById("class-code").innerText;
+        navigator.clipboard.writeText(classCode);
+    });
+}
+
 
 const addHomeworkBtn = document.getElementById("add-homework-btn");
 if (addHomeworkBtn) {
@@ -47,7 +50,7 @@ seeHomeworkBtn.addEventListener("click", () => {
         alert("Nu există temă pentru această clasă");
         return;
     }
+    const homeworkId = seeHomeworkBtn.dataset.homeworkId;
 
-    
-    window.location.href = `/problem/${problemId}`;
+    window.location.href = `/problem/${problemId}?homework=${homeworkId}`;
 });

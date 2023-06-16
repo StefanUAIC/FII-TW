@@ -49,3 +49,17 @@ if (input != null) {
         value.textContent = event.target.value;
     })
 }
+
+
+const studentHomeworkSelectBtn = document.getElementById("homework-selector-student");
+if (studentHomeworkSelectBtn != null) {
+    studentHomeworkSelectBtn.addEventListener("change", () => {
+        const homeworkId = parseInt(studentHomeworkSelectBtn.value);
+        const problemId = parseInt(studentHomeworkSelectBtn.dataset.problemId);
+        if (homeworkId === 0) {
+            window.location.href = `/problem/${problemId}`;
+            return;
+        }
+        window.location.href = `/problem/${problemId}?homework=${homeworkId}`;
+    });
+}

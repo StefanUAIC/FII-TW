@@ -58,6 +58,7 @@ async function buildClassInfo(currClass) {
         name: currClass.name,
         code: currClass.code,
         studentCount: currClass.students.length, 
+        homeworkId: currClass.homework
     };
 
     let teacher = await userModel.findOne({_id: currClass.teacher});

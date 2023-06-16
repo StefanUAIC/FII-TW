@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const config = require("../config/config").config;
 
 const homeworkSolutionSchema = new mongoose.Schema({
     // id: Number,
@@ -13,7 +14,7 @@ const homeworkSolutionSchema = new mongoose.Schema({
      },
      sourceCode: {
          type: String,
-         default: ''
+         default: config.DEFAULT_SOURCE_CODE
      },
      description: {
          type: String,

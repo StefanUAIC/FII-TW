@@ -44,9 +44,8 @@
                     <h3>Dificultate:</h3>
                      <span class="difficulty"><%= problem.difficulty %></span>
                 </div>
-                <div class="tag tag-score">
-                    <h3>Punctajul meu:</h3> 
-                    <span class="score">9</span>/10 
+                <div class="tag tag-export">
+                    <a href="#">Exportează</a> 
                 </div>
                 <div class="tag tag-chapter">
                     <h3>Capitol:</h3>
@@ -101,15 +100,22 @@
         </div>
         <div class="code-container">
             <div class="code-editor">
-                <div id="editor"><pre><code> <%= code.source %> </code></pre> 
+                <div id="editor"><pre><code><%= solution.sourceCode %></code></pre> 
                 </div>
             </div>
             <div class="code-buttons">
                 <button class="code-button" id="send-homework">Trimite</button>
-                <select name="Alege Profesor" id="profesor">
-                    <option value="profesor0">Selecteaza tema</option>
-                    <option value="profesor1">Tema 1</option>
-                    <option value="profesor2">Tema 2</option>
+                <select name="Alege Tema" id="homework-selector-student" data-problem-id=" <%= problem.id %>">
+                    <option value="0">Selecteaza tema</option>
+                    <% for(let homework of homeworks) { %>
+                    <option 
+                        value="<%= homework.id %>"
+                        <% if(homework.id === solution.homeworkId) { %> selected <% } %> 
+                    >
+                    <%= homework.title %>
+                    </option>
+
+                    <% } %>
                 </select>
                 <button class="code-button" id="grade-details">Detalii punctaj</button>                
             </div>
@@ -168,13 +174,13 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <h3>Status tema: corectată</h3>
-                <h3 class="modal-grade">Punctajul tău: <span class="student-grade">9</span>/10</h3>
-                <h3>Profesor corector: <span class="teacher-name">Cosmin Vârlan</span></h3>
+                <h3>Status tema: <%= solution.status %></h3>
+                <h3 class="modal-grade">Punctajul tău: <span class="student-grade"><%= solution.grade %></span>/10</h3>
+                <h3>Profesor corector: <span class="teacher-name"><%= solution.teacherName %></span></h3>
                 <h3>Descriere</h3>
-                <p>Motivul pentru care elevul a luat nota... Daca elevul nu are niciun punctaj la aceasta problema atunci va aparea un mesaj corespunzator.<br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam animi nemo dignissimos beatae quia esse, eaque ipsam impedit excepturi ad magnam nam fuga dicta soluta voluptates cupiditate natus illum qui.</p>
+                <p><%= solution.description %></p>
                 <h3>Codul meu: </h3>
-                <pre><code> <%= code.source %> </code></pre>
+                <pre><code> <%= solution.sourceCode %> </code></pre>
             </div>
             
         </div>
@@ -182,7 +188,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
     <script src="/scripts/problem.js"></script>
-    <script src="scripts/logout.js"></script>
+    <script src="/scripts/logout.js"></script>
 
 </body>
 </html>
