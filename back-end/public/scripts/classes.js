@@ -67,7 +67,7 @@ const classJoinBtn = document.getElementById("join-class-button");
 if (classJoinBtn != null) {
     classJoinBtn.addEventListener("click", (event) => {
         event.preventDefault();
-        const code = document.getElementById("join-class-textarea").value;
+        const code = document.getElementById("join-class-textarea").value.trim();
         console.log(code);
     
         fetch ("/api/classes/join", {
