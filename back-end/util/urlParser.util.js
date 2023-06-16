@@ -1,6 +1,5 @@
 const extractIdFromUrl = (url) => {
-    const id = url.split('/')[2];
-    return id;
+    return url.split('/')[2];
 }
 
 module.exports = {extractIdFromUrl};

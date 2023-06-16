@@ -44,6 +44,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .settings-button {
     padding: 30px;
     gap: 10px;
@@ -81,6 +82,7 @@ body {
     cursor: pointer;
     transition: opacity 0.4s;
 }
+
 .problems-container {
     border-radius: 15px;
     width: min(800px, 100%);

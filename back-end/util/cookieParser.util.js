@@ -1,4 +1,3 @@
-
 const extractCookie = (req, cookieName) => {
     let cookie = req.headers.cookie;
     if (!cookie) {

@@ -28,9 +28,9 @@ const routeMap = {
     '/register': handleRegisterView,
     '/home': handleHomeView,
     '/problemlist': handleProblemlistView,
-   // '/problem/:id': handleProblemView,
+    // '/problem/:id': handleProblemView,
     '/classlist': handleClasslistView,
-  //  '/class/:id': handleClassView,
+    //  '/class/:id': handleClassView,
     '/account': handleAccountView,
     '/account/edit': handleAccountEditView,
     '/scholarly': handleScholarlyView,
@@ -38,29 +38,26 @@ const routeMap = {
 
 const handleViewRequest = (req, res) => {
     const viewHandler = routeMap[req.url];
-    if (viewHandler){
+    if (viewHandler) {
         viewHandler(req, res);
-    }
-    else if (req.url.startsWith('/problem/')) {
+    } else if (req.url.startsWith('/problem/')) {
         handleProblemView(req, res);
-    }
-    else if (req.url.startsWith('/class/')) {
+    } else if (req.url.startsWith('/class/')) {
         handleClassView(req, res);
-    }
-    else {
+    } else {
         const fileUrl = '/public' + req.url;
         const filePath = path.resolve('.' + fileUrl);
         const fileExt = path.extname(filePath);
-        
+
         fs.readFile(filePath, (err, data) => {
             if (err) {
-                res.writeHead(404, { 'Content-Type': 'text/plain' });
+                res.writeHead(404, {'Content-Type': 'text/plain'});
                 res.end('Not Found');
             } else {
-                res.writeHead(200, { 'Content-Type': mimeMap[fileExt] });
+                res.writeHead(200, {'Content-Type': mimeMap[fileExt]});
                 res.end(data);
             }
-        });  
+        });
     }
 };
 

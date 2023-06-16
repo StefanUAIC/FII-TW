@@ -87,7 +87,7 @@ body {
     font-size: 14px;
 }
 
-.tag h3{
+.tag h3 {
     font-size: 14px;
     margin-right: 5px;
     padding: 0;
@@ -141,38 +141,37 @@ body {
     position: fixed;
     opacity: 0;
     pointer-events: none;
-  }
-  
-  .radio-label {
+}
+
+.radio-label {
     cursor: pointer;
     font-size: 0;
-    color: rgba(0,0,0,0.7);
+    color: rgba(0, 0, 0, 0.7);
     transition: color 0.1s ease-in-out;
-  }
-  
-  .radio-label:before {
+}
+
+.radio-label:before {
     content: "★";
     display: inline-block;
     font-size: 32px;
-  }
+}
 
-  .radio-input:checked ~ .radio-label {
-    color: #ffc700;
+.radio-input:checked ~ .radio-label {
     color: gold;
-  }
-  
-  .radio-label:hover,
-  .radio-label:hover ~ .radio-label {
+}
+
+.radio-label:hover,
+.radio-label:hover ~ .radio-label {
     color: goldenrod;
-  }
-  
-  .radio-input:checked + .radio-label:hover,
-  .radio-input:checked + .radio-label:hover ~ .radio-label,
-  .radio-input:checked ~ .radio-label:hover,
-  .radio-input:checked ~ .radio-label:hover ~ .radio-label,
-  .radio-label:hover ~ .radio-input:checked ~ .radio-label {
+}
+
+.radio-input:checked + .radio-label:hover,
+.radio-input:checked + .radio-label:hover ~ .radio-label,
+.radio-input:checked ~ .radio-label:hover,
+.radio-input:checked ~ .radio-label:hover ~ .radio-label,
+.radio-label:hover ~ .radio-input:checked ~ .radio-label {
     color: darkgoldenrod;
-  }
+}
 
 .code-container {
     min-height: 600px;
@@ -278,7 +277,6 @@ body {
     border: 2px solid var(--color-light-turq);
     border-radius: 4px;
     padding: 4px;
-    font-size: 20px;
     font-weight: bold;
     font-size: small;
     cursor: pointer;
@@ -324,10 +322,10 @@ body {
     align-items: center;
 }
 
-.comment-box{
+.comment-box {
     width: 700px;
     background-color: var(--color-dark-gray);
-    color:var(--color-light-gray);
+    color: var(--color-light-gray);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 10px;
@@ -384,6 +382,7 @@ body {
     .comment-posting {
         width: 100%;
     }
+
     .comment-box {
         width: 100%;
     }

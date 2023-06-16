@@ -33,14 +33,14 @@ button.addEventListener("click", (event) => {
             description: description.value,
         }),
     })
-    .then((response) => {
-        if (response.ok) {
-            window.location.href = "/account";
-        } else {
-            alert("Error occured");
-        }
-    })
-    .catch((error) => {
-        alert(error.message);
-    });
+        .then((response) => {
+            if (response.ok) {
+                window.location.href = "/account";
+            } else {
+                alert("Error occured");
+            }
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
 });

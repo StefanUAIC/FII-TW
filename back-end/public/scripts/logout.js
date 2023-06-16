@@ -1,4 +1,5 @@
 const logoutButtons = document.getElementsByClassName('logout-button-js');
+
 function logoutUser(e) {
     e.preventDefault();
 
@@ -16,6 +17,7 @@ function logoutUser(e) {
         })
         .catch(error => console.error('Error:', error));
 }
-for(let i = 0; i < logoutButtons.length; i++) {
+
+for (let i = 0; i < logoutButtons.length; i++) {
     logoutButtons[i].addEventListener('click', logoutUser);
 }

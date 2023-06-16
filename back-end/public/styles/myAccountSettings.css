@@ -321,7 +321,7 @@ textarea.form-control {
 }
 
 .bg-secondary {
-    background-color:var(--color-light-gray) !important;
+    background-color: var(--color-light-gray) !important;
     border-color: var(--color-dark-gray) !important;
 }
 
@@ -415,6 +415,7 @@ textarea[resize='horizontal'] {
 .form-control-alternative:focus {
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
+
 p {
     font-size: 1rem;
     font-weight: 300;

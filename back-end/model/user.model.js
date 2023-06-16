@@ -8,8 +8,8 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     role: String,
-    description: { type: String, default: 'Fără descriere' },
-    address: { type: addressSchema, default: {} }
+    description: {type: String, default: 'Fără descriere'},
+    address: {type: addressSchema, default: {}}
 });
 
 module.exports = mongoose.model("User", userSchema);
