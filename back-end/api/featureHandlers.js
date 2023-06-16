@@ -1,3 +1,5 @@
+const {getNextId} = require("../util/schemas.util.js");
+
 const parseRequestBody = (req) => {
     return new Promise((resolve, reject) => {
         let body = '';
@@ -33,8 +35,11 @@ const handleSettingsSave = async (req, res) => {
 const handleAddProblem = async (req, res) => {
     let body = await parseRequestBody(req);
     const {createProblem} = require("../repository/problem.repository");
-    console.log(body)
+    const ProblemModel = require("../model/problem.model");
     try {
+        body.id = await getNextId(ProblemModel);
+        console.log(body)
+
         await createProblem(body);
 
         res.writeHead(200, {'Content-Type': 'application/json'});
