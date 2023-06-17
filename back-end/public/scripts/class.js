@@ -1,4 +1,3 @@
-const {getNextId} = require("../../util/schemas.util");
 const classCodeBtn = document.getElementById("copy-code-btn");
 
 classCodeBtn.addEventListener("click", () => {
@@ -6,17 +5,15 @@ classCodeBtn.addEventListener("click", () => {
     navigator.clipboard.writeText(classCode).catch(err => {
         console.log(err);
     });
-alert("Codul clasei a fost copiat in clipboard");
+    alert("Codul clasei a fost copiat in clipboard");
 })
 ;
 
 const addHomeworkBtn = document.getElementById("add-homework-btn");
 if (addHomeworkBtn) {
     addHomeworkBtn.addEventListener("click", () => {
-        const HomeworkModel = require("../../model/homework.model");
-        console.log("add homework");
+        console.log("add homework btn clicked");
         const classId = document.getElementById("class-id").innerText;
-        const id = getNextId(HomeworkModel)
 
         fetch("/api/homeworks/create", {
             method: "POST",

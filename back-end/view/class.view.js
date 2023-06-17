@@ -83,8 +83,6 @@ const handleClassView = (req, res) => {
 
         let studentList = await buildStudentList(currClass);
         let classInfo = await buildClassInfo(currClass);
-        console.log(classInfo); 
-        console.log(studentList);
 
         return ejs.render(htmlTemplate, {studentList: studentList, classInfo: classInfo});
     });

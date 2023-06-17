@@ -60,7 +60,6 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             window.location.href = '/';
         })
         .catch((error) => {

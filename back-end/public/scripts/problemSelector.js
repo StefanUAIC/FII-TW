@@ -20,14 +20,11 @@ window.onclick = function (event) {
 
 document.getElementById("problemForm").addEventListener("submit", function (event) {
     event.preventDefault();
-    console.log("submit");
     const formData = new FormData(this);
-    console.log(formData)
     const objectToSend = {};
     formData.forEach(function (value, key) {
         objectToSend[key] = key === 'tags' ? value.split(',').map(tag => tag.trim()) : value;
     });
-    console.log(objectToSend)
     fetch('http://localhost:8081/api/problems/add', {
         method: 'POST',
         headers: {
