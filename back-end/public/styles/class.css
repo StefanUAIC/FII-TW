@@ -323,7 +323,6 @@ select:hover {
     font-weight: bold;
 }
 .modal-container{
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

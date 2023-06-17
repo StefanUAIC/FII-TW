@@ -15,7 +15,7 @@ const modal = document.getElementsByClassName("modal-container")[0];
 const addHomeworkBtn = document.getElementById("add-homework-btn");
 
 addHomeworkBtn.onclick = function () {
-    modal.style.display = "block";
+    modal.style.display = "flex";
 }
 
 closeButton.onclick = function () {
@@ -28,26 +28,35 @@ window.onclick = function (event) {
     }
 }
 
-if (addHomeworkBtn) {
-    addHomeworkBtn.addEventListener("click", () => {
-        console.log("add homework btn clicked");
-        const classId = document.getElementById("class-id").innerText;
+const form = document.getElementById("addHomeworkForm");
 
-        fetch("/api/homeworks/create", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log("Form submitted");
+
+    const classId = document.getElementById("class-id").innerText;
+    const formData = new FormData(form);
+
+    formData.append("class", classId);
+
+    let body = {};
+    formData.forEach((value, key) => body[key] = value);
+    body = JSON.stringify(body);
+
+    fetch("/api/homeworks/create", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: body
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Tema creată cu succes");
+                location.reload();
+            } else {
+                alert("Eroare la crearea temei");
+            }
         })
-            .then(response => {
-                if (response.ok) {
-                    console.log("Tema creată cu succes");
-                    location.reload();
-                } else {
-                    alert("Eroare la crearea temei");
-                }
-            })
-            .catch(error => console.log(error));
-    });
-}
+        .catch(error => console.log(error));
+});
