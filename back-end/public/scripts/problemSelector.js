@@ -38,8 +38,7 @@ document.getElementById("problemForm").addEventListener("submit", function (even
         .then((response) => response.json())
         .then((data) => {
             alert(data.message);
-            modal.style.display = "none";
-            this.reset();
+            location.reload();
         })
         .catch((error) => {
             console.error('Error:', error);

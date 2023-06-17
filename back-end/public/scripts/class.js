@@ -12,7 +12,6 @@ alert("Codul clasei a fost copiat in clipboard");
 const addHomeworkBtn = document.getElementById("add-homework-btn");
 if (addHomeworkBtn) {
     addHomeworkBtn.addEventListener("click", () => {
-        /* TODO: deschide modal */
 
         const classId = document.getElementById("class-id").innerText;
 
@@ -32,7 +31,7 @@ if (addHomeworkBtn) {
         })
             .then(response => {
                 if (response.ok) {
-                    console.log("tema creata");
+                    console.log("Tema creată cu succes");
                     location.reload();
                 } else {
                     alert("Eroare la crearea temei");
