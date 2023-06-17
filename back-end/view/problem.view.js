@@ -21,15 +21,17 @@ function getViewPath(req) {
     return undefined;
 }
 
-async function getStudentHomeworks(email) {
+async function getStudentHomeworks(email, problemId) {
     let homeworks = [];
 
     let student = await userModel.findOne({email: email});
     let homeworkSolutions = await homeworkSolutionModel.find({student: student.id});
-
     for (let i = 0; i < homeworkSolutions.length; i++) {
         let homeworkSolution = homeworkSolutions[i];
         let homework = await homeworkModel.findOne({id: homeworkSolution.homework});
+        if (homework.problem != problemId) {
+            continue;
+        }
 
         homeworks.push({
             title: homework.title,
@@ -44,9 +46,9 @@ async function getTeacherHomeworks() {
     return [];
 }
 
-async function getHomeworksByRole(role, email) {
+async function getHomeworksByRole(role, email, problemId) {
     if (role === config.STUDENT_ROLE) {
-        return getStudentHomeworks(email);
+        return getStudentHomeworks(email, problemId);
     }
     else if (role === config.TEACHER_ROLE) {
         return getTeacherHomeworks();
@@ -127,7 +129,7 @@ const handleProblemView = (req, res) => {
         let email = extractEmailFromJwt(req);
 
         //ca sa afisez dropdownul cu teme
-        let homeworks = await getHomeworksByRole(role, email);
+        let homeworks = await getHomeworksByRole(role, email, problemId);
         
         //ca sa pe pagina informatiile pentru tema selectata din dropdown
         let solution = await getSolutionByRole(req, role, email);
