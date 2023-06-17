@@ -106,7 +106,8 @@
             <div class="code-buttons">
                 <button class="code-button" id="save-homework-btn"
                 data-homework-id="<%= solution.homeworkId %>" data-student-id="<%= solution.studentId %>">Salvează cod</button>
-                <button class="code-button" id="send-homework">Trimite</button>
+                <button class="code-button" id="send-homework-btn" 
+                data-homework-id="<%= solution.homeworkId %>" data-student-id="<%= solution.studentId %>" data-status="<%= solution.status %>">Trimite</button>
                 <select name="Alege Tema" id="homework-selector-student" data-problem-id=" <%= problem.id %>">
                     <option value="0">Selecteaza tema</option>
                     <% for(let homework of homeworks) { %>

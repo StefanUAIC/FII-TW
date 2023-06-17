@@ -199,4 +199,36 @@ const handleHomeworkCodeSave = async (req, res) => {
     res.end("OK");
 }
 
-module.exports = {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem, handleHomeworkCodeSave};
+const handleHomeworkSubmission = async (req, res) => {
+    let body = await parseRequestBody(req); //{student, homework}
+
+    try {
+        const role = extractRoleFromJwt(req);
+        if (role !== config.STUDENT_ROLE) {
+            res.writeHead(403, {"Content-Type": "text/plain"});
+            res.end("Forbidden");
+            return;
+        }
+
+        const homeworkSolutionModel = require("../model/homeworkSolution.model");
+        const homeworkSolution = await homeworkSolutionModel.findOne({student: body.student, homework: body.homework});
+        if (isActiveHomework(homeworkSolution) === false) {
+            res.writeHead(400, {"Content-Type": "text/plain"});
+            res.end("Tema nu mai este activă");
+            return;
+        }
+
+        await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {status: config.HW_STATUS.SUBMITTED, sendDate: new Date().toLocaleDateString()}});
+    }
+    catch(err) {
+        console.log(err);
+        res.writeHead(500, {"Content-Type": "text/plain"});
+        res.end("Cannot submit homework");
+        return;
+    }
+
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.end("OK");
+}
+
+module.exports = {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem, handleHomeworkCodeSave, handleHomeworkSubmission};
