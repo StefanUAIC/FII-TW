@@ -41,7 +41,8 @@ const handleLogin = async (req, res, parsedData) => {
 
     res.setHeader('Set-Cookie', [
         `token=${token}; Path=/; HttpOnly`,
-        'mancare_preferata=papanasi; Path=/'
+        'mancare_preferata=papanasi; Path=/',
+        'campion_preferat=Kled; Path=/'
     ]);
 
     res.writeHead(200, {'Content-Type': 'application/json'});
