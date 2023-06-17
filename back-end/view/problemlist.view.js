@@ -27,6 +27,8 @@ const handleProblemlistView = (req, res) => {
         let query = url_parts.query;
 
         filter = {}
+        if (query.problema && query.problema !== "")
+            filter.title = {$regex : query.problema};
         if (query.categorie && query.categorie !== "Tot")
             filter.chapter = query.categorie;
         if (query.dificultate && query.dificultate !== "Tot")
