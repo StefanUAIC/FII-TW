@@ -1,6 +1,7 @@
 const {getNextId} = require("../util/schemas.util.js");
 const config = require("../config/config").config;
 const { extractEmailFromJwt, extractRoleFromJwt } = require("../util/auth.util");
+const mongoose = require("mongoose")
 
 const parseRequestBody = (req) => {
     return new Promise((resolve, reject) => {
@@ -170,4 +171,31 @@ const handleHomeworkCreation = async (req, res) => {
     res.end("OK");
 }
 
-module.exports = {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem};
+const handleHomeworkCodeSave = async (req, res) => {
+    let body = await parseRequestBody(req); //{sourceCode, student, homework}
+
+    try {
+        const role = extractRoleFromJwt(req);
+        if (role !== config.STUDENT_ROLE) {
+            res.writeHead(403, {"Content-Type": "text/plain"});
+            res.end("Forbidden");
+            return;
+        }
+
+        const homeworkSolutionModel = require("../model/homeworkSolution.model");
+        
+
+        await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {sourceCode: body.sourceCode}});
+    }
+    catch(err) {
+        console.log(err);
+        res.writeHead(500, {"Content-Type": "text/plain"});
+        res.end("Cannot save homework code");
+        return;
+    }
+    
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.end("OK");
+}
+
+module.exports = {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem, handleHomeworkCodeSave};

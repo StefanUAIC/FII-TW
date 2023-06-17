@@ -1,7 +1,5 @@
 //pentru code editor
-let editor = document.querySelector("#editor");
-
-ace.edit(editor, {
+let editor = ace.edit("editor", {
     theme: "ace/theme/cobalt",
     selectionStyle: "text",
     behavioursEnabled: false,
@@ -61,5 +59,46 @@ if (studentHomeworkSelectBtn != null) {
             return;
         }
         window.location.href = `/problem/${problemId}?homework=${homeworkId}`;
+    });
+}
+
+const saveHomeworkBtn = document.getElementById("save-homework-btn");
+if (saveHomeworkBtn) {
+    saveHomeworkBtn.addEventListener("click", () => {
+        const code = editor.getValue();
+        const homework = parseInt(saveHomeworkBtn.dataset.homeworkId);
+        const student = saveHomeworkBtn.dataset.studentId;
+        
+        if (!homework || homework == 0) {
+            alert("Selectează o temă");
+            return;
+        }
+
+        const data = {
+            sourceCode: code,
+            homework: homework,
+            student: student
+        };
+
+        fetch("/api/homeworks/save", { 
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Cod salvat cu succes");
+            }
+            else if (response.status === 400) {
+                alert("Tema nu mai e in lucru");
+            }
+            else {
+                alert("Eroare la salvarea codului");
+            }
+        })
+        .catch(err => console.log(err));
+
     });
 }

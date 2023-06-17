@@ -56,19 +56,21 @@ async function getHomeworksByRole(role, email) {
 
 async function getSolutionForStudent(req, email) {
     let homeworkId = parseQueryParam(req.url, "homework");
+    let student = await userModel.findOne({email: email});
+
     if (!homeworkId) {
         return {
             homeworkId: 0,
             status: "-",
             grade: "-",
             teacherName: "-",
+            studentId: student._id,
             description: "Nu ai selectat nicio temă!",
             sourceCode: config.DEFAULT_SOURCE_CODE
         }
     }
     homeworkId = parseInt(homeworkId);
 
-    let student = await userModel.findOne({email: email});
     let homeworkSolution = await homeworkSolutionModel.findOne({student: student.id, homework: homeworkId});
     if (!homeworkSolution) {
         throw {status: 404, message: "Page not found"};
@@ -84,6 +86,7 @@ async function getSolutionForStudent(req, email) {
         status: homeworkSolution.status,
         grade: homeworkSolution.grade,
         teacherName: teacher.firstName + " " + teacher.lastName,
+        studentId: student.id,
         description: homeworkSolution.description,
         sourceCode: homeworkSolution.sourceCode,
     }

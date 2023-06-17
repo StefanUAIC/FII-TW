@@ -104,6 +104,8 @@
                 </div>
             </div>
             <div class="code-buttons">
+                <button class="code-button" id="save-homework-btn"
+                data-homework-id="<%= solution.homeworkId %>" data-student-id="<%= solution.studentId %>">Salvează cod</button>
                 <button class="code-button" id="send-homework">Trimite</button>
                 <select name="Alege Tema" id="homework-selector-student" data-problem-id=" <%= problem.id %>">
                     <option value="0">Selecteaza tema</option>
@@ -180,7 +182,7 @@
                 <h3>Descriere</h3>
                 <p><%= solution.description %></p>
                 <h3>Codul meu: </h3>
-                <pre><code> <%= solution.sourceCode %> </code></pre>
+                <pre><code><%= solution.sourceCode %></code></pre>
             </div>
             
         </div>

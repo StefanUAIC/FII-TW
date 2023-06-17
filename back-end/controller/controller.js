@@ -1,5 +1,5 @@
 const {authenticationController} = require('./authenticationController');
-const {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem} = require('../api/featureHandlers');
+const {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem, handleHomeworkCodeSave} = require('../api/featureHandlers');
 
 const handleApiRequest = (req, res) => {
     if (req.url.startsWith("/api/auth")) {
@@ -16,6 +16,9 @@ const handleApiRequest = (req, res) => {
     }
     else if (req.url.startsWith("/api/homeworks/create") && req.method === "POST") {
         handleHomeworkCreation(req, res);
+    }
+    else if (req.url.startsWith("/api/homeworks/save") && req.method === "POST") {
+        handleHomeworkCodeSave(req, res);
     }
     else if (req.url.startsWith("/api/problems") && req.method === "POST") {
         console.log(req.url)
