@@ -1,6 +1,6 @@
-var modal = document.getElementsByClassName("modal-container")[0];
-var assignBtn = document.getElementById("create-class"); //pentru profesor
-var closeBtn = document.getElementsByClassName("close")[0];
+const modal = document.getElementsByClassName("modal-container")[0];
+const assignBtn = document.getElementById("create-class"); //pentru profesor
+const closeBtn = document.getElementsByClassName("close")[0];
 
 if (assignBtn != null){
     assignBtn.onclick = function() {
@@ -14,14 +14,14 @@ closeBtn.onclick = function() {
 
 
 window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
         modal.style.display = "none";
     }
 }
 
 //pentru slider-ul cu nota
-var value = document.querySelector("#grade-value")
-var input = document.querySelector("#grade-range")
+const value = document.querySelector("#grade-value");
+const input = document.querySelector("#grade-range");
 
 if (value != null) {
     value.textContent = input.value;

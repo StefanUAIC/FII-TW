@@ -157,7 +157,6 @@ body {
   }
 
   .radio-input:checked ~ .radio-label {
-    color: #ffc700;
     color: gold;
   }
   
@@ -278,7 +277,6 @@ body {
     border: 2px solid var(--color-light-turq);
     border-radius: 4px;
     padding: 4px;
-    font-size: 20px;
     font-weight: bold;
     font-size: small;
     cursor: pointer;

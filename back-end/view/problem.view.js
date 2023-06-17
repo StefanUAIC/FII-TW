@@ -50,8 +50,14 @@ const handleProblemView = (req, res) => {
             ratingValue = problem.rating[indexRating].rating;
         }
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {ratingValue: ratingValue, comments: problem.comments, username: username, code: {source: 'cout << "hello world"; \n cout << "ok"; '}, problem: problem, rating: rating});
-        return modifiedTemplate;
+        return ejs.render(htmlTemplate, {
+            ratingValue: ratingValue,
+            comments: problem.comments,
+            username: username,
+            code: {source: 'cout << "hello world"; \n cout << "ok"; '},
+            problem: problem,
+            rating: rating
+        });
     });
 }
 
