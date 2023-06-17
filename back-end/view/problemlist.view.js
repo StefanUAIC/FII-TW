@@ -35,8 +35,14 @@ const handleProblemlistView = (req, res) => {
             filter.difficulty = query.dificultate;
         if (query.clasa && query.clasa !== "Tot")
             filter.grade = query.clasa;
+        let problems = [];
 
-        let problems = await problemModel.find(filter);
+        try {
+            problems = await problemModel.find(filter);
+        }
+        catch (err) {
+            console.log(err);
+        }
         for (let i = 0; i < problems.length; i++) {
             problems[i].url = "/problem/" + problems[i].id;
             problems[i].summary = problems[i].description.substring(0, MAX_PROBLEM_SUMMARY_LENGTH) + "...";
