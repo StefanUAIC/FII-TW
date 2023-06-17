@@ -64,6 +64,20 @@ if (studentHomeworkSelectBtn != null) {
     });
 }
 
+const teacherHomeworkSelectBtn = document.getElementById("homework-selector-teacher");
+if (teacherHomeworkSelectBtn != null) {
+    teacherHomeworkSelectBtn.addEventListener("change", () => {
+        const homeworkId = parseInt(teacherHomeworkSelectBtn.value);
+        const problemId = parseInt(teacherHomeworkSelectBtn.dataset.problemId);
+        const studentId = teacherHomeworkSelectBtn[teacherHomeworkSelectBtn.selectedIndex].dataset.studentId;
+        if (homeworkId === 0) {
+            window.location.href = `/problem/${problemId}`;
+            return;
+        }
+        window.location.href = `/problem/${problemId}?homework=${homeworkId}&student=${studentId}`;
+    });
+}
+
 const saveHomeworkBtn = document.getElementById("save-homework-btn");
 if (saveHomeworkBtn) {
     saveHomeworkBtn.addEventListener("click", () => {

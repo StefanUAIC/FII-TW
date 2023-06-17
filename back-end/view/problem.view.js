@@ -46,20 +46,19 @@ async function getTeacherHomeworks(email, problemId) {
     let homeworks = [];
     let teacher = await userModel.findOne({email: email});
     let classes = await classModel.find({teacher: teacher._id});
-    for (let i = 0; i < classes.length; i++) {
-        let currClass = classes[i];
+    for (let currClass of classes) {
         if (currClass.homework == 0) {
             continue;
         }
 
-        let homework = await homeworkModel.findOne({class: currClass.id});
+        let homework = await homeworkModel.findOne({id: currClass.homework});
         if (homework.problem != problemId) {
             continue;
         }
 
         for (let studentId of currClass.students) {
             let homeworkSolution = await homeworkSolutionModel.findOne({student: studentId, homework: homework.id});
-            if (homeworkSolution.status !== config.HW_STATUS.SUBMITTED) {
+            if (homeworkSolution.status != config.HW_STATUS.SUBMITTED) {
                 continue;
             }
 
@@ -67,7 +66,7 @@ async function getTeacherHomeworks(email, problemId) {
             homeworks.push({
                 title: homework.title,
                 id: homeworkSolution.homework,
-                studentId: studentId,
+                studentId: studentId.toString(),
                 studentName: student.firstName + " " + student.lastName,
             });
         }
@@ -132,7 +131,6 @@ async function getSolutionForStudent(req, email, problemId) {
 async function getSolutionForTeacher(req, email, problemId) {
     let homeworkId = parseQueryParam(req.url, "homework");
     let studentId = parseQueryParam(req.url, "student");
-    console.log(homeworkId, studentId);
     if (!homeworkId || !studentId) {
         return {
             homeworkId: 0,
@@ -162,6 +160,7 @@ async function getSolutionForTeacher(req, email, problemId) {
 
     return {
         homeworkId: homeworkId,
+        studentId: studentId,
         sourceCode: homeworkSolution.sourceCode
     }
 }

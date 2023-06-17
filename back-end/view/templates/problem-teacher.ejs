@@ -105,13 +105,13 @@
             </div>
             <div class="code-buttons">
                 <button class="code-button" id="assign-homework">Corectează</button>
-                <select name="Alege Tema" id="homework-selector-teacher">
+                <select name="Alege Tema" id="homework-selector-teacher" data-problem-id="<%= problem.id %>" >
                     <option value="0">Selecteaza tema</option>
                     <% for(let homework of homeworks) { %>
                     <option 
                         value="<%= homework.id %>"
                         data-student-id="<%= homework.studentId %>"
-                        <% if(homework.id === solution.homeworkId) { %> selected <% } %> 
+                        <% if(homework.id === solution.homeworkId && homework.studentId === solution.studentId) { %> selected <% } %> 
                     >
                     <%= homework.title %> - <%= homework.studentName %> 
                     </option>
