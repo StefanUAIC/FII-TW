@@ -73,13 +73,12 @@ buttonPost.onclick = function() {
         }, body: JSON.stringify(data),
     })
         .then(response => {
-            if (!response.ok) {
-                return response.json();
-            }
+            return response.json();
         })
         .then(data => {
             if (data) {
                 alert(data.message);
+                location.reload();
             }
         })
         .catch((error) => {
@@ -104,13 +103,12 @@ for(let i = 0; i < buttons.length; i++) {
             }, body: JSON.stringify(data),
         })
             .then(response => {
-                if (!response.ok) {
-                    return response.json();
-                }
+                return response.json();
             })
             .then(data => {
                 if (data) {
                     alert(data.message);
+                    location.reload();
                 }
             })
             .catch((error) => {
