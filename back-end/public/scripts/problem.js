@@ -67,7 +67,7 @@ buttonPost.onclick = function() {
 
     let data = {content: {username: document.getElementById("comment-username-id").innerText, date: currentDate, content: document.getElementById("comment").value}, problemId: problemId};
 
-    fetch('http://localhost:8081/api/comment', {
+    fetch('/api/comment', {
         method: 'POST', headers: {
             'Content-Type': 'application/json',
         }, body: JSON.stringify(data),
@@ -98,7 +98,7 @@ for(let i = 0; i < buttons.length; i++) {
 
         let data = {content: {rating: noStars}, problemId: problemId};
 
-        fetch('http://localhost:8081/api/rating', {
+        fetch('/api/rating', {
             method: 'POST', headers: {
                 'Content-Type': 'application/json',
             }, body: JSON.stringify(data),

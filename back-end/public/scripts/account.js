@@ -14,7 +14,7 @@ button.addEventListener("click", (event) => {
     event.preventDefault();
     console.log(username.value);
 
-    fetch("http://localhost:8081/api/settings", {
+    fetch("/api/settings", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

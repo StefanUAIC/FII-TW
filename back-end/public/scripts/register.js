@@ -37,7 +37,7 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
         return;
     }
 
-    fetch('http://localhost:8081/api/auth/register', {
+    fetch('/api/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
