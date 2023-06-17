@@ -29,8 +29,17 @@ const handleProblemView = (req, res) => {
             };
             throw err;
         }
+        const ratingProblem = 0;
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {code: {source: 'cout << "hello world"; \n cout << "ok"; '}, problem: problem});
+        if (problem.rating.length > 0) {
+            ratingProblem = problem.rating.reduce((accumulator, object) => {
+                return accumulator + object.rating;
+            }, 0) / problem.rating.length;
+        }
+
+        rating = {problem: ratingProblem};
+
+        let modifiedTemplate = ejs.render(htmlTemplate, {code: {source: 'cout << "hello world"; \n cout << "ok"; '}, problem: problem, rating: rating});
         return modifiedTemplate;
     });
 }
