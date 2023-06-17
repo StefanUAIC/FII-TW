@@ -53,6 +53,21 @@ const handleAddRating = async (req, res) => {
     }
 }
 
+const handleAddComment = async (req, res) => {
+    let body = await parseRequestBody(req);
+    const {addCommentProblem} = require("../repository/problem.repository");
+    try {
+        await addCommentProblem(body.content, body.problemId);
+
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({message: 'Comentariu adăugat cu succes'}));
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500);
+        res.end(JSON.stringify({message: 'Nu s-a reușit adăugarea comentariului'}));
+    }
+}
+
 const handleAddProblem = async (req, res) => {
     let body = await parseRequestBody(req);
     const {createProblem} = require("../repository/problem.repository");
@@ -189,4 +204,4 @@ const handleHomeworkCreation = async (req, res) => {
     res.end("OK");
 }
 
-module.exports = {handleSettingsSave, handleAddRating, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem};
+module.exports = {handleSettingsSave, handleAddRating, handleAddComment, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem};

@@ -264,7 +264,7 @@ body {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
-.comment-posting .comment-user-name {
+.comment-posting .comment-username {
     font-size: 16px;
     font-weight: bolder;
     color: var(--color-light-gray);
@@ -335,7 +335,7 @@ body {
     padding-bottom: 20px;
 }
 
-.comment-data .comment-user-name {
+.comment-data .comment-username {
     font-size: 16px;
     font-weight: bolder;
     color: var(--color-light-gray);

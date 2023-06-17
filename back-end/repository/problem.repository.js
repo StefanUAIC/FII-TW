@@ -39,6 +39,14 @@ class ProblemRepository {
         return problem;
     };
 
+    addCommentProblem = async (content, problemId) => {
+        const problem = await this.getProblem({id: problemId});
+        problem.comments.push(content);
+        await this.updateProblem({id: problemId}, problem);
+
+        return problem;
+    };
+
     createProblem = async (body) => {
         const problem = await ProblemModel.create(body);
         if (!problem) {
