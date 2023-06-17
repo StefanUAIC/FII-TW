@@ -40,7 +40,7 @@
             <form action="problemlist" method="get">
                 <div class="form-group focused">
                     <label class="form-control-label">Denumirea problemei</label>
-                    <input name ="problema" type="search" class="form-control form-control-alternative">
+                    <input name="problema" type="search" class="form-control form-control-alternative">
                 </div>
                 <div class="form-group">
                     <label class="form-control-label">Categorie</label>
@@ -84,28 +84,31 @@
                 </div>
             </form>
         </div>
+        <div class="text-center" style="margin-bottom: 10px;">
+            <button id="addProblemButton" type="submit" class="btn btn-primary">Adaugăre problemă</button>
+        </div>
         <div class="text-center">
-            <button id="addProblemButton" type="submit" class="btn btn-primary">Adaugare problema</button>
+            <button id="importProblemButton" type="submit" class="btn btn-primary">Importare problemă</button>
         </div>
     </div>
-        <div class="cards-container">
-            <% for(let problem of problems) { %>
+    <div class="cards-container">
+        <% for(let problem of problems) { %>
             <div class="card">
 
-              <div class="card_details">
-                
-                <% for(let tag of problem.tags) { %>
-                <span class="tag"><%= tag %></span>
-                <% } %>
+                <div class="card_details">
 
-                <div class="name"><a href="<%= problem.url %>"><%= problem.title %></a></div>
-                <p><%= problem.summary %></p>
-              </div>
+                    <% for(let tag of problem.tags) { %>
+                        <span class="tag"><%= tag %></span>
+                    <% } %>
+
+                    <div class="name"><a href="<%= problem.url %>"><%= problem.title %></a></div>
+                    <p><%= problem.summary %></p>
+                </div>
             </div>
-            <% } %>
-        </div> 
+        <% } %>
     </div>
-<div class="modal-container">
+</div>
+<div id="modal" class="modal-container">
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -185,6 +188,25 @@
 
                 <div class="button-container">
                     <button type="submit" class="send-grade-button">Trimite</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="importModal" class="modal-container">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="closeImportButton" class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="importForm">
+                <div class="form-group-modal">
+                    <label for="importFile">Selectează un fișier de tip JSON</label>
+                    <input type="file" id="importFile" name="importFile" accept=".json" required>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="send-grade-button">Importează</button>
                 </div>
             </form>
         </div>
