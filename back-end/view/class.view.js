@@ -86,8 +86,7 @@ const handleClassView = (req, res) => {
         console.log(classInfo); 
         console.log(studentList);
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {studentList: studentList, classInfo: classInfo});
-        return modifiedTemplate;
+        return ejs.render(htmlTemplate, {studentList: studentList, classInfo: classInfo});
     });
 }
 

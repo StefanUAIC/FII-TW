@@ -156,7 +156,7 @@ const handleHomeworkCreation = async (req, res) => {
         const homeworkSolutionModel = require("../model/homeworkSolution.model");     
         for (let i = 0; i < currClass.students.length; i++) {
             const studentId = currClass.students[i];
-            homeworkSolutionModel.create({student: studentId, homework: body.id});
+            await homeworkSolutionModel.create({student: studentId, homework: body.id});
         }
     }
     catch(err) {

@@ -3,7 +3,7 @@ const viewProcessor = require("../util/viewRequest.util");
 const ejs = require('ejs');
 const extractId = require("../util/urlParser.util").extractIdFromUrl;
 const config = require("../config/config").config;
-const { extractRoleFromJwt } = require("../util/auth.util");
+const {extractRoleFromJwt} = require("../util/auth.util");
 const problemModel = require("../model/problem.model");
 
 function getViewPath(req) {
@@ -20,8 +20,9 @@ const handleProblemView = (req, res) => {
     const problemId = extractId(req.url);
     viewProcessor(req, res, getViewPath(req), async (htmlTemplate) => {
         validateJwt(req);
-        
+
         let problem = await problemModel.findOne({id: problemId});
+        let err;
         if (!problem) {
             err = {
                 status: 404,
@@ -29,7 +30,7 @@ const handleProblemView = (req, res) => {
             };
             throw err;
         }
-        const ratingProblem = 0;
+        let ratingProblem = 0;
 
         if (problem.rating.length > 0) {
             ratingProblem = problem.rating.reduce((accumulator, object) => {
@@ -37,10 +38,13 @@ const handleProblemView = (req, res) => {
             }, 0) / problem.rating.length;
         }
 
-        rating = {problem: ratingProblem};
+        let rating = {problem: ratingProblem};
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {code: {source: 'cout << "hello world"; \n cout << "ok"; '}, problem: problem, rating: rating});
-        return modifiedTemplate;
+        return ejs.render(htmlTemplate, {
+            code: {source: 'cout << "hello world"; \n cout << "ok"; '},
+            problem: problem,
+            rating: rating
+        });
     });
 }
 

@@ -6,16 +6,24 @@ const handleApiRequest = (req, res) => {
         authenticationController(req, res);
     } 
     else if (req.url.startsWith("/api/settings") && req.method === "POST") {
-        handleSettingsSave(req, res);
+        handleSettingsSave(req, res).catch((err) => {
+            console.log("handleSettingsSave error. " + err);
+        });
     }
     else if (req.url.startsWith("/api/classes/create") && req.method === "POST") {
-        handleClassCreation(req, res);
+        handleClassCreation(req, res).catch((err) => {
+            console.log("handleClassCreation error. " + err);
+        });
     }
     else if (req.url.startsWith("/api/classes/join") && req.method === "POST") {
-        handleClassJoin(req, res);
+        handleClassJoin(req, res).catch((err) => {
+            console.log("handleClassJoin error. " + err);
+        });
     }
     else if (req.url.startsWith("/api/homeworks/create") && req.method === "POST") {
-        handleHomeworkCreation(req, res);
+        handleHomeworkCreation(req, res).catch((err) => {
+            console.log("handleHomeworkCreation error. " + err);
+        });
     }
     else if (req.url.startsWith("/api/problems") && req.method === "POST") {
         console.log(req.url)

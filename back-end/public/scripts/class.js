@@ -2,9 +2,12 @@ const classCodeBtn = document.getElementById("copy-code-btn");
 
 classCodeBtn.addEventListener("click", () => {
     const classCode = document.getElementById("class-code").innerText;
-    navigator.clipboard.writeText(classCode);
-    alert("Codul clasei a fost copiat in clipboard");
-});
+    navigator.clipboard.writeText(classCode).catch(err => {
+        console.log(err);
+    });
+alert("Codul clasei a fost copiat in clipboard");
+})
+;
 
 const addHomeworkBtn = document.getElementById("add-homework-btn");
 if (addHomeworkBtn) {
@@ -13,7 +16,7 @@ if (addHomeworkBtn) {
 
         const classId = document.getElementById("class-id").innerText;
 
-        body = {
+        let body = {
             title: "tema 1 cex",
             deadline: "2023-06-20",
             problem: 2,
@@ -27,16 +30,15 @@ if (addHomeworkBtn) {
             },
             body: JSON.stringify(body)
         })
-        .then(response => {
-            if (response.ok) {
-                console.log("tema creata");
-                location.reload();
-            }
-            else {
-                alert("Eroare la crearea temei");
-            }
-        })
-        .catch(error => console.log(error));
-});
+            .then(response => {
+                if (response.ok) {
+                    console.log("tema creata");
+                    location.reload();
+                } else {
+                    alert("Eroare la crearea temei");
+                }
+            })
+            .catch(error => console.log(error));
+    });
 
 }

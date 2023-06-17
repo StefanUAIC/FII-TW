@@ -22,6 +22,7 @@ const handleAccountView = (req, res) => {
         let email = extractEmailFromJwt(req);
         let modifiedTemplate;
         let user = await UserRepository.getUser({email: email});
+
         modifiedTemplate = ejs.render(htmlTemplate, {user: user});
 
         return modifiedTemplate;

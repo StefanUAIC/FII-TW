@@ -26,9 +26,9 @@ const handleProblemlistView = (req, res) => {
         let url_parts = url.parse(req.url, true);
         let query = url_parts.query;
 
-        filter = {}
+        let filter = {}
         if (query.problema && query.problema !== "")
-            filter.title = {$regex : query.problema};
+            filter.title = {$regex: query.problema};
         if (query.categorie && query.categorie !== "Tot")
             filter.chapter = query.categorie;
         if (query.dificultate && query.dificultate !== "Tot")
@@ -39,8 +39,7 @@ const handleProblemlistView = (req, res) => {
 
         try {
             problems = await problemModel.find(filter);
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
         for (let i = 0; i < problems.length; i++) {
@@ -48,8 +47,7 @@ const handleProblemlistView = (req, res) => {
             problems[i].summary = problems[i].description.substring(0, MAX_PROBLEM_SUMMARY_LENGTH) + "...";
         }
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {problems: problems});
-        return modifiedTemplate;
+        return ejs.render(htmlTemplate, {problems: problems});
     });
 }
 

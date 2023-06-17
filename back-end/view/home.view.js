@@ -20,8 +20,7 @@ const handleHomeView = (req, res) => {
         let email = extractEmailFromJwt(req);
         let user = await userModel.findOne({email: email});
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {user: user});
-        return modifiedTemplate;
+        return ejs.render(htmlTemplate, {user: user});
     });
 }
 

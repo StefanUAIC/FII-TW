@@ -18,12 +18,10 @@ function getViewPath(req) {
 async function getClassesByUser(user) {
     const classModel = require("../model/class.model");
     if (user.role === config.STUDENT_ROLE) {
-        const classes = await classModel.find({students: {$in: [user._id]}});
-        return classes;
+        return classModel.find({students: {$in: [user._id]}});
     }
     else if (user.role === config.TEACHER_ROLE) {
-        const classes = await classModel.find({teacher: user._id});
-        return classes;
+        return classModel.find({teacher: user._id});
     }
     return undefined;
 }
@@ -39,8 +37,7 @@ const handleClasslistView = (req, res) => {
             classes[i].url = "/class/" + classes[i].id;
         }
 
-        let modifiedTemplate = ejs.render(htmlTemplate, {user: user, classes: classes});
-        return modifiedTemplate;
+        return ejs.render(htmlTemplate, {user: user, classes: classes});
     });
 }
 
