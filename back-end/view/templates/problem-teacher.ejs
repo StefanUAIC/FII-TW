@@ -104,7 +104,7 @@
                 </div>
             </div>
             <div class="code-buttons">
-                <button class="code-button" id="assign-homework">Corectează</button>
+                <button class="code-button" id="assign-homework" >Corectează</button>
                 <select name="Alege Tema" id="homework-selector-teacher" data-problem-id="<%= problem.id %>" >
                     <option value="0">Selecteaza tema</option>
                     <% for(let homework of homeworks) { %>
@@ -183,7 +183,7 @@
                     <h3>Descriere</h3>
                     <textarea name="description" id="description" placeholder="Justifică nota pusă dacă e nevoie..."></textarea>
                 </div>
-                <button class="send-grade-button">Trimite</button>
+                <button class="send-grade-button" id="grade-homework-btn" data-student-id="<%= solution.studentId %>" data-homework-id="<%= solution.homeworkId %>" >Trimite</button>
             </div>
             
         </div>

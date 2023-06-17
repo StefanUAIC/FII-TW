@@ -1,5 +1,5 @@
 const {authenticationController} = require('./authenticationController');
-const {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem, handleHomeworkCodeSave, handleHomeworkSubmission} = require('../api/featureHandlers');
+const {handleSettingsSave, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem, handleHomeworkCodeSave, handleHomeworkSubmission, handleHomeworkGrading} = require('../api/featureHandlers');
 
 const handleApiRequest = (req, res) => {
     if (req.url.startsWith("/api/auth")) {
@@ -17,11 +17,14 @@ const handleApiRequest = (req, res) => {
     else if (req.url.startsWith("/api/homeworks/create") && req.method === "POST") {
         handleHomeworkCreation(req, res);
     }
-    else if (req.url.startsWith("/api/homeworks/save") && req.method === "POST") {
+    else if (req.url.startsWith("/api/homeworks/save") && req.method === "PUT") {
         handleHomeworkCodeSave(req, res);
     }
-    else if (req.url.startsWith("/api/homeworks/send") && req.method === "POST") {
+    else if (req.url.startsWith("/api/homeworks/send") && req.method === "PUT") {
         handleHomeworkSubmission(req, res);
+    }
+    else if (req.url.startsWith("/api/homeworks/grade") && req.method === "PUT") {
+        handleHomeworkGrading(req, res);
     }
     else if (req.url.startsWith("/api/problems") && req.method === "POST") {
         console.log(req.url)

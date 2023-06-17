@@ -97,7 +97,7 @@ if (saveHomeworkBtn) {
         };
 
         fetch("/api/homeworks/save", { 
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -142,7 +142,7 @@ if (sendHomeworkBtn) {
         }
 
         fetch("/api/homeworks/send", {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -155,6 +155,51 @@ if (sendHomeworkBtn) {
             }
             else {
                 alert("Eroare la trimiterea temei");
+            }
+        }
+        )
+        .catch(err => console.log(err));
+    });
+}
+
+const gradeHomeworkBtn = document.getElementById("grade-homework-btn");
+if (gradeHomeworkBtn) {
+    gradeHomeworkBtn.addEventListener("click", () => {
+        const homework = parseInt(gradeHomeworkBtn.dataset.homeworkId);
+        const student = gradeHomeworkBtn.dataset.studentId;
+        if (!homework) {
+            alert("Selectează o temă");
+            return;
+        }
+        const grade = parseInt(document.getElementById("grade-range").value);
+        const description = document.getElementById("description").value;
+
+        const data = {
+            homework: homework,
+            student: student,
+            grade: grade,
+            description: description
+        }
+
+        fetch("/api/homeworks/grade", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Tema notată cu succes");
+                const url = window.location.href;
+                const reloadUrl = url.split("?")[0];
+                window.location.href = reloadUrl;
+            }
+            else if (response.status === 400) {
+                alert("Tema a fost deja corectată sau nu e trimisă/e inactivă");
+            }
+            else {
+                alert("Eroare la notarea temei");
             }
         }
         )
