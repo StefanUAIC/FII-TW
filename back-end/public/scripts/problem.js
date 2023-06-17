@@ -4,6 +4,8 @@ let editor = ace.edit("editor", {
     selectionStyle: "text",
     behavioursEnabled: false,
     fontSize: "16px",
+    mode: "ace/mode/c_cpp",
+    behavioursEnabled: true,
 });
 
 //pop-up pentru profesorul corector/elev in pagina de probleme
