@@ -1,8 +1,8 @@
 const {getNextId} = require("../util/schemas.util.js");
 const config = require("../config/config").config;
 const {extractEmailFromJwt, extractRoleFromJwt} = require("../util/auth.util");
-
 const parseRequestBody = (req) => {
+    // This function returns a promise that resolves to the parsed body of the request.
     return new Promise((resolve, reject) => {
         let body = '';
         req.on('data', chunk => {
@@ -16,11 +16,18 @@ const parseRequestBody = (req) => {
         });
     });
 }
-
+const verifyRole = (req, desiredRole) => {
+    try {
+        const role = extractRoleFromJwt(req);
+        return role === desiredRole;
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
 const handleSettingsSave = async (req, res) => {
     let body = await parseRequestBody(req);
     const userModel = require("../model/user.model");
-
     try {
         await userModel.updateOne({email: body.email}, body);
     } catch (err) {
@@ -35,17 +42,11 @@ const handleSettingsSave = async (req, res) => {
 }
 
 const handleAddProblem = async (req, res) => {
-
-    try {
-        const email = extractEmailFromJwt(req);
-        const role = extractRoleFromJwt(req);
-        if (role !== config.TEACHER_ROLE) {
-            res.writeHead(403);
-            res.end("Forbidden");
-            return;
-        }
-    } catch (err) {
-        console.log(err);
+    // Check if the user is a teacher
+    if (!verifyRole(req, config.TEACHER_ROLE)) {
+        res.writeHead(403);
+        res.end("Forbidden");
+        return;
     }
 
     let body = await parseRequestBody(req);
@@ -82,8 +83,7 @@ const handleClassCreation = async (req, res) => {
 
     try {
         const email = extractEmailFromJwt(req);
-        const role = extractRoleFromJwt(req);
-        if (role !== config.TEACHER_ROLE) {
+        if (!verifyRole(req, config.TEACHER_ROLE)) {
             res.writeHead(403);
             res.end("Forbidden");
             return;
@@ -116,9 +116,8 @@ const handleClassJoin = async (req, res) => {
 
     try {
         const email = extractEmailFromJwt(req);
-        const role = extractRoleFromJwt(req);
-        if (role !== config.STUDENT_ROLE) {
-            res.writeHead(403, {"Content-Type": "text/plain"});
+        if (!verifyRole(req, config.TEACHER_ROLE)) {
+            res.writeHead(403);
             res.end("Forbidden");
             return;
         }
@@ -150,9 +149,8 @@ const handleHomeworkCreation = async (req, res) => {
     let body = await parseRequestBody(req); //{title, deadline, problem, class}
 
     try {
-        const role = extractRoleFromJwt(req);
-        if (role !== config.TEACHER_ROLE) {
-            res.writeHead(403, {"Content-Type": "text/plain"});
+        if (!verifyRole(req, config.TEACHER_ROLE)) {
+            res.writeHead(403);
             res.end("Forbidden");
             return;
         }
