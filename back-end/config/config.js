@@ -10,5 +10,11 @@ module.exports.config = {
     SECRET_KEY: process.env.SECRET_KEY || "ciorbaRadauteana",
     STUDENT_ROLE: "Elev",
     TEACHER_ROLE: "Profesor",
-    DEFAULT_SOURCE_CODE: "#include<iostream>\nusing namespace std;\n\nint main() {\n\tcout << \"Hello world!\";\n\treturn 0;\n}" 
+    DEFAULT_SOURCE_CODE: "#include<iostream>\nusing namespace std;\n\nint main() {\n\tcout << \"Hello world!\";\n\treturn 0;\n}",
+    HW_STATUS: {
+        INACTIVE: "Inactiv",
+        IN_PROGRESS: "In lucru",
+        SUBMITTED: "Trimis",
+        GRADED: "Corectat"
+    } 
 };

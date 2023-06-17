@@ -16,9 +16,9 @@ if (addHomeworkBtn) {
         const classId = document.getElementById("class-id").innerText;
 
         body = {
-            title: "tema 1 cex",
+            title: "tema 3 cex",
             deadline: "2023-06-20",
-            problem: 2,
+            problem: 1,
             class: classId
         }
 

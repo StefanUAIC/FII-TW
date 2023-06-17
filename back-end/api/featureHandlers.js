@@ -1,7 +1,8 @@
 const {getNextId} = require("../util/schemas.util.js");
 const config = require("../config/config").config;
 const { extractEmailFromJwt, extractRoleFromJwt } = require("../util/auth.util");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { isActiveHomework, assignHomeworkToClass, markCurrentHomeworkStatus } = require("../util/homework.util.js");
 
 const parseRequestBody = (req) => {
     return new Promise((resolve, reject) => {
@@ -150,15 +151,10 @@ const handleHomeworkCreation = async (req, res) => {
         const classModel = require("../model/class.model");
         const currClass = await classModel.findOne({id: body.class});
 
-        //updatez id-ul temei din clasa respectiva
-        await classModel.updateOne({id: body.class}, {$set: {homework: body.id}});
+        //in caz ca am deja o tema asignata, o marchez ca inactiva
+        markCurrentHomeworkStatus(currClass, config.HW_STATUS.INACTIVE);
 
-        //asignez tema fiecarui student din acea clasa
-        const homeworkSolutionModel = require("../model/homeworkSolution.model");     
-        for (let i = 0; i < currClass.students.length; i++) {
-            const studentId = currClass.students[i];
-            homeworkSolutionModel.create({student: studentId, homework: body.id});
-        }
+        assignHomeworkToClass(currClass, body.id);
     }
     catch(err) {
         console.log(err);
@@ -183,7 +179,12 @@ const handleHomeworkCodeSave = async (req, res) => {
         }
 
         const homeworkSolutionModel = require("../model/homeworkSolution.model");
-        
+        const homeworkSolution = await homeworkSolutionModel.findOne({student: body.student, homework: body.homework});
+        if (isActiveHomework(homeworkSolution) === false) {
+            res.writeHead(400, {"Content-Type": "text/plain"});
+            res.end("Tema nu mai este activă");
+            return;
+        }
 
         await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {sourceCode: body.sourceCode}});
     }

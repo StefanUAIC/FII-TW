@@ -28,7 +28,7 @@ const homeworkSolutionSchema = new mongoose.Schema({
      status: {
          type: String,
          default: 'In lucru'
-     } // "in lucru", "trimis", "corectat"
+     } // "in lucru", "trimis", "corectat", "inactiv"
  });
 
 module.exports = mongoose.model("HomeworkSolution", homeworkSolutionSchema);
