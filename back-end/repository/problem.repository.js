@@ -24,6 +24,21 @@ class ProblemRepository {
         return problem;
     };
 
+    addRatingProblem = async (content, problemId) => {
+        let problem = await this.getProblem({id: problemId});
+
+        if(!problem.rating.some(item => item.user.equals(content.user))) {
+            problem.rating.push(content);
+        }
+        else {
+            let indexRating = problem.rating.findIndex(item => item.user.equals(content.user));
+            problem.rating[indexRating] = content;
+        }
+        await this.updateProblem({id: problemId}, problem);
+
+        return problem;
+    };
+
     createProblem = async (body) => {
         const problem = await ProblemModel.create(body);
         if (!problem) {

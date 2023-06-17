@@ -86,15 +86,15 @@
             <div class="star-rating">
                 <h3>Notați problema</h3>
                 <div class="stars">
-                    <input type="radio" name="star" class ="radio-input" id="star1" value="1">
+                    <input type="radio" name="star" class ="radio-input" id="star1" value="1" <% if(ratingValue === 5){ %> checked="checked" <% } %>>
                     <label for="star1" class="radio-label">1</label>
-                    <input type="radio" name="star" class ="radio-input" id="star2" value="2">
+                    <input type="radio" name="star" class ="radio-input" id="star2" value="2" <% if(ratingValue === 4){ %> checked="checked" <% } %>>
                     <label for="star2" class="radio-label">2</label>
-                    <input type="radio" name="star" class ="radio-input" id="star3" value="3">
+                    <input type="radio" name="star" class ="radio-input" id="star3" value="3" <% if(ratingValue === 3){ %> checked="checked" <% } %>>
                     <label for="star3" class="radio-label">3</label>
-                    <input type="radio" name="star" class ="radio-input" id="star4" value="4">
+                    <input type="radio" name="star" class ="radio-input" id="star4" value="4" <% if(ratingValue === 2){ %> checked="checked" <% } %>>
                     <label for="star4" class="radio-label">4</label>
-                    <input type="radio" name="star" class ="radio-input" id="star5" value="5">
+                    <input type="radio" name="star" class ="radio-input" id="star5" value="5" <% if(ratingValue === 1){ %> checked="checked" <% } %>>
                     <label for="star5" class="radio-label">5</label>
                 </div>
             </div>
