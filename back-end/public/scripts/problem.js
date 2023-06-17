@@ -54,6 +54,40 @@ function getNoStars() {
     return 6-document.querySelector('input[name="star"]:checked').value;
 }
 
+const buttonPost = document.getElementById("comment-post-btn");
+buttonPost.onclick = function() {
+    let urlSplit = window.location.href.split("/");
+    let problemId = urlSplit[urlSplit.length-1];
+
+    const date = new Date();
+    let currentDay= String(date.getDate()).padStart(2, '0');
+    let currentMonth = String(date.getMonth()+1).padStart(2,"0");
+    let currentYear = date.getFullYear();
+    let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
+
+    let data = {content: {username: document.getElementById("comment-username-id").innerText, date: currentDate, content: document.getElementById("comment").value}, problemId: problemId};
+
+    fetch('http://localhost:8081/api/comment', {
+        method: 'POST', headers: {
+            'Content-Type': 'application/json',
+        }, body: JSON.stringify(data),
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.json();
+            }
+        })
+        .then(data => {
+            if (data) {
+                alert(data.message);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert(error.message);
+        });
+}
+
 const buttons = document.getElementsByClassName("radio-input");
 for(let i = 0; i < buttons.length; i++) {
     let button = buttons[i];
@@ -63,7 +97,6 @@ for(let i = 0; i < buttons.length; i++) {
         let problemId = urlSplit[urlSplit.length-1];
 
         let data = {content: {rating: noStars}, problemId: problemId};
-        console.log(document.querySelector('input[name="star"]:checked'));
 
         fetch('http://localhost:8081/api/rating', {
             method: 'POST', headers: {

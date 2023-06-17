@@ -118,17 +118,17 @@
         <div class="comment-posting">
             <div class="comment-header">
                 <img src="/assets/profile_picture_placeholder.png" alt="pfp">
-                    <h3 class="comment-username"><%= username %></h3>
+                    <h3 class="comment-username" id="comment-username-id"><%= username %></h3>
             </div>
             <textarea name="comment" id="comment" placeholder="Lasă un comentariu... Maxim 200 de caractere"></textarea>
-            <button class="comment-posting-button">Posteaza</button> 
+            <button class="comment-posting-button" id="comment-post-btn">Posteaza</button>
         </div>
         
         <div class="comment-box-container">
             <% for(let comment of comments) { %>
                 <div class="comment-box">
                     <div class="comment-header">
-                        <img src="assets/profile_picture_placeholder.png" alt="pfp">
+                        <img src="/assets/profile_picture_placeholder.png" alt="pfp">
                         <div class="comment-data">
                             <h3 class="comment-username"><%= comment.username %></h3>
                             <div class="comment-meta"><%= comment.date %></div>

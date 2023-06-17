@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
     username: String,
-    date: Date,
+    date: String,
     content: {
         type: String,
         maxLength: 200
