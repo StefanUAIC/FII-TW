@@ -45,7 +45,7 @@ async function buildStudentList(currClass) {
             status: homeworkSolution.status,
             sendDate: homeworkSolution.sendDate,
             deadline: homework.deadline.toLocaleDateString(),
-            problemUrl: "/problem/" + homework.problem, //todo: de adaugat query params sa duca exact pe codul lui
+            problemUrl: `/problem/${homework.problem}?homework=${homework.id}&student=${studentId}`,
         })
     }
     
