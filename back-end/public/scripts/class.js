@@ -40,7 +40,16 @@ form.addEventListener("submit", (event) => {
     formData.append("class", classId);
 
     let body = {};
-    formData.forEach((value, key) => body[key] = value);
+    formData.forEach((value, key) => {
+        if(key === 'deadline') {
+            let deadlineDate = value;
+            let deadlineTime = formData.get('deadlineTime');
+            body[key] = `${deadlineDate}T${deadlineTime}:00`; // Append time to the date
+        } else if(key !== 'deadlineTime') { // Exclude deadlineTime key-value pair
+            body[key] = value;
+        }
+    });
+
     body = JSON.stringify(body);
 
     fetch("/api/homeworks/create", {
@@ -52,7 +61,7 @@ form.addEventListener("submit", (event) => {
     })
         .then(response => {
             if (response.ok) {
-                alert("Tema creată cu succes");
+                console.log("Tema creată cu succes");
                 location.reload();
             } else {
                 alert("Eroare la crearea temei");
@@ -60,3 +69,4 @@ form.addEventListener("submit", (event) => {
         })
         .catch(error => console.log(error));
 });
+
