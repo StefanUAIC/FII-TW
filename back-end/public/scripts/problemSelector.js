@@ -35,8 +35,9 @@ window.onclick = function (event) {
 function validateProblem(problem) {
     const fields = ['title', 'author', 'tags', 'description', 'input', 'output', 'restrictions', 'difficulty', 'chapter', 'grade'];
     const grades = ['IX', 'X', 'XI', 'XII'];
-    const chapters = ['Programare dinamică', 'Algoritmi elementari', 'Tablouri unidimensionale', 'Probleme diverse'];
+    const chapters = ['Programare dinamica', 'Algoritmi elementari', 'Tablouri unidimensionale', 'Probleme diverse'];
     const difficulties = ['Ușor', 'Mediu', 'Dificil'];
+    console.log(problem);
     for (let field of fields) {
         if (!(field in problem)) {
             alert(`Câmp lipsă ${field}`);
