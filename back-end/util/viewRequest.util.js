@@ -3,7 +3,7 @@ const getFileContent = require("./getFileContent.util");
 const processViewRequest = (req, res, templatePath, callback) => {
     if (!templatePath){
       res.writeHead(403, { 'Content-Type': 'text/plain' });
-      res.end("Access denied. Please login again");
+      res.end("Acces refuzat. Vă rugăm să vă autentificați din nou.");
     }
     getFileContent(templatePath)
         .then(async (data) => {

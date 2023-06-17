@@ -13,7 +13,7 @@ const handleLogout = (req, res) => {
         `role=; Max-Age=0; Path=/;`,
     ]);
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.end(JSON.stringify({message: 'Logged out successfully'}));
+    res.end(JSON.stringify({message: 'Deconectarea reușită'}));
 }
 
 const handleLogin = async (req, res, parsedData) => {
@@ -30,7 +30,7 @@ const handleLogin = async (req, res, parsedData) => {
     }
     if (!user || await comparePasswords(parsedData.password, user.password) === false) {
         res.writeHead(401, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({message: 'Incorrect username or password'}));
+        res.end(JSON.stringify({message: 'Nume de utilizator sau parolă incorectă.'}));
         return;
     }
 
@@ -46,35 +46,35 @@ const handleLogin = async (req, res, parsedData) => {
     ]);
 
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.end(JSON.stringify({message: 'Logged in successfully'}));
+    res.end(JSON.stringify({message: 'Conectare reușită'}));
 }
 
 const handleRegister = async (req, res, parsedData) => {
     const {name, firstName, email, username, password, role} = parsedData;
     if (!name || !firstName || !email || !username || !password || !role) {
         res.writeHead(400, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({message: 'Please fill all fields'}));
+        res.end(JSON.stringify({message: 'Completați toate câmpurile'}));
         return;
     }
 
     const emailRegEx = /\S+@\S+\.\S+/;
     if (!emailRegEx.test(email)) {
         res.writeHead(400, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({message: 'Please provide a valid email'}));
+        res.end(JSON.stringify({message: 'Scrieți o adresă corectă'}));
         return;
     }
 
     const passwordRegEx = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$&*])(?=.*[0-9]).{8,30}$/;
     if (!passwordRegEx.test(password)) {
         res.writeHead(400, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({message: 'Password must have at least one special character, one digit, one uppercase letter, one lowercase letter, and be between 8 to 30 characters long'}));
+        res.end(JSON.stringify({message: 'Parola trebuie să conțină cel puțin un caracter special, o cifră, o literă majusculă, cel puțin o literă mică și să aibă între 8 și 30 de caractere.'}));
         return;
     }
 
     const usernameRegEx = /^[a-zA-Z0-9]{3,20}$/;
     if (!usernameRegEx.test(username)) {
         res.writeHead(400, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({message: 'Username must be between 3 to 20 characters long and can only contain letters and digits'}));
+        res.end(JSON.stringify({message: 'Numele de utilizator trebuie să aibă între 3 și 20 de caractere și poate conține doar litere și cifre.'}));
         return;
     }
     let existingUser = false;
@@ -84,13 +84,13 @@ const handleRegister = async (req, res, parsedData) => {
         if (!(e instanceof NotFoundException)) {
             console.error(e);
             res.writeHead(500, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify({message: 'Something went wrong'}));
+            res.end(JSON.stringify({message: 'Eroare necunoscută'}));
             return;
         }
     }
     if (existingUser) {
         res.writeHead(400, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({message: 'User with this username or email already exists'}));
+        res.end(JSON.stringify({message: 'Există deja un utilizator cu acest nume de utilizator sau adresă de email.'}));
         return;
     }
 
@@ -106,7 +106,7 @@ const handleRegister = async (req, res, parsedData) => {
     const createdUser = await UserRepository.createUser(user);
 
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.end(JSON.stringify({message: 'Registration successful', data: createdUser}));
+    res.end(JSON.stringify({message: 'Înregistrare reușită', data: createdUser}));
 }
 
 const processIncomingData = (req) => {

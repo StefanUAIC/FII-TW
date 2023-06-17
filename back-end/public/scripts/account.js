@@ -37,7 +37,7 @@ button.addEventListener("click", (event) => {
             if (response.ok) {
                 window.location.href = "/account";
             } else {
-                alert("Error occured");
+                alert("Eroare");
             }
         })
         .catch((error) => {

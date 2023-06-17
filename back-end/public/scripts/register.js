@@ -10,30 +10,30 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
     const role = document.getElementById('option-elev').checked ? 'Elev' : 'Profesor';
 
     if (!name || !firstName || !email || !username || !password || !confirmPassword) {
-        alert('Please fill all fields');
+        alert('Completați toate câmpurile!');
         return;
     }
 
     const emailRegEx = /\S+@\S+\.\S+/;
     if (!emailRegEx.test(email)) {
-        alert('Please provide a valid email');
+        alert('Scrieți un e-mail valid!');
         return;
     }
 
-    const passwordRegEx = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,30}$/;
+    const passwordRegEx = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$&*])(?=.*[0-9]).{8,30}$/;
     if (!passwordRegEx.test(password)) {
-        alert('Password must have at least one special character, one digit, one uppercase letter, and be between 3 to 30 characters long');
+        alert('Parola trebuie să conțină cel puțin un caracter special, o cifră, o literă majusculă, cel puțin o literă mică și să aibă între 8 și 30 de caractere.');
         return;
     }
 
     const usernameRegEx = /^[a-zA-Z0-9]{3,20}$/;
     if (!usernameRegEx.test(username)) {
-        alert('Username must be between 3 to 20 characters long and can only contain letters and digits');
+        alert('Numele de utilizator trebuie să aibă între 3 și 20 de caractere și poate conține doar litere și cifre.');
         return;
     }
 
     if (password !== confirmPassword) {
-        alert('Passwords do not match');
+        alert('Parolele nu se potrivesc.');
         return;
     }
 
@@ -54,7 +54,7 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
         .then(response => {
             if (!response.ok) {
                 return response.json().then(data => {
-                    throw new Error(data.message || 'Unknown error occurred');
+                    throw new Error(data.message || 'A apărut o eroare necunoscută.');
                 });
             }
             return response.json();
@@ -64,7 +64,7 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
         })
         .catch((error) => {
             alert(error.message);
-            console.error('Error:', error);
+            console.error('Eroare:', error);
         });
 });
 

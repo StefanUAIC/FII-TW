@@ -100,7 +100,7 @@ const handleClassCreation = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
-        res.end("Internal server error. Cannot create class");
+        res.end("Internal server error. Nu s-a putut crea clasa");
         return;
     }
 
@@ -126,7 +126,7 @@ const handleClassJoin = async (req, res) => {
         const searchedClass = await classModel.findOne({code: body.code});
         if (!searchedClass) {
             res.writeHead(404, {"Content-Type": "text/plain"});
-            res.end("Invalid code. Class not found");
+            res.end("Cod invalid. Clasa nu a fost gasită.");
             return;
         }
 
@@ -138,7 +138,7 @@ const handleClassJoin = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
-        res.end("Cannot join class");
+        res.end("Nu s-a putut efectua alăturarea la clasă");
         return;
     }
 
@@ -175,7 +175,7 @@ const handleHomeworkCreation = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
-        res.end("Cannot create homework");
+        res.end("Nu s-a putut crea tema");
         return;
     }
 
