@@ -68,6 +68,12 @@ const handleAddProblem = async (req, res) => {
 const handleClassCreation = async (req, res) => {
     let body = await parseRequestBody(req); //{name: "nume", description: "descriere"}
 
+    if (body.name.length > 16) {
+        res.writeHead(400, {"Content-Type": "text/plain"});
+        res.end("Numele clasei nu poate avea mai mult de 16 caractere");
+        return;
+    }
+
     const {v4: uuidv4} = require('uuid');
     body.code = uuidv4();
 

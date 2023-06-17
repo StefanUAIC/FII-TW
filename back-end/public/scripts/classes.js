@@ -33,14 +33,18 @@ if (input != null) {
     })
 }
 
-/* creare de clase ca profesor*/
 const classCreateBtn = document.getElementById("create-class-button");
 if (classCreateBtn != null) {
     classCreateBtn.addEventListener("click", (event) => {
         event.preventDefault();
         const name = document.getElementById("create-class-textarea").value;
         const description = document.getElementById("description-textarea").value;
-    
+
+        if (name.length > 16) {
+            alert("Numele clasei poate avea maxim 16 caractere");
+            return;
+        }
+
         fetch ("/api/classes/create", {
             method: "POST",
             headers: {
