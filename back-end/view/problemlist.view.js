@@ -1,4 +1,5 @@
 const {validateJwt} = require("../util/auth.util");
+const url = require('url');
 const viewProcessor = require("../util/viewRequest.util");
 let ejs = require('ejs');
 const config = require("../config/config").config;
@@ -22,7 +23,18 @@ const handleProblemlistView = (req, res) => {
     viewProcessor(req, res, getViewPath(req), async (htmlTemplate) => {
         validateJwt(req);
 
-        let problems = await problemModel.find({});
+        let url_parts = url.parse(req.url, true);
+        let query = url_parts.query;
+
+        filter = {}
+        if (query.categorie && query.categorie !== "Tot")
+            filter.chapter = query.categorie;
+        if (query.dificultate && query.dificultate !== "Tot")
+            filter.difficulty = query.dificultate;
+        if (query.clasa && query.clasa !== "Tot")
+            filter.grade = query.clasa;
+
+        let problems = await problemModel.find(filter);
         for (let i = 0; i < problems.length; i++) {
             problems[i].url = "/problem/" + problems[i].id;
             problems[i].summary = problems[i].description.substring(0, MAX_PROBLEM_SUMMARY_LENGTH) + "...";

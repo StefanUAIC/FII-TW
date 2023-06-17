@@ -37,7 +37,7 @@ const routeMap = {
 }
 
 const handleViewRequest = (req, res) => {
-    const viewHandler = routeMap[req.url];
+    const viewHandler = routeMap[req.url.split("?")[0]];
     if (viewHandler) {
         viewHandler(req, res);
     } else if (req.url.startsWith('/problem/')) {
