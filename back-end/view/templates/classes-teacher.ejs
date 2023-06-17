@@ -37,7 +37,8 @@
 
 <section class="top-container">
     <div class="description">
-        <p class="title">Acestea sunt <span class="your-classes">clasele tale</span>, <span class="user"><%= user.username %></span>
+        <p class="title">Acestea sunt <span class="your-classes">clasele tale</span>, <span
+                    class="user"><%= user.username %></span>
         </p>
     </div>
 </section>
@@ -47,14 +48,14 @@
 <section class="main-container">
 
     <% for(let currClass of classes) { %>
-    <div class="card">
-        <div class="card-image my-classes">
-        <h2><%= currClass.name %></h2>
+        <div class="card">
+            <div class="card-image my-classes">
+                <h2><%= currClass.name %></h2>
+            </div>
+            <p><%= currClass.description %></p>
+            <a href="<%= currClass.url %>">Intră in clasa</a>
         </div>
-        <p><%= currClass.description %></p>
-        <a href="<%= currClass.url %>">Intră in clasa</a>
-    </div>
-  <% } %>
+    <% } %>
     <!-- <div class="card">
         <div class="card-image my-classes">
             <h2>Clasa 1</h2>
@@ -109,13 +110,13 @@
                 <h3>Scrie numele clasei:</h3>
                 <br>
                 <textarea name="create-class-textarea" id="create-class-textarea"
-                          placeholder="Insereaza un nume pentru clasa"></textarea>
+                          placeholder="Insereaza un nume pentru clasa" required></textarea>
             </div>
             <div class="modal-add-description">
                 <h3>Adaugă o descriere clasei:</h3>
                 <br>
                 <textarea name="create-class-textarea" id="description-textarea"
-                          placeholder="Descrierea clasei..."></textarea>
+                          placeholder="Descrierea clasei..." required></textarea>
             </div>
             <button id="create-class-button">Trimite</button>
         </div>
