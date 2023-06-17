@@ -69,7 +69,7 @@ function validateProblem(problem) {
 
 
 function callAddProblemAPI(problem) {
-    fetch('http://localhost:8081/api/problems/add', {
+    fetch('/api/problems/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

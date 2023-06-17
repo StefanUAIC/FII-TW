@@ -7,7 +7,7 @@ loginForm.addEventListener('submit', function (e) {
 
     const data = {email: email, password: password};
 
-    fetch('http://localhost:8081/api/auth/login', {
+    fetch('/api/auth/login', {
         method: 'POST', headers: {
             'Content-Type': 'application/json',
         }, body: JSON.stringify(data),

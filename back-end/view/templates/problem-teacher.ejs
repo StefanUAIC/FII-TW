@@ -86,15 +86,15 @@
             <div class="star-rating">
                 <h3>Notați problema</h3>
                 <div class="stars">
-                    <input type="radio" name="star" class ="radio-input" id="star1" value="1">
+                    <input type="radio" name="star" class ="radio-input" id="star1" value="1" <% if(ratingValue === 5){ %> checked="checked" <% } %>>
                     <label for="star1" class="radio-label">1</label>
-                    <input type="radio" name="star" class ="radio-input" id="star2" value="2">
+                    <input type="radio" name="star" class ="radio-input" id="star2" value="2" <% if(ratingValue === 4){ %> checked="checked" <% } %>>
                     <label for="star2" class="radio-label">2</label>
-                    <input type="radio" name="star" class ="radio-input" id="star3" value="3">
+                    <input type="radio" name="star" class ="radio-input" id="star3" value="3" <% if(ratingValue === 3){ %> checked="checked" <% } %>>
                     <label for="star3" class="radio-label">3</label>
-                    <input type="radio" name="star" class ="radio-input" id="star4" value="4">
+                    <input type="radio" name="star" class ="radio-input" id="star4" value="4" <% if(ratingValue === 2){ %> checked="checked" <% } %>>
                     <label for="star4" class="radio-label">4</label>
-                    <input type="radio" name="star" class ="radio-input" id="star5" value="5">
+                    <input type="radio" name="star" class ="radio-input" id="star5" value="5" <% if(ratingValue === 1){ %> checked="checked" <% } %>>
                     <label for="star5" class="radio-label">5</label>
                 </div>
             </div>
@@ -118,45 +118,25 @@
         <div class="comment-posting">
             <div class="comment-header">
                 <img src="/assets/profile_picture_placeholder.png" alt="pfp">
-                <h3 class="comment-user-name">@Cosmin</h3>
+                    <h3 class="comment-username" id="comment-username-id"><%= username %></h3>
             </div>
             <textarea name="comment" id="comment" placeholder="Lasă un comentariu... Maxim 200 de caractere"></textarea>
-            <button class="comment-posting-button">Posteaza</button> 
+            <button class="comment-posting-button" id="comment-post-btn">Posteaza</button>
         </div>
         
         <div class="comment-box-container">
-            <div class="comment-box">
-                <div class="comment-header">
-                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
-                    <div class="comment-data">
-                        <h3 class="comment-user-name">@Cosmin</h3>
-                        <div class="comment-meta">Astăzi | Profesor</div>
+            <% for(let comment of comments) { %>
+                <div class="comment-box">
+                    <div class="comment-header">
+                        <img src="/assets/profile_picture_placeholder.png" alt="pfp">
+                        <div class="comment-data">
+                            <h3 class="comment-username"><%= comment.username %></h3>
+                            <div class="comment-meta"><%= comment.date %></div>
+                        </div>
                     </div>
+                    <p class="comment-body"><%= comment.content %></p>
                 </div>
-                <p class="comment-body">Tare, iti dau nota buna.</p>
-            </div>
-
-            <div class="comment-box">
-                <div class="comment-header">
-                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
-                    <div class="comment-data">
-                        <h3 class="comment-user-name">@alex</h3>
-                        <div class="comment-meta">Acum 5 zile | Elev</div>
-                    </div>
-                </div>
-                <p class="comment-body">Eu am facut pagina asta.</p>
-            </div>
-    
-            <div class="comment-box">
-                <div class="comment-header">
-                    <img src="assets/profile_picture_placeholder.png" alt="pfp">
-                    <div class="comment-data">
-                        <h3 class="comment-user-name">@Stefan</h3>
-                        <div class="comment-meta">Acum 7 zile | Elev</div>
-                    </div>
-                </div>
-                <p class="comment-body">Un comentariu mai chill. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, esse enim? Excepturi, vel. Excepturi consequuntur esse repellendus distinctio sit quas numquam at? Quasi iste quas illo possimus quisquam enim velit. Inventore soluta necessitatibus vero ex animi debitis, nulla vitae! Reprehenderit beatae et, nostrum dolores vero quisquam a distinctio omnis fugiat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
-            </div>
+            <% } %>
         </div>
     </div>
     <div class="footer">© 2023 InformatiX. All rights reserved.</div>

@@ -7,30 +7,53 @@ const {
 
 class ProblemRepository {
     getAllProblems = async (params = {}) => {
-        let userList = await ProblemModel.find(params);
-        userList = userList.map(user => {
+        let problemList = await ProblemModel.find(params);
+        problemList = problemList.map(user => {
             return user;
         });
 
-        return userList;
+        return problemList;
     };
 
     getProblem = async (params) => {
-        const user = await ProblemModel.findOne(params);
-        if (!user) {
+        const problem = await ProblemModel.findOne(params);
+        if (!problem) {
             throw new NotFoundException("Problem not found");
         }
 
-        return user;
+        return problem;
+    };
+
+    addRatingProblem = async (content, problemId) => {
+        let problem = await this.getProblem({id: problemId});
+
+        if(!problem.rating.some(item => item.user.equals(content.user))) {
+            problem.rating.push(content);
+        }
+        else {
+            let indexRating = problem.rating.findIndex(item => item.user.equals(content.user));
+            problem.rating[indexRating] = content;
+        }
+        await this.updateProblem({id: problemId}, problem);
+
+        return problem;
+    };
+
+    addCommentProblem = async (content, problemId) => {
+        const problem = await this.getProblem({id: problemId});
+        problem.comments.push(content);
+        await this.updateProblem({id: problemId}, problem);
+
+        return problem;
     };
 
     createProblem = async (body) => {
-        const user = await ProblemModel.create(body);
-        if (!user) {
+        const problem = await ProblemModel.create(body);
+        if (!problem) {
             throw new CreateFailedException("Problem failed to be created");
         }
 
-        return user;
+        return problem;
     };
 
     updateProblem = async (filters, body) => {

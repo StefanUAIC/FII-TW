@@ -3,7 +3,7 @@ const logoutButtons = document.getElementsByClassName('logout-button-js');
 function logoutUser(e) {
     e.preventDefault();
 
-    fetch('http://localhost:8081/api/auth/logout', {
+    fetch('/api/auth/logout', {
         method: 'POST',
         credentials: 'include',
     })
