@@ -160,16 +160,6 @@ body {
     }
 }
 
-.join-class-button {
-    padding: 30px;
-    gap: 10px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 .join-class-button button {
     background-color: var(--color-light-turq);
     color: var(--color-dark-gray);
