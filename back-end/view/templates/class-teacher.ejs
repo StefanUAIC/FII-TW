@@ -120,18 +120,12 @@
                 <div class="form-group-modal">
                     <label for="problem">Problemă</label>
                     <select id="problem" name="problem" required>
-                        <option value="1">Problema 1</option>
-                        <option value="2">Problema 2</option>
-                        <option value="3">Problema 3</option>
-                        <option value="4">Problema 4</option>
-                        <option value="5">Problema 5</option>
-                        <option value="6">Problema 6</option>
-                        <option value="7">Problema 7</option>
-                        <option value="8">Problema 8</option>
-                        <option value="9">Problema 9</option>
-                        <option value="10">Problema 10</option>
+                        <% problems.forEach(problem => { %>
+                            <option value="<%= problem.id %>">Problema <%= problem.title %></option>
+                        <% }) %>
                     </select>
                 </div>
+
                 <div class="button-container">
                     <button type="submit" class="send-grade-button">Trimite</button>
                 </div>

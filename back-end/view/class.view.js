@@ -8,6 +8,7 @@ const classModel = require("../model/class.model");
 const homeworkSolutionModel = require("../model/homeworkSolution.model");
 const homeworkModel = require("../model/homework.model");
 const userModel = require("../model/user.model");
+const problemModel = require("../model/problem.model");
 
 function getViewPath(req) {
     let role = extractRoleFromJwt(req);
@@ -83,8 +84,9 @@ const handleClassView = (req, res) => {
 
         let studentList = await buildStudentList(currClass);
         let classInfo = await buildClassInfo(currClass);
+        let problems = await problemModel.find();
 
-        return ejs.render(htmlTemplate, {studentList: studentList, classInfo: classInfo});
+        return ejs.render(htmlTemplate, {studentList: studentList, classInfo: classInfo, problems: problems});
     });
 }
 
