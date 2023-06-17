@@ -7,20 +7,28 @@ const importProblemButton = document.getElementById("importProblemButton");
 const closeButton = document.getElementsByClassName("close")[0];
 const closeImportButton = document.getElementById('closeImportButton');
 
-addProblemButton.onclick = function () {
-    modal.style.display = "block";
+if (addProblemButton) {
+    addProblemButton.onclick = function () {
+        modal.style.display = "block";
+    }
 }
 
-importProblemButton.onclick = function () {
-    importModal.style.display = "block";
+if (importProblemButton) {
+    importProblemButton.onclick = function () {
+        importModal.style.display = "block";
+    }
 }
 
-closeButton.onclick = function () {
-    modal.style.display = "none";
+if (closeButton) {
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    }
 }
 
-closeImportButton.onclick = function () {
-    importModal.style.display = "none";
+if (closeImportButton) {
+    closeImportButton.onclick = function () {
+        importModal.style.display = "none";
+    }
 }
 
 window.onclick = function (event) {
@@ -37,7 +45,6 @@ function validateProblem(problem) {
     const grades = ['IX', 'X', 'XI', 'XII'];
     const chapters = ['Programare dinamica', 'Algoritmi elementari', 'Tablouri unidimensionale', 'Probleme diverse'];
     const difficulties = ['Ușor', 'Mediu', 'Dificil'];
-    console.log(problem);
     for (let field of fields) {
         if (!(field in problem)) {
             alert(`Câmp lipsă ${field}`);

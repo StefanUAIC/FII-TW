@@ -40,8 +40,8 @@ if (classCreateBtn != null) {
         const name = document.getElementById("create-class-textarea").value;
         const description = document.getElementById("description-textarea").value;
 
-        if (name.length > 16) {
-            alert("Numele clasei poate avea maxim 16 caractere");
+        if (name.length > 16 || name.trim().length < 1) {
+            alert("Numele clasei poate avea maxim 16 caractere si minim 1 caracter");
             return;
         }
 

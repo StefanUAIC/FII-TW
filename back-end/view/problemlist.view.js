@@ -19,7 +19,6 @@ function getViewPath(req) {
 }
 
 const handleProblemlistView = (req, res) => {
-    //TODO get the problem list data from the database
     viewProcessor(req, res, getViewPath(req), async (htmlTemplate) => {
         validateJwt(req);
 

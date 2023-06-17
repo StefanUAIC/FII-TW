@@ -7,6 +7,11 @@ const homeworkSchema = new mongoose.Schema({
 
     problem: Number, //the problem custom id
     class: Number, //the class custom id
+
+    assigned: {
+        type: Boolean,
+        default: true
+    }
 });
 
 module.exports = mongoose.model("Homework", homeworkSchema);
