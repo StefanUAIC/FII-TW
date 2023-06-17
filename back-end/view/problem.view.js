@@ -42,8 +42,38 @@ async function getStudentHomeworks(email, problemId) {
     return homeworks;
 }
 
-async function getTeacherHomeworks() {
-    return [];
+async function getTeacherHomeworks(email, problemId) {
+    let homeworks = [];
+    let teacher = await userModel.findOne({email: email});
+    let classes = await classModel.find({teacher: teacher._id});
+    for (let i = 0; i < classes.length; i++) {
+        let currClass = classes[i];
+        if (currClass.homework == 0) {
+            continue;
+        }
+
+        let homework = await homeworkModel.findOne({class: currClass.id});
+        if (homework.problem != problemId) {
+            continue;
+        }
+
+        for (let studentId of currClass.students) {
+            let homeworkSolution = await homeworkSolutionModel.findOne({student: studentId, homework: homework.id});
+            if (homeworkSolution.status !== config.HW_STATUS.SUBMITTED) {
+                continue;
+            }
+
+            let student = await userModel.findOne({_id: studentId});
+            homeworks.push({
+                title: homework.title,
+                id: homeworkSolution.homework,
+                studentId: studentId,
+                studentName: student.firstName + " " + student.lastName,
+            });
+        }
+    }
+
+    return homeworks;
 }
 
 async function getHomeworksByRole(role, email, problemId) {
@@ -51,12 +81,12 @@ async function getHomeworksByRole(role, email, problemId) {
         return getStudentHomeworks(email, problemId);
     }
     else if (role === config.TEACHER_ROLE) {
-        return getTeacherHomeworks();
+        return getTeacherHomeworks(email, problemId);
     }
     return [];
 }
 
-async function getSolutionForStudent(req, email) {
+async function getSolutionForStudent(req, email, problemId) {
     let homeworkId = parseQueryParam(req.url, "homework");
     let student = await userModel.findOne({email: email});
 
@@ -78,8 +108,11 @@ async function getSolutionForStudent(req, email) {
         throw {status: 404, message: "Page not found"};
     }
 
-    //3 queryuri doar pt numele profesorului, nice
     let homework = await homeworkModel.findOne({id: homeworkId});
+    if (homework.problem != problemId) {
+        throw {status: 404, message: "Not found"};
+    }
+
     let currClass = await classModel.findOne({id: homework.class});
     let teacher = await userModel.findOne({_id: currClass.teacher});
 
@@ -96,16 +129,49 @@ async function getSolutionForStudent(req, email) {
     return solution;
 }
 
-async function getSolutionForTeacher() {
-    return null;
+async function getSolutionForTeacher(req, email, problemId) {
+    let homeworkId = parseQueryParam(req.url, "homework");
+    let studentId = parseQueryParam(req.url, "student");
+    console.log(homeworkId, studentId);
+    if (!homeworkId || !studentId) {
+        return {
+            homeworkId: 0,
+            sourceCode: config.DEFAULT_SOURCE_CODE
+        }
+    }
+    homeworkId = parseInt(homeworkId);
+
+    let homework = await homeworkModel.findOne({id: homeworkId});
+    if (!homework) {
+        throw {status: 404, message: "Page not found"};
+    }
+    if (homework.problem != problemId) {
+        throw {status: 404, message: "Page not found"};
+    }
+    
+    let homeworkSolution = await homeworkSolutionModel.findOne({student: studentId, homework: homeworkId});
+    if (!homeworkSolution) {
+        throw {status: 404, message: "Page not found"};
+    }
+
+    let currClass = await classModel.findOne({id: homework.class});
+    let teacher = await userModel.findOne({_id: currClass.teacher});
+    if (teacher.email != email) {
+        throw {status: 403, message: "Forbidden"};
+    }
+
+    return {
+        homeworkId: homeworkId,
+        sourceCode: homeworkSolution.sourceCode
+    }
 }
 
-async function getSolutionByRole(req, role, email) {
+async function getSolutionByRole(req, role, email, problemId) {
     if (role === config.STUDENT_ROLE) {
-        return getSolutionForStudent(req, email);
+        return getSolutionForStudent(req, email, problemId);
     }
     else if (role === config.TEACHER_ROLE) {
-        return getSolutionForTeacher();
+        return getSolutionForTeacher(req, email, problemId);
     }
     return undefined;
 }
@@ -130,9 +196,11 @@ const handleProblemView = (req, res) => {
 
         //ca sa afisez dropdownul cu teme
         let homeworks = await getHomeworksByRole(role, email, problemId);
+        console.log(homeworks);
         
         //ca sa pe pagina informatiile pentru tema selectata din dropdown
-        let solution = await getSolutionByRole(req, role, email);
+        let solution = await getSolutionByRole(req, role, email, problemId);
+        console.log(solution);
 
         let modifiedTemplate = ejs.render(htmlTemplate, {problem: problem, homeworks: homeworks, solution: solution});
         return modifiedTemplate;

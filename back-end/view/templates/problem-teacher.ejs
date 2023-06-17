@@ -100,15 +100,23 @@
         </div>
         <div class="code-container">
             <div class="code-editor">
-                <div id="editor"><pre><code><%= code.source %></code></pre> 
+                <div id="editor"><pre><code><%= solution.sourceCode %></code></pre> 
                 </div>
             </div>
             <div class="code-buttons">
                 <button class="code-button" id="assign-homework">Corectează</button>
-                <select name="Alege Profesor" id="profesor">
-                    <option value="profesor0">Selectează elev</option>
-                    <option value="profesor1">Elev 1 - Clasa XII B</option>
-                    <option value="profesor2">Elev 2 - Clasa XII A</option>
+                <select name="Alege Tema" id="homework-selector-teacher">
+                    <option value="0">Selecteaza tema</option>
+                    <% for(let homework of homeworks) { %>
+                    <option 
+                        value="<%= homework.id %>"
+                        data-student-id="<%= homework.studentId %>"
+                        <% if(homework.id === solution.homeworkId) { %> selected <% } %> 
+                    >
+                    <%= homework.title %> <%= homework.studentName %> 
+                    </option>
+
+                    <% } %>
                 </select>                
             </div>
         </div>
