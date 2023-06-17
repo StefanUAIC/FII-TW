@@ -1,6 +1,6 @@
 const {getNextId} = require("../util/schemas.util.js");
 const config = require("../config/config").config;
-const { extractEmailFromJwt, extractRoleFromJwt } = require("../util/auth.util");
+const {extractEmailFromJwt, extractRoleFromJwt} = require("../util/auth.util");
 
 const parseRequestBody = (req) => {
     return new Promise((resolve, reject) => {
@@ -35,6 +35,19 @@ const handleSettingsSave = async (req, res) => {
 }
 
 const handleAddProblem = async (req, res) => {
+
+    try {
+        const email = extractEmailFromJwt(req);
+        const role = extractRoleFromJwt(req);
+        if (role !== config.TEACHER_ROLE) {
+            res.writeHead(403);
+            res.end("Forbidden");
+            return;
+        }
+    } catch (err) {
+        console.log(err);
+    }
+
     let body = await parseRequestBody(req);
     const {createProblem} = require("../repository/problem.repository");
     const ProblemModel = require("../model/problem.model");
@@ -55,10 +68,10 @@ const handleAddProblem = async (req, res) => {
 const handleClassCreation = async (req, res) => {
     let body = await parseRequestBody(req); //{name: "nume", description: "descriere"}
 
-    const { v4: uuidv4 } = require('uuid');
+    const {v4: uuidv4} = require('uuid');
     body.code = uuidv4();
 
-    const classModel = require("../model/class.model"); 
+    const classModel = require("../model/class.model");
     const userModel = require("../model/user.model");
 
     try {
@@ -78,8 +91,7 @@ const handleClassCreation = async (req, res) => {
         body.students = [];
 
         await classModel.create(body);
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
         res.end("Internal server error. Cannot create class");
@@ -117,8 +129,7 @@ const handleClassJoin = async (req, res) => {
             searchedClass.students.push(student._id);
             await searchedClass.save();
         }
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
         res.end("Cannot join class");
@@ -140,7 +151,6 @@ const handleHomeworkCreation = async (req, res) => {
             return;
         }
 
-        //creez tema
         const homeworkModel = require("../model/homework.model");
         const getNextId = require("../util/schemas.util").getNextId;
         body.id = await getNextId(homeworkModel);
@@ -149,23 +159,20 @@ const handleHomeworkCreation = async (req, res) => {
         const classModel = require("../model/class.model");
         const currClass = await classModel.findOne({id: body.class});
 
-        //updatez id-ul temei din clasa respectiva
         await classModel.updateOne({id: body.class}, {$set: {homework: body.id}});
 
-        //asignez tema fiecarui student din acea clasa
-        const homeworkSolutionModel = require("../model/homeworkSolution.model");     
+        const homeworkSolutionModel = require("../model/homeworkSolution.model");
         for (let i = 0; i < currClass.students.length; i++) {
             const studentId = currClass.students[i];
             await homeworkSolutionModel.create({student: studentId, homework: body.id});
         }
-    }
-    catch(err) {
+    } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
         res.end("Cannot create homework");
         return;
     }
-    
+
     res.writeHead(200, {"Content-Type": "text/plain"});
     res.end("OK");
 }
