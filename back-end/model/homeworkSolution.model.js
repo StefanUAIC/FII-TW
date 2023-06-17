@@ -27,7 +27,7 @@ const homeworkSolutionSchema = new mongoose.Schema({
  
      status: {
          type: String,
-         default: 'In lucru'
+         default: config.HW_STATUS.IN_PROGRESS
      } // "in lucru", "trimis", "corectat", "inactiv"
  });
 
