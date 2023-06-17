@@ -26,9 +26,7 @@ const handleApiRequest = (req, res) => {
         });
     }
     else if (req.url.startsWith("/api/problems") && req.method === "POST") {
-        console.log(req.url)
         if (req.url === "/api/problems/add") {
-            console.log("add")
             handleAddProblem(req, res).catch((err) => {
                 console.log("handleAddProblem error. " + err);
             });

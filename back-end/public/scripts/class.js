@@ -1,3 +1,4 @@
+const {getNextId} = require("../../util/schemas.util");
 const classCodeBtn = document.getElementById("copy-code-btn");
 
 classCodeBtn.addEventListener("click", () => {
@@ -12,15 +13,10 @@ alert("Codul clasei a fost copiat in clipboard");
 const addHomeworkBtn = document.getElementById("add-homework-btn");
 if (addHomeworkBtn) {
     addHomeworkBtn.addEventListener("click", () => {
-
+        const HomeworkModel = require("../../model/homework.model");
+        console.log("add homework");
         const classId = document.getElementById("class-id").innerText;
-
-        let body = {
-            title: "tema 1 cex",
-            deadline: "2023-06-20",
-            problem: 2,
-            class: classId
-        }
+        const id = getNextId(HomeworkModel)
 
         fetch("/api/homeworks/create", {
             method: "POST",
