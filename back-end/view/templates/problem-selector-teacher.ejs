@@ -87,8 +87,11 @@
         <div class="text-center" style="margin-bottom: 10px;">
             <button id="addProblemButton" type="submit" class="btn btn-primary">Adaugăre problemă</button>
         </div>
-        <div class="text-center">
+        <div class="text-center" style="margin-bottom: 10px;">
             <button id="importProblemButton" type="submit" class="btn btn-primary">Importare problemă</button>
+        </div>
+        <div class="text-center">
+            <button id="exportProblemButton" type="submit" class="btn btn-primary">Exportare problemă</button>
         </div>
     </div>
     <div class="cards-container">
@@ -212,7 +215,24 @@
         </div>
     </div>
 </div>
-
+<div id="exportModal" class="modal-container">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="closeExportButton" class="close">&times;</span>
+        </div>
+        <form id="exportForm">
+            <div class="form-group">
+                <label for="problemSelect">Select problem:</label>
+                <select class="form-control" id="problemSelect">
+                    <% allProblems.forEach(function(problem) { %>
+                        <option value="<%= problem.id %>"><%= problem.title %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Export Problem</button>
+        </form>
+    </div>
+</div>
 <section class="footer">© 2023 InformatiX. All rights reserved.</section>
 <script src="scripts/logout.js"></script>
 <script src="scripts/problemSelector.js"></script>

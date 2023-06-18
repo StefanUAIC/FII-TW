@@ -36,9 +36,10 @@ const handleProblemlistView = (req, res) => {
         if (query.clasa && query.clasa !== "Tot")
             filter.grade = query.clasa;
         let problems = [];
-
+        let allProblems = [];
         try {
             problems = await problemModel.find(filter);
+            allProblems = await problemModel.find();
         } catch (err) {
             console.log(err);
         }
@@ -46,8 +47,7 @@ const handleProblemlistView = (req, res) => {
             problems[i].url = "/problem/" + problems[i].id;
             problems[i].summary = problems[i].description.substring(0, MAX_PROBLEM_SUMMARY_LENGTH) + "...";
         }
-
-        return ejs.render(htmlTemplate, {problems: problems});
+        return ejs.render(htmlTemplate, {problems: problems, allProblems: allProblems});
     });
 }
 

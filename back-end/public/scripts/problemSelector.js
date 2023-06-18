@@ -1,11 +1,28 @@
 const modal = document.getElementById('modal');
 const importModal = document.getElementById('importModal');
+const exportModal = document.getElementById('exportModal');
 
 const addProblemButton = document.getElementById("addProblemButton");
 const importProblemButton = document.getElementById("importProblemButton");
+const exportProblemButton = document.getElementById("exportProblemButton");
 
 const closeButton = document.getElementsByClassName("close")[0];
 const closeImportButton = document.getElementById('closeImportButton');
+const closeExportButton = document.getElementById('closeExportButton');
+
+exportProblemButton.onclick = function () {
+    exportModal.style.display = "block";
+}
+
+closeExportButton.onclick = function () {
+    exportModal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target === exportModal) {
+        exportModal.style.display = "none";
+    }
+}
 
 addProblemButton.onclick = function () {
     modal.style.display = "block";
