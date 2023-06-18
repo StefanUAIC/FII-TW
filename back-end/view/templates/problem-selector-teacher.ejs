@@ -220,19 +220,24 @@
         <div class="modal-header">
             <span id="closeExportButton" class="close">&times;</span>
         </div>
-        <form id="exportForm">
-            <div class="form-group">
-                <label for="problemSelect">Select problem:</label>
-                <select class="form-control" id="problemSelect">
-                    <% allProblems.forEach(function(problem) { %>
-                        <option value="<%= problem.id %>"><%= problem.title %></option>
-                    <% }); %>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Export Problem</button>
-        </form>
+        <div class="modal-body">
+            <form id="exportForm">
+                <div class="form-group-modal">
+                    <label for="problemSelect">Selectează o problemă pentru a o exporta</label>
+                    <select class="form-control" id="problemSelect">
+                        <% allProblems.forEach(function(problem) { %>
+                            <option value="<%= problem.id %>"><%= problem.title %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="send-grade-button">Exportează</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
 <section class="footer">© 2023 InformatiX. All rights reserved.</section>
 <script src="scripts/logout.js"></script>
 <script src="scripts/problemSelector.js"></script>
