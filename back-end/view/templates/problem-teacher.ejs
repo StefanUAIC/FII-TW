@@ -44,9 +44,8 @@
                     <h3>Dificultate:</h3>
                      <span class="difficulty"><%= problem.difficulty %></span>
                 </div>
-                <div class="tag tag-homeworks">
-                    <h3>Teme de corectat:</h3> 
-                    <span class="score">2</span>
+                <div class="tag tag-export">
+                    <a href="#">Exportează</a> 
                 </div>
                 <div class="tag tag-chapter">
                     <h3>Capitol:</h3>
@@ -101,15 +100,23 @@
         </div>
         <div class="code-container">
             <div class="code-editor">
-                <div id="editor"><pre><code><%= code.source %></code></pre> 
+                <div id="editor"><pre><code><%= solution.sourceCode %></code></pre> 
                 </div>
             </div>
             <div class="code-buttons">
-                <button class="code-button" id="assign-homework">Corectează</button>
-                <select name="Alege Profesor" id="profesor">
-                    <option value="profesor0">Selectează elev</option>
-                    <option value="profesor1">Elev 1 - Clasa XII B</option>
-                    <option value="profesor2">Elev 2 - Clasa XII A</option>
+                <button class="code-button" id="assign-homework" >Corectează</button>
+                <select name="Alege Tema" id="homework-selector-teacher" data-problem-id="<%= problem.id %>" >
+                    <option value="0">Selecteaza tema</option>
+                    <% for(let homework of homeworks) { %>
+                    <option 
+                        value="<%= homework.id %>"
+                        data-student-id="<%= homework.studentId %>"
+                        <% if(homework.id === solution.homeworkId && homework.studentId === solution.studentId) { %> selected <% } %> 
+                    >
+                    <%= homework.title %> - <%= homework.studentName %> 
+                    </option>
+
+                    <% } %>
                 </select>                
             </div>
         </div>
@@ -156,7 +163,7 @@
                     <h3>Descriere</h3>
                     <textarea name="description" id="description" placeholder="Justifică nota pusă dacă e nevoie..."></textarea>
                 </div>
-                <button class="send-grade-button">Trimite</button>
+                <button class="send-grade-button" id="grade-homework-btn" data-student-id="<%= solution.studentId %>" data-homework-id="<%= solution.homeworkId %>" >Trimite</button>
             </div>
             
         </div>

@@ -1,6 +1,8 @@
 const {getNextId} = require("../util/schemas.util.js");
 const config = require("../config/config").config;
 const {extractEmailFromJwt, extractRoleFromJwt} = require("../util/auth.util");
+const { isActiveHomework, assignHomeworkToClass, markCurrentHomeworkStatus } = require("../util/homework.util.js");
+
 const parseRequestBody = (req) => {
     // This function returns a promise that resolves to the parsed body of the request.
     return new Promise((resolve, reject) => {
@@ -197,14 +199,12 @@ const handleHomeworkCreation = async (req, res) => {
         const classModel = require("../model/class.model");
         const currClass = await classModel.findOne({id: body.class});
 
-        await classModel.updateOne({id: body.class}, {$set: {homework: body.id}});
+        //in caz ca am deja o tema asignata, o marchez ca inactiva
+        await markCurrentHomeworkStatus(currClass, config.HW_STATUS.INACTIVE);
 
-        const homeworkSolutionModel = require("../model/homeworkSolution.model");
-        for (let i = 0; i < currClass.students.length; i++) {
-            const studentId = currClass.students[i];
-            await homeworkSolutionModel.create({student: studentId, homework: body.id});
-        }
-    } catch (err) {
+        await assignHomeworkToClass(currClass, body.id);
+    }
+    catch(err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
         res.end("Nu s-a putut crea tema");
@@ -215,4 +215,100 @@ const handleHomeworkCreation = async (req, res) => {
     res.end("OK");
 }
 
-module.exports = {handleSettingsSave, handleAddRating, handleAddComment, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem};
+const handleHomeworkCodeSave = async (req, res) => {
+    let body = await parseRequestBody(req); //{sourceCode, student, homework}
+
+    try {
+        const role = extractRoleFromJwt(req);
+        if (role !== config.STUDENT_ROLE) {
+            res.writeHead(403, {"Content-Type": "text/plain"});
+            res.end("Forbidden");
+            return;
+        }
+
+        const homeworkSolutionModel = require("../model/homeworkSolution.model");
+        const homeworkSolution = await homeworkSolutionModel.findOne({student: body.student, homework: body.homework});
+        if (isActiveHomework(homeworkSolution) === false) {
+            res.writeHead(400, {"Content-Type": "text/plain"});
+            res.end("Tema nu mai este activă");
+            return;
+        }
+
+        await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {sourceCode: body.sourceCode}});
+    }
+    catch(err) {
+        console.log(err);
+        res.writeHead(500, {"Content-Type": "text/plain"});
+        res.end("Cannot save homework code");
+        return;
+    }
+    
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.end("OK");
+}
+
+const handleHomeworkSubmission = async (req, res) => {
+    let body = await parseRequestBody(req); //{student, homework}
+
+    try {
+        const role = extractRoleFromJwt(req);
+        if (role !== config.STUDENT_ROLE) {
+            res.writeHead(403, {"Content-Type": "text/plain"});
+            res.end("Forbidden");
+            return;
+        }
+
+        const homeworkSolutionModel = require("../model/homeworkSolution.model");
+        const homeworkSolution = await homeworkSolutionModel.findOne({student: body.student, homework: body.homework});
+        if (isActiveHomework(homeworkSolution) === false) {
+            res.writeHead(400, {"Content-Type": "text/plain"});
+            res.end("Tema nu mai este activă");
+            return;
+        }
+
+        await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {status: config.HW_STATUS.SUBMITTED, sendDate: new Date().toLocaleDateString()}});
+    }
+    catch(err) {
+        console.log(err);
+        res.writeHead(500, {"Content-Type": "text/plain"});
+        res.end("Cannot submit homework");
+        return;
+    }
+
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.end("OK");
+}
+
+const handleHomeworkGrading = async (req, res) => {
+    let body = await parseRequestBody(req); //{student, homework, grade, description}
+
+    try {
+        const role = extractRoleFromJwt(req);
+        if (role !== config.TEACHER_ROLE) {
+            res.writeHead(403, {"Content-Type": "text/plain"});
+            res.end("Forbidden");
+            return;
+        }
+
+        const homeworkSolutionModel = require("../model/homeworkSolution.model");
+        const homeworkSolution = await homeworkSolutionModel.findOne({student: body.student, homework: body.homework});
+        if (homeworkSolution.status != config.HW_STATUS.SUBMITTED) {
+            res.writeHead(400, {"Content-Type": "text/plain"});
+            res.end("Tema a fost deja corectată sau nu e trimisă/e inactivă");
+            return;
+        }
+
+        await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {status: config.HW_STATUS.GRADED, grade: body.grade, description: body.description}});
+    }
+    catch(err) {
+        console.log(err);
+        res.writeHead(500, {"Content-Type": "text/plain"});
+        res.end("Cannot grade homework");
+        return;
+    }
+
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    res.end("OK");
+}
+
+module.exports = {handleSettingsSave, handleAddRating, handleAddComment, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem, handleHomeworkCodeSave, handleHomeworkSubmission, handleHomeworkGrading};

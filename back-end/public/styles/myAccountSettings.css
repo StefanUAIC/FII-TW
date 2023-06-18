@@ -106,6 +106,40 @@ hr {
     border-top: 1px solid var(--color-dark-gray);
 }
 
+.col-4,
+.col-8,
+.col-md-12,
+.col-lg-4,
+.col-lg-6,
+.col-xl-6,
+.col-xl-8 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-4 {
+    max-width: 33.33333%;
+    flex: 0 0 33.33333%;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0 rgba(94, 114, 228, .5);
+}
+
+.btn-sm {
+    font-size: .875rem;
+    line-height: 1.5;
+    padding: .25rem .5rem;
+    border-radius: .375rem;
+}
+
+.mb-5 {
+    margin-bottom: 3rem !important;
+}
+
 .container {
     width: 100%;
     margin-right: auto;
@@ -299,6 +333,9 @@ textarea.form-control {
 }
 
 @media (min-width: 1000px) {
+    .justify-content-xl-between {
+        justify-content: space-between !important;
+    }
 }
 
 .shadow {

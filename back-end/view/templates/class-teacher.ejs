@@ -48,14 +48,14 @@
                 <h3>Temă:</h3>
                 <span class="grade"><%= classInfo.hasHomework %></span>
             </div>
-            <p id="class-code" hidden> <%= classInfo.code %> </p>
-            <p id="class-id" hidden> <%= classInfo.id %> </p>
-        </div>
-        <div class="buttons">
-            <button class="button" id="copy-code-btn">Copiaza cod clasa</button>
-            <button class="button" id="add-homework-btn">Adaugare tema</button>
-            <button class="button" id="see-homework-btn">Vezi tema</button>
-        </div>
+                <p id="class-code" hidden> <%= classInfo.code %> </p>
+                <p id="class-id" hidden> <%= classInfo.id %> </p>
+            </div>
+            <div class="buttons">
+                <button class="button" id="copy-code-btn">Copiaza cod clasa</button> 
+                <button class="button" id="add-homework-btn">Adaugare tema</button> 
+                <button class="button" id="see-homework-btn" data-problem-id="<%= classInfo.problemId %>">Vezi tema</button> 
+            </div>
         <table class="students_table">
 
             <thead>
@@ -125,7 +125,6 @@
                         <% }) %>
                     </select>
                 </div>
-
                 <div class="button-container">
                     <button type="submit" class="send-grade-button">Trimite</button>
                 </div>

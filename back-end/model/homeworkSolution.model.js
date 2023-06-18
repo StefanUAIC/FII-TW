@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const config = require("../config/config").config;
 
 const homeworkSolutionSchema = new mongoose.Schema({
     // id: Number,
@@ -13,7 +14,7 @@ const homeworkSolutionSchema = new mongoose.Schema({
      },
      sourceCode: {
          type: String,
-         default: ''
+         default: config.DEFAULT_SOURCE_CODE
      },
      description: {
          type: String,
@@ -26,8 +27,8 @@ const homeworkSolutionSchema = new mongoose.Schema({
  
      status: {
          type: String,
-         default: 'In lucru'
-     } // "in lucru", "trimis", "corectat"
+         default: config.HW_STATUS.IN_PROGRESS
+     } // "in lucru", "trimis", "corectat", "inactiv"
  });
 
 module.exports = mongoose.model("HomeworkSolution", homeworkSolutionSchema);
