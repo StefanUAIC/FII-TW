@@ -139,3 +139,23 @@ document.getElementById("importForm").addEventListener("submit", function (event
     }
     reader.readAsText(file);
 });
+
+document.getElementById("exportForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const problemId = document.getElementById("problemSelect").value;
+    console.log(problemId)
+    fetch(`/api/problems/get?id=${problemId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            const blob = new Blob([JSON.stringify(data)], {type: "text/json;charset=utf-8"});
+            window.saveAs(blob, "problem.json");
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+});

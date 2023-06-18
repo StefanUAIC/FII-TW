@@ -9,7 +9,8 @@ const {
     handleAddProblem,
     handleHomeworkCodeSave,
     handleHomeworkSubmission,
-    handleHomeworkGrading
+    handleHomeworkGrading,
+    handleGetProblem,
 } = require('../api/featureHandlers');
 
 const handleApiRequest = (req, res) => {
@@ -55,11 +56,15 @@ const handleApiRequest = (req, res) => {
     else if (req.url.startsWith("/api/homeworks/grade") && req.method === "PUT") {
         handleHomeworkGrading(req, res);
     }
-    else if (req.url.startsWith("/api/problems") && req.method === "POST") {
+    else if (req.url.startsWith("/api/problems")) {
         console.log(req.url)
-        if (req.url === "/api/problems/add") {
+        if (req.url === "/api/problems/add" && req.method === "POST") {
             handleAddProblem(req, res).catch((err) => {
                 console.log("handleAddProblem error. " + err);
+            });
+        } else if (req.url.startsWith("/api/problems/get") && req.method === "GET") {
+            handleGetProblem(req, res).catch((err) => {
+                console.log("handleGetProblem error. " + err);
             });
         }
     } else {

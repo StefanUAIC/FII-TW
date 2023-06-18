@@ -1,7 +1,7 @@
 const {getNextId} = require("../util/schemas.util.js");
 const config = require("../config/config").config;
 const {extractEmailFromJwt, extractRoleFromJwt} = require("../util/auth.util");
-const { isActiveHomework, assignHomeworkToClass, markCurrentHomeworkStatus } = require("../util/homework.util.js");
+const {isActiveHomework, assignHomeworkToClass, markCurrentHomeworkStatus} = require("../util/homework.util.js");
 
 const parseRequestBody = (req) => {
     // This function returns a promise that resolves to the parsed body of the request.
@@ -99,6 +99,30 @@ const handleAddProblem = async (req, res) => {
         console.log(err);
         res.writeHead(500);
         res.end(JSON.stringify({message: 'Nu s-a reușit adăugarea problemei'}));
+    }
+}
+
+const handleGetProblem = async (req, res) => {
+    const {getProblem} = require("../repository/problem.repository");
+    const url = require('url');
+    const queryObject = url.parse(req.url, true).query;
+    try {
+        const problemId = queryObject.id;
+        let problem = await getProblem({id: problemId});
+        if (problem) {
+            const fields = ['title', 'author', 'tags', 'description', 'input', 'output', 'restrictions', 'difficulty', 'chapter', 'grade'];
+            problem = fields.reduce((obj, key) => ({...obj, [key]: problem[key]}), {});
+
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify(problem));
+        } else {
+            res.writeHead(404, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({message: 'Problem not found'}));
+        }
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500);
+        res.end(JSON.stringify({message: 'Could not fetch the problem'}));
     }
 }
 
@@ -203,8 +227,7 @@ const handleHomeworkCreation = async (req, res) => {
         await markCurrentHomeworkStatus(currClass, config.HW_STATUS.INACTIVE);
 
         await assignHomeworkToClass(currClass, body.id);
-    }
-    catch(err) {
+    } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
         res.end("Nu s-a putut crea tema");
@@ -234,15 +257,17 @@ const handleHomeworkCodeSave = async (req, res) => {
             return;
         }
 
-        await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {sourceCode: body.sourceCode}});
-    }
-    catch(err) {
+        await homeworkSolutionModel.updateOne({
+            student: body.student,
+            homework: body.homework
+        }, {$set: {sourceCode: body.sourceCode}});
+    } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
         res.end("Cannot save homework code");
         return;
     }
-    
+
     res.writeHead(200, {"Content-Type": "text/plain"});
     res.end("OK");
 }
@@ -266,9 +291,11 @@ const handleHomeworkSubmission = async (req, res) => {
             return;
         }
 
-        await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {status: config.HW_STATUS.SUBMITTED, sendDate: new Date().toLocaleDateString()}});
-    }
-    catch(err) {
+        await homeworkSolutionModel.updateOne({
+            student: body.student,
+            homework: body.homework
+        }, {$set: {status: config.HW_STATUS.SUBMITTED, sendDate: new Date().toLocaleDateString()}});
+    } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
         res.end("Cannot submit homework");
@@ -292,15 +319,17 @@ const handleHomeworkGrading = async (req, res) => {
 
         const homeworkSolutionModel = require("../model/homeworkSolution.model");
         const homeworkSolution = await homeworkSolutionModel.findOne({student: body.student, homework: body.homework});
-        if (homeworkSolution.status != config.HW_STATUS.SUBMITTED) {
+        if (homeworkSolution.status !== config.HW_STATUS.SUBMITTED) {
             res.writeHead(400, {"Content-Type": "text/plain"});
             res.end("Tema a fost deja corectată sau nu e trimisă/e inactivă");
             return;
         }
 
-        await homeworkSolutionModel.updateOne({student: body.student, homework: body.homework}, {$set: {status: config.HW_STATUS.GRADED, grade: body.grade, description: body.description}});
-    }
-    catch(err) {
+        await homeworkSolutionModel.updateOne({
+            student: body.student,
+            homework: body.homework
+        }, {$set: {status: config.HW_STATUS.GRADED, grade: body.grade, description: body.description}});
+    } catch (err) {
         console.log(err);
         res.writeHead(500, {"Content-Type": "text/plain"});
         res.end("Cannot grade homework");
@@ -311,4 +340,16 @@ const handleHomeworkGrading = async (req, res) => {
     res.end("OK");
 }
 
-module.exports = {handleSettingsSave, handleAddRating, handleAddComment, handleClassCreation, handleClassJoin, handleHomeworkCreation, handleAddProblem, handleHomeworkCodeSave, handleHomeworkSubmission, handleHomeworkGrading};
+module.exports = {
+    handleSettingsSave,
+    handleAddRating,
+    handleAddComment,
+    handleClassCreation,
+    handleClassJoin,
+    handleHomeworkCreation,
+    handleAddProblem,
+    handleHomeworkCodeSave,
+    handleHomeworkSubmission,
+    handleHomeworkGrading,
+    handleGetProblem
+};
